@@ -15,7 +15,7 @@ const tabs = [
   { title: '综艺', sub: '5' },
 ];
 
-const Home = () => {
+const Home = (props) => {
   const [showSearch, toggleSearch] = useState(false);
   return (
     <div className="home-page">
