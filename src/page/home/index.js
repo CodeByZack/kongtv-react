@@ -1,15 +1,42 @@
 import React, { useState } from "react";
-import { NavBar, Icon, SearchBar, Carousel } from "antd-mobile";
-import HomeItem from './home_item';
+import {
+  NavBar,
+  Icon,
+  SearchBar,
+  Tabs
+} from "antd-mobile";
+import HomeMain from './home_main/';
+import HomeCategory from './home_category/';
+const tabs = [
+  { title: '首页', sub: '1' },
+  { title: '电影', sub: '2' },
+  { title: '电视剧', sub: '3' },
+  { title: '动漫', sub: '4' },
+  { title: '综艺', sub: '5' },
+];
 
 const Home = () => {
   const [showSearch, toggleSearch] = useState(false);
-  const [minHeight, setMinHeight] = useState(176);
   return (
     <div className="home-page">
       {getHeader(showSearch, toggleSearch)}
-      {getSwiper(minHeight, setMinHeight)}
-      <HomeItem/>
+
+      <Tabs
+        tabs={tabs}
+        initialPage={0}
+        onChange={(tab, index) => {
+          console.log("onChange", index, tab);
+        }}
+        onTabClick={(tab, index) => {
+          console.log("onTabClick", index, tab);
+        }}
+      >
+        <HomeMain/>
+        <HomeCategory type="电影"/>
+        <HomeCategory type="电视剧"/>
+        <HomeCategory type="综艺"/>
+        <HomeCategory type="动漫"/>
+      </Tabs>
     </div>
   );
 };
@@ -39,38 +66,5 @@ const getHeader = (showSearch, toggleSearch) => {
         console.log("onchange");
       }}
     />
-  );
-};
-const getSwiper = (minHeight, setMinHeight) => {
-  return (
-    <Carousel
-      autoplay={true}
-      infinite
-      beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-      afterChange={index => console.log("slide to", index)}
-    >
-      {[1, 2, 3].map(val => (
-        <a
-          key={val}
-          href="http://www.alipay.com"
-          style={{
-            display: "inline-block",
-            width: "100%",
-            height: minHeight
-          }}
-        >
-          <img
-            src={`https://zos.alipayobjects.com/rmsportal/IJOtIlfsYdTyaDTRVrLI.png`}
-            alt=""
-            style={{ width: "100%", verticalAlign: "top" }}
-            onLoad={() => {
-              // fire window resize event to change height
-              window.dispatchEvent(new Event("resize"));
-              setMinHeight("auto");
-            }}
-          />
-        </a>
-      ))}
-    </Carousel>
   );
 };
