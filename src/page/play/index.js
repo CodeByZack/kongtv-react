@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { NavBar, Icon } from "antd-mobile";
 import { withRouter } from "react-router-dom";
-import './style.less';
+import { connect } from "react-redux";
+import "./style.less";
 
 const PlayMovie = props => {
-  console.log(props);
-  const { history, location } = props;
-  const data = location.state.data;
+  const { history, nowPlay } = props;
 
   useEffect(() => {
     var player = window.videojs(
@@ -26,7 +25,10 @@ const PlayMovie = props => {
         });
       }
     );
-  }, [data]);
+    player.src({ type: "application/x-mpegURL", src: nowPlay.link });
+    player.load(nowPlay.link);
+    return () => player.dispose();
+  }, [nowPlay]);
 
   return (
     <div className="play-movie-container">
@@ -35,22 +37,22 @@ const PlayMovie = props => {
         icon={<Icon type="left" />}
         onLeftClick={() => history.goBack()}
       >
-        {data.title}
+        {nowPlay.title}
       </NavBar>
       <div id="wrapper">
         <video
           id="example-video"
           className="video-js vjs-default-skin vjs-big-play-centered"
           poster=""
-        >
-          <source
-            src={data.link}
-            type="application/x-mpegURL"
-            id="target"
-          />
-        </video>
+        ></video>
       </div>
     </div>
   );
 };
-export default withRouter(PlayMovie);
+const mapState = state => ({
+  nowPlay: state.play.nowPlay
+});
+const mapDispatch = ({ play: { clear } }) => ({
+  clear: () => clear()
+});
+export default connect(mapState, mapDispatch)(withRouter(PlayMovie));

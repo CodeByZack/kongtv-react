@@ -1,24 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import HomeItem from "./home_item";
 import { Carousel } from "antd-mobile";
-import { getIndex } from "../../../http/index";
-const HomeMain = () => {
+
+const HomeMain = (props) => {
+  const { data } = props;
   const [minHeight, setMinHeight] = useState(176);
-  const [topMovies,setTopMovies] = useState([]);
 
-  useEffect(()=>{
-    getIndex().then(res=>{
-      console.log("data:",res);
-      setTopMovies(res);
-    }).catch(err=>{
-      console.log(err);
-    });
-  },[]);
-
-  const dy = topMovies.filter(movie=>movie.vod_level === "1");
-  const dsj = topMovies.filter(movie=>movie.vod_level === "2");
-  const zy = topMovies.filter(movie=>movie.vod_level === "4");
-  const dm = topMovies.filter(movie=>movie.vod_level === "3");
+  const dy = data.filter(movie=>movie.vod_level === "1");
+  const dsj = data.filter(movie=>movie.vod_level === "2");
+  const zy = data.filter(movie=>movie.vod_level === "4");
+  const dm = data.filter(movie=>movie.vod_level === "3");
 
   return (
     <div className="home_main_page">

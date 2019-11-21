@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import { connect } from "react-redux";
 import {
   NavBar,
   Icon,
@@ -16,7 +17,13 @@ const tabs = [
 ];
 
 const Home = (props) => {
+  const { getAdviceList,adviceMovieList } = props;
   const [showSearch, toggleSearch] = useState(false);
+
+  useEffect(()=>{
+    getAdviceList();
+  },[]);
+
   return (
     <div className="home-page">
       {getHeader(showSearch, toggleSearch)}
@@ -31,7 +38,7 @@ const Home = (props) => {
           console.log("onTabClick", index, tab);
         }}
       >
-        <HomeMain/>
+        <HomeMain data={adviceMovieList}/>
         <HomeCategory type="电影"/>
         <HomeCategory type="电视剧"/>
         <HomeCategory type="综艺"/>
@@ -41,7 +48,14 @@ const Home = (props) => {
   );
 };
 
-export default Home;
+
+const mapState = state => ({
+  adviceMovieList : state.home.adviceMovieList
+});
+const mapDispatch = ({ home: { getAdviceList }}) => ({
+  getAdviceList: () => getAdviceList()
+});
+export default connect(mapState,mapDispatch)(Home);
 
 const getHeader = (showSearch, toggleSearch) => {
   return !showSearch ? (
