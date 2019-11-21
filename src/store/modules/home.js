@@ -1,12 +1,25 @@
-import { getIndex } from "../../http";
+import { getIndex,getCategory } from "../../http";
 
 const home = {
   state: {
     adviceMovieList: [],
-    dyList: [],
-    dmList: [],
-    zyList: [],
-    dsjList: [],
+    tabIndex:0,
+    dyCategory: {
+      list : [],
+      page : 0
+    },
+    dmCategory: {
+      list : [],
+      page : 0
+    },
+    zyCategory: {
+      list : [],
+      page : 0
+    },
+    dsjCategory: {
+      list : [],
+      page : 0
+    }
   },
   reducers: {
     setAdviceList(state, movies) {
@@ -14,13 +27,35 @@ const home = {
         ...state,
         adviceMovieList: movies
       };
+    },
+    addCategoryData(state, key, value){
+      return{
+        ...state,
+        [key]: value
+      }
+    },
+    setTabIndex(state,index){
+      return{
+        ...state,
+        tabIndex : index
+      }
     }
   },
   effects: {
     async getAdviceList() {
       const list = await getIndex();
-      console.log(list);
       this.setAdviceList(list);
+    },
+    async getCategoryList({type},{home}) {
+      const key = `${type}Category`;
+      const { list, page } = home[key];
+      const data = await getCategory(type,page+1);
+      list.push(...data);
+      const value = {
+        list: [ ...list ],
+        page: page+1
+      };
+      this.addCategoryData(key,value);
     }
   }
 };

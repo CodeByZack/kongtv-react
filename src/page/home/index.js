@@ -17,11 +17,16 @@ const tabs = [
 ];
 
 const Home = (props) => {
-  const { getAdviceList,adviceMovieList } = props;
+  const { getAdviceList,getCategoryList,setTabIndex } = props;
+  const { tabIndex,adviceMovieList,dyCategoryList,dmCategoryList,dsjCategoryList,zyCategoryList } = props;
   const [showSearch, toggleSearch] = useState(false);
 
   useEffect(()=>{
     getAdviceList();
+    getCategoryList({type:"dy"});
+    getCategoryList({type:"dm"});
+    getCategoryList({type:"dsj"});
+    getCategoryList({type:"zy"});
   },[]);
 
   return (
@@ -30,19 +35,19 @@ const Home = (props) => {
 
       <Tabs
         tabs={tabs}
-        initialPage={0}
+        initialPage={tabIndex}
         onChange={(tab, index) => {
-          console.log("onChange", index, tab);
+          setTabIndex(index);
         }}
         onTabClick={(tab, index) => {
-          console.log("onTabClick", index, tab);
+          setTabIndex(index);
         }}
       >
         <HomeMain data={adviceMovieList}/>
-        <HomeCategory type="电影"/>
-        <HomeCategory type="电视剧"/>
-        <HomeCategory type="综艺"/>
-        <HomeCategory type="动漫"/>
+        <HomeCategory type="电影" data={dyCategoryList} getCategoryList={getCategoryList}/>
+        <HomeCategory type="电视剧" data={dsjCategoryList} getCategoryList={getCategoryList}/>
+        <HomeCategory type="综艺" data={zyCategoryList} getCategoryList={getCategoryList}/>
+        <HomeCategory type="动漫" data={dmCategoryList} getCategoryList={getCategoryList}/>
       </Tabs>
     </div>
   );
@@ -50,10 +55,17 @@ const Home = (props) => {
 
 
 const mapState = state => ({
-  adviceMovieList : state.home.adviceMovieList
+  adviceMovieList : state.home.adviceMovieList,
+  dyCategoryList : state.home.dyCategory.list,
+  dmCategoryList : state.home.dmCategory.list,
+  zyCategoryList : state.home.zyCategory.list,
+  dsjCategoryList : state.home.dsjCategory.list,
+  tabIndex : state.home.tabIndex
 });
-const mapDispatch = ({ home: { getAdviceList }}) => ({
-  getAdviceList: () => getAdviceList()
+const mapDispatch = ({ home: { getAdviceList,getCategoryList,setTabIndex }}) => ({
+  getAdviceList: () => getAdviceList(),
+  getCategoryList: (d) => getCategoryList(d),
+  setTabIndex: (i)=>setTabIndex(i)
 });
 export default connect(mapState,mapDispatch)(Home);
 

@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import store from '../../../../store/index';
 import './style.less';
 
-console.log( store.dispatch );
 const MovieList = (props) => {
   const { movies,history } = props;
   const onMovieClick = (movie)=>()=>{

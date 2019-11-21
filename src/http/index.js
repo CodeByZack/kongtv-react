@@ -24,9 +24,10 @@ const getIndex = ()=>{
 }
 
 
-const getCategory = (type)=>{
+const getCategory = (type,page)=>{
   return axios.get("/hackapi.php",{params:{
-    router : type
+    router : type,
+    page
   }});
 }
 
