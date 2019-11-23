@@ -19,7 +19,7 @@ const MovieDetail = (props) => {
       title : nowMovie.vod_name,
       ...item
     });
-    history.push({ pathname: "/play", state: { data:{title:nowMovie.vod_name,...item} }});
+    history.push({ pathname: "/play"});
   }
 
   const onBackClick = ()=>{

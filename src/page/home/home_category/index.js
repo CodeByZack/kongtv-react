@@ -1,29 +1,25 @@
-import React,{ useEffect,useRef } from "react";
+import React,{ useRef } from "react";
 import MovieList from "../components/movieList/";
+import {throttle} from "../../../utils/";
 import './style.less';
 
 const HomeCategory = (props) => {
-  const { data, type } = props;
+  const { data, type, getCategoryList } = props;
 
   const realDom = useRef(null);
 
-  console.log(type);
-  useEffect(()=>{
-    console.log(realDom.current);
-    const handleScroll = ()=>{
-      let clientHeight = document.body.clientHeight;
-      var rect = realDom.getBoundingClientRect();
-      console.log(rect);
-      console.log("========")
-    };
-    realDom.current.addEventListener("scroll",handleScroll);
-    return ()=>realDom.current.removeEventListener("scroll",handleScroll);
-  },[]);
+  const handleScroll = (e)=>{
+    const { scrollHeight,scrollTop,offsetHeight } = e.target;
+    if( scrollHeight - scrollTop - offsetHeight < 20 ){
+      getCategoryList({type});
+    }
+  };
 
   return (
-    <div ref={realDom} className="home_category_page">
+    <div ref={realDom} onScroll={ throttle(handleScroll,100) } className="home_category_page">
       <MovieList movies={data} />
     </div>
   );
 };
 export default HomeCategory;
+

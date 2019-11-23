@@ -7,7 +7,7 @@ const MovieList = (props) => {
   const { movies,history } = props;
   const onMovieClick = (movie)=>()=>{
     store.dispatch.detail.setNowMovie(movie);
-    history.push({ pathname: "/detail", state: { movie }});
+    history.push({ pathname: "/detail"});
   }
 
   return (

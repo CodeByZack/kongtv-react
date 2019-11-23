@@ -44,10 +44,10 @@ const Home = (props) => {
         }}
       >
         <HomeMain data={adviceMovieList}/>
-        <HomeCategory type="电影" data={dyCategoryList} getCategoryList={getCategoryList}/>
-        <HomeCategory type="电视剧" data={dsjCategoryList} getCategoryList={getCategoryList}/>
-        <HomeCategory type="综艺" data={zyCategoryList} getCategoryList={getCategoryList}/>
-        <HomeCategory type="动漫" data={dmCategoryList} getCategoryList={getCategoryList}/>
+        <HomeCategory type="dy" data={dyCategoryList} getCategoryList={getCategoryList}/>
+        <HomeCategory type="dsj" data={dsjCategoryList} getCategoryList={getCategoryList}/>
+        <HomeCategory type="zy" data={zyCategoryList} getCategoryList={getCategoryList}/>
+        <HomeCategory type="dm" data={dmCategoryList} getCategoryList={getCategoryList}/>
       </Tabs>
     </div>
   );

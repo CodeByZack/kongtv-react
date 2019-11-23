@@ -6,19 +6,23 @@ const home = {
     tabIndex:0,
     dyCategory: {
       list : [],
-      page : 0
+      page : 0,
+      isFetching : false
     },
     dmCategory: {
       list : [],
-      page : 0
+      page : 0,
+      isFetching : false
     },
     zyCategory: {
       list : [],
-      page : 0
+      page : 0,
+      isFetching : false
     },
     dsjCategory: {
       list : [],
-      page : 0
+      page : 0,
+      isFetching : false
     }
   },
   reducers: {
@@ -32,6 +36,13 @@ const home = {
       return{
         ...state,
         [key]: value
+      }
+    },
+    setFetching(state,key,isFetching){
+      const obj =  state[key];
+      return{
+        ...state,
+        [key]: { ...obj,isFetching }
       }
     },
     setTabIndex(state,index){
@@ -48,12 +59,18 @@ const home = {
     },
     async getCategoryList({type},{home}) {
       const key = `${type}Category`;
-      const { list, page } = home[key];
+      console.log(key);
+      const { list, page, isFetching } = home[key];
+      if(isFetching)return;
+
+      this.setFetching(key,true);
       const data = await getCategory(type,page+1);
+
       list.push(...data);
       const value = {
         list: [ ...list ],
-        page: page+1
+        page: page+1,
+        isFetching : false
       };
       this.addCategoryData(key,value);
     }
