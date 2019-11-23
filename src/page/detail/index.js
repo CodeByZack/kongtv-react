@@ -1,31 +1,31 @@
-import React from "react";
-import { NavBar,Icon } from "antd-mobile";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import "./style.less";
-const MovieDetail = (props) => {
+import React from 'react';
+import { NavBar, Icon } from 'antd-mobile';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import './style.less';
+const MovieDetail = props => {
   const { history, nowMovie, clear, setNowPlay } = props;
 
-  if(!nowMovie)return null;
+  if (!nowMovie) return null;
 
   let playUrls = nowMovie.vod_play_url;
-  playUrls = playUrls.split("#").map((d)=>{
-    const temp = d.split("$");
-    return { text : temp[0],link:temp[1] };
+  playUrls = playUrls.split('#').map(d => {
+    const temp = d.split('$');
+    return { text: temp[0], link: temp[1] };
   });
 
-  const onPlayClick = (item)=>()=>{
+  const onPlayClick = item => () => {
     setNowPlay({
-      title : nowMovie.vod_name,
-      ...item
+      title: nowMovie.vod_name,
+      ...item,
     });
-    history.push({ pathname: "/play"});
-  }
+    history.push({ pathname: '/play' });
+  };
 
-  const onBackClick = ()=>{
+  const onBackClick = () => {
     clear();
     history.goBack();
-  }
+  };
 
   return (
     <div className="movie-detail-wrapper">
@@ -39,7 +39,7 @@ const MovieDetail = (props) => {
 
       <div className="movie-detail-top">
         <div className="movie-pic">
-          <img src={nowMovie.vod_pic} alt={nowMovie.vod_name}/>
+          <img src={nowMovie.vod_pic} alt={nowMovie.vod_name} />
         </div>
         <div className="movie-info">
           <p>导演:{nowMovie.vod_director}</p>
@@ -48,7 +48,6 @@ const MovieDetail = (props) => {
           <p>地区:{nowMovie.vod_area}</p>
           <p>语言:{nowMovie.vod_remarks}</p>
         </div>
-
       </div>
 
       <div className="movie-detail-desc">
@@ -57,29 +56,30 @@ const MovieDetail = (props) => {
       </div>
 
       <div className="movie-play-list">
-        <p><Icon type="loading"/>剧集列表</p>
+        <p>
+          <Icon type="loading" />
+          剧集列表
+        </p>
         <div className="list-container">
-          {
-            playUrls.map(url=>{
-              return <div 
-              className="play-item"
-              onClick={onPlayClick(url)}
-              >{url.text}</div>
-            })
-          }
+          {playUrls.map(url => {
+            return (
+              <div className="play-item" onClick={onPlayClick(url)}>
+                {url.text}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
   );
-
 };
 
 const mapState = state => ({
-  nowMovie : state.detail.nowMovie
+  nowMovie: state.detail.nowMovie,
 });
-const mapDispatch = ({ detail: { clear },play:{ setNowPlay }}) => ({
+const mapDispatch = ({ detail: { clear }, play: { setNowPlay } }) => ({
   clear: () => clear(),
-  setNowPlay: (play)=>setNowPlay(play)
+  setNowPlay: play => setNowPlay(play),
 });
 
-export default connect(mapState,mapDispatch)(withRouter(MovieDetail));
+export default connect(mapState, mapDispatch)(withRouter(MovieDetail));

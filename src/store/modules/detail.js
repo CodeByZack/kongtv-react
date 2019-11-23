@@ -4,18 +4,18 @@ const detail = {
   },
   reducers: {
     setNowMovie(state, movie) {
-      console.log( movie );
+      console.log(movie);
       return {
         ...state,
-        nowMovie: movie
+        nowMovie: movie,
       };
     },
-    clear(){
+    clear() {
       return {
-        nowMovie : null
-      }
-    }
-  }
+        nowMovie: null,
+      };
+    },
+  },
 };
 
 export default detail;

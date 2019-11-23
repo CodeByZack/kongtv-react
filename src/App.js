@@ -3,8 +3,8 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import Home from './page/home';
 import MovieDetail from './page/detail';
 import PlayMovie from './page/play';
-import store from "./store/index";
-import { Provider } from 'react-redux'
+import store from './store/index';
+import { Provider } from 'react-redux';
 
 function App() {
   return (

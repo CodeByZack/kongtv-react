@@ -1,1 +1,1 @@
-import { history } from "react-router-dom";
+import { history } from 'react-router-dom';

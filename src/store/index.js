@@ -1,14 +1,14 @@
-import { init } from "@rematch/core";
-import home from "./modules/home";
-import play from "./modules/play";
-import detail from "./modules/detail";
+import { init } from '@rematch/core';
+import home from './modules/home';
+import play from './modules/play';
+import detail from './modules/detail';
 
 const store = init({
   models: {
     home,
     play,
-    detail
-  }
+    detail,
+  },
 });
 
 export default store;

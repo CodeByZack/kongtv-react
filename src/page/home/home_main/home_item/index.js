@@ -1,9 +1,9 @@
-import React from "react";
-import { Icon } from "antd-mobile";
-import MovieList from "../../components/movieList/"
-import "./style.less";
+import React from 'react';
+import { Icon } from 'antd-mobile';
+import MovieList from '../../components/movieList/';
+import './style.less';
 
-const HomeItem = (props) => {
+const HomeItem = props => {
   const { title, movies } = props;
   return (
     <div className="home-item-section">
@@ -11,7 +11,7 @@ const HomeItem = (props) => {
         <Icon type="search" />
         {title}
       </div>
-      <MovieList movies = { movies } />
+      <MovieList movies={movies} />
     </div>
   );
 };

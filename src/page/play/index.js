@@ -1,31 +1,31 @@
-import React, { useEffect } from "react";
-import { NavBar, Icon } from "antd-mobile";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import "./style.less";
+import React, { useEffect } from 'react';
+import { NavBar, Icon } from 'antd-mobile';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import './style.less';
 
 const PlayMovie = props => {
   const { history, nowPlay } = props;
 
   useEffect(() => {
     var player = window.videojs(
-      "example-video",
-      { poster: "", controls: "true" },
+      'example-video',
+      { poster: '', controls: 'true' },
       function() {
-        this.on("play", function() {
-          console.log("正在播放");
+        this.on('play', function() {
+          console.log('正在播放');
         });
         //暂停--播放完毕后也会暂停
-        this.on("pause", function() {
-          console.log("暂停中");
+        this.on('pause', function() {
+          console.log('暂停中');
         });
         // 结束
-        this.on("ended", function() {
-          console.log("结束");
+        this.on('ended', function() {
+          console.log('结束');
         });
       }
     );
-    player.src({ type: "application/x-mpegURL", src: nowPlay.link });
+    player.src({ type: 'application/x-mpegURL', src: nowPlay.link });
     player.load(nowPlay.link);
     return () => player.dispose();
   }, [nowPlay]);
@@ -50,9 +50,9 @@ const PlayMovie = props => {
   );
 };
 const mapState = state => ({
-  nowPlay: state.play.nowPlay
+  nowPlay: state.play.nowPlay,
 });
 const mapDispatch = ({ play: { clear } }) => ({
-  clear: () => clear()
+  clear: () => clear(),
 });
 export default connect(mapState, mapDispatch)(withRouter(PlayMovie));

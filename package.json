@@ -69,7 +69,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "pr": "prettier --write 'src/**/*.{js,less}'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -138,5 +139,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "prettier": "1.19.1"
   }
 }

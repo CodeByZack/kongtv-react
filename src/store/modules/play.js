@@ -4,18 +4,18 @@ const play = {
   },
   reducers: {
     setNowPlay(state, play) {
-      console.log( play );
+      console.log(play);
       return {
         ...state,
-        nowPlay: play
+        nowPlay: play,
       };
     },
-    clear(){
+    clear() {
       return {
-        nowPlay : null
-      }
-    }
-  }
+        nowPlay: null,
+      };
+    },
+  },
 };
 
 export default play;
