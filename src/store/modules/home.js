@@ -59,7 +59,6 @@ const home = {
     },
     async getCategoryList({ type }, { home }) {
       const key = `${type}Category`;
-      console.log(key);
       const { list, page, isFetching } = home[key];
       if (isFetching) return;
 

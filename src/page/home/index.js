@@ -108,7 +108,7 @@ const getHeader = (showSearch, toggleSearch) => {
       showCancelButton
       style={{ height: 45 }}
       onChange={() => {
-        console.log('onchange');
+        // console.log('onchange');
       }}
     />
   );

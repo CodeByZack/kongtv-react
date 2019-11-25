@@ -4,7 +4,6 @@ const detail = {
   },
   reducers: {
     setNowMovie(state, movie) {
-      console.log(movie);
       return {
         ...state,
         nowMovie: movie,

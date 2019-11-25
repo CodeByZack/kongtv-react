@@ -4,7 +4,6 @@ const play = {
   },
   reducers: {
     setNowPlay(state, play) {
-      console.log(play);
       return {
         ...state,
         nowPlay: play,

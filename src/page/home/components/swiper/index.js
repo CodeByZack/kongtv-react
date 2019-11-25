@@ -68,11 +68,11 @@ const Swiper = props => {
       offsetX = xStart - x;
     if (offsetX <= -50) {
       // 向右
-      console.log('->');
+      // console.log('->');
       swipeRight();
     } else if (offsetX >= 50) {
       // 向左
-      console.log('<-');
+      // console.log('<-');
       swipeLeft();
     }
   };
@@ -97,7 +97,6 @@ const Swiper = props => {
 
   useEffect(() => {
     if (!imgArr.length) return;
-    console.log(index);
     const timer = setTimeout(() => {
       swipeRight();
     }, 2000);
