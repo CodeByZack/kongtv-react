@@ -118,6 +118,7 @@ const Swiper = props => {
       {imgArr.map((d, i) => {
         return (
           <div
+            key={d.vod_id}
             className="ks-swiper-item"
             style={_styles[i]}
             onClick={() => onSwiperItemClick(d, i)}

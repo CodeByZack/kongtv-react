@@ -14,7 +14,11 @@ const MovieList = props => {
     <div className="movie-list">
       {movies.map(item => {
         return (
-          <div className="movie-item" onClick={onMovieClick(item)}>
+          <div
+            className="movie-item"
+            onClick={onMovieClick(item)}
+            key={item.vod_id}
+          >
             <div className="img-wrapper">
               <img src={item.vod_pic} alt={item.vod_name} />
             </div>

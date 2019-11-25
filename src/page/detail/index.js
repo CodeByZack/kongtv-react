@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar, Icon } from 'antd-mobile';
+import { NavBar, Icon, Tabs } from 'antd-mobile';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './style.less';
@@ -7,12 +7,6 @@ const MovieDetail = props => {
   const { history, nowMovie, clear, setNowPlay } = props;
 
   if (!nowMovie) return null;
-
-  let playUrls = nowMovie.vod_play_url;
-  playUrls = playUrls.split('#').map(d => {
-    const temp = d.split('$');
-    return { text: temp[0], link: temp[1] };
-  });
 
   const onPlayClick = item => () => {
     setNowPlay({
@@ -26,6 +20,35 @@ const MovieDetail = props => {
     clear();
     history.goBack();
   };
+
+  let playUrls = nowMovie.vod_play_url;
+  playUrls = playUrls.split('$$$').map(diffSource => {
+    let jujiArr = diffSource.split('#');
+    jujiArr = jujiArr.map(juji => {
+      const [text, link] = juji.split('$');
+      return { text, link };
+    });
+    return jujiArr;
+  });
+
+  const tabs = playUrls.map((c, i) => ({ title: `源${i}` }));
+  const tabContents = playUrls.map(jujiArr => {
+    return (
+      <div className="list-container">
+        {jujiArr.map(url => {
+          return (
+            <div
+              className="play-item"
+              onClick={onPlayClick(url)}
+              key={url.link}
+            >
+              {url.text}
+            </div>
+          );
+        })}
+      </div>
+    );
+  });
 
   return (
     <div className="movie-detail-wrapper">
@@ -60,15 +83,9 @@ const MovieDetail = props => {
           <Icon type="loading" />
           剧集列表
         </p>
-        <div className="list-container">
-          {playUrls.map(url => {
-            return (
-              <div className="play-item" onClick={onPlayClick(url)}>
-                {url.text}
-              </div>
-            );
-          })}
-        </div>
+        <Tabs tabs={tabs} initialPage={0}>
+          {tabContents}
+        </Tabs>
       </div>
     </div>
   );
