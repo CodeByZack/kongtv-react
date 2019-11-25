@@ -70,10 +70,14 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "pr": "prettier --write 'src/**/*.{js,less}'"
+    "pr": "prettier --write 'src/**/*.{js,less}'",
+    "lint": "eslint --ext .js src"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "no-console": "warn"
+    }
   },
   "browserslist": {
     "production": [
