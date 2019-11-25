@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HomeItem from './home_item';
 import Swiper from '../components/swiper';
-import { Carousel } from 'antd-mobile';
-
+import store from '../../../store/index';
+import { withRouter } from 'react-router-dom';
 const HomeMain = props => {
-  const { data } = props;
-  const [minHeight, setMinHeight] = useState(176);
+  const { data, history } = props;
 
   const dy = data.filter(movie => movie.vod_level === '1');
   const dsj = data.filter(movie => movie.vod_level === '2');
   const zy = data.filter(movie => movie.vod_level === '4');
   const dm = data.filter(movie => movie.vod_level === '3');
 
+  const swipers = [dy[0], dsj[0], zy[0], dm[0], dy[1]].filter(i => i);
+
+  const onSwiperItemClick = (movie, key) => {
+    store.dispatch.detail.setNowMovie(movie);
+    history.push({ pathname: '/detail' });
+  };
+
   return (
     <div className="home_main_page">
-      {getSwiper(minHeight, setMinHeight)}
-      <Swiper></Swiper>
+      <Swiper imgArr={swipers} onSwiperItemClick={onSwiperItemClick}></Swiper>
       <HomeItem title={'热播电影'} movies={dy} />
       <HomeItem title={'热播影视'} movies={dsj} />
       <HomeItem title={'热播综艺'} movies={dm} />
@@ -23,38 +28,4 @@ const HomeMain = props => {
     </div>
   );
 };
-export default HomeMain;
-
-const getSwiper = (minHeight, setMinHeight) => {
-  return (
-    <Carousel
-      autoplay={true}
-      infinite
-      beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-      afterChange={index => console.log('slide to', index)}
-    >
-      {[1, 2, 3].map(val => (
-        <a
-          key={val}
-          href="http://www.alipay.com"
-          style={{
-            display: 'inline-block',
-            width: '100%',
-            height: minHeight,
-          }}
-        >
-          <img
-            src={`https://zos.alipayobjects.com/rmsportal/IJOtIlfsYdTyaDTRVrLI.png`}
-            alt=""
-            style={{ width: '100%', verticalAlign: 'top' }}
-            onLoad={() => {
-              // fire window resize event to change height
-              window.dispatchEvent(new Event('resize'));
-              setMinHeight('auto');
-            }}
-          />
-        </a>
-      ))}
-    </Carousel>
-  );
-};
+export default withRouter(HomeMain);

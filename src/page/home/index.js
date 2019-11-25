@@ -29,7 +29,7 @@ const Home = props => {
     getCategoryList({ type: 'dm' });
     getCategoryList({ type: 'dsj' });
     getCategoryList({ type: 'zy' });
-  }, []);
+  }, [getAdviceList, getCategoryList]);
 
   return (
     <div className="home-page">
