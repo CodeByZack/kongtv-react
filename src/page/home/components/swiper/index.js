@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import RatioImage from '../ratioImage/';
 import './style.less';
 
 const defaultStyle = { visibility: 'hidden', width: 0, height: 0 };
@@ -123,7 +124,8 @@ const Swiper = props => {
             style={_styles[i]}
             onClick={() => onSwiperItemClick(d, i)}
           >
-            <img src={d.vod_pic} alt={d.vod_name} />
+            {/* <img src={d.vod_pic} alt={d.vod_name} /> */}
+            <RatioImage imgUrl={d.vod_pic} ratio={1.4}/>
           </div>
         );
       })}
