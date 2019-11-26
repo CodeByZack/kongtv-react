@@ -1,6 +1,6 @@
 {
   "homepage": "http://movie.zackdk.top/",
-  "name": "feng_h5",
+  "name": "windcinema",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -59,6 +59,7 @@
     "resolve-url-loader": "3.1.0",
     "sass-loader": "7.2.0",
     "semver": "6.3.0",
+    "source-map-explorer": "^2.1.1",
     "style-loader": "1.0.0",
     "terser-webpack-plugin": "1.4.1",
     "ts-pnp": "1.1.4",
@@ -69,6 +70,7 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "node scripts/start.js",
