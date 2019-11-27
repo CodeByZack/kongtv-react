@@ -23,7 +23,7 @@ const MovieList = props => {
             {/* <div className="img-wrapper">
               <img src={item.vod_pic} alt={item.vod_name} />
             </div> */}
-            <RatioImage imgUrl={item.vod_pic} ratio={1.4}/>
+            <RatioImage imgUrl={item.vod_pic} ratio={1.4} />
             <div className="movie-name">{item.vod_name}</div>
           </div>
         );

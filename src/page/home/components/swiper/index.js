@@ -125,7 +125,7 @@ const Swiper = props => {
             onClick={() => onSwiperItemClick(d, i)}
           >
             {/* <img src={d.vod_pic} alt={d.vod_name} /> */}
-            <RatioImage imgUrl={d.vod_pic} ratio={1.4}/>
+            <RatioImage imgUrl={d.vod_pic} ratio={1.4} />
           </div>
         );
       })}

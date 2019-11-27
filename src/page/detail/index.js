@@ -66,7 +66,7 @@ const MovieDetail = props => {
         </div>
         <div className="movie-info">
           <p>导演:{nowMovie.vod_director}</p>
-          <p>主演:{nowMovie.vod_actor}</p>
+          <p className="movie-vod-actor">主演:{nowMovie.vod_actor}</p>
           <p>类型:{nowMovie.vod_class}</p>
           <p>地区:{nowMovie.vod_area}</p>
           <p>语言:{nowMovie.vod_remarks}</p>

@@ -7,6 +7,7 @@
 .movie-detail-wrapper {
   background-color: #fff;
   min-height: 100vh;
+  padding-bottom: 100px;
   .movie-detail-top {
     padding: 16px;
     display: flex;
@@ -26,6 +27,13 @@
       flex: 1;
       font-size: 14px;
       line-height: 30px;
+      .movie-vod-actor {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
     }
   }
   .movie-detail-desc {

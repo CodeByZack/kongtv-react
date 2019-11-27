@@ -1,31 +1,36 @@
 import React from 'react';
 import DefaultImg from '../../../../assets/default.png';
 const style = {
-  position: "relative",
-  paddingBottom: "140%"
+  position: 'relative',
+  paddingBottom: '140%',
 };
 
 const imgStyle = {
-  position: "absolute",
+  position: 'absolute',
   left: 0,
   right: 0,
-  width: "100%",
-  height: "100%"
-}
+  width: '100%',
+  height: '100%',
+};
 
-const RatioImage = (props) => {
+const RatioImage = props => {
   const { imgUrl, imgAlt, ratio = 1 } = props;
 
-  const height = `${ratio*100}%`;
+  const height = `${ratio * 100}%`;
 
-  const wrapperStyle = { 
+  const wrapperStyle = {
     ...style,
-    paddingBottom: height
-  }
+    paddingBottom: height,
+  };
 
   return (
     <div className="img-wrapper" style={wrapperStyle}>
-      <img src={imgUrl} alt={imgAlt} style={imgStyle} onError={(e)=>e.target.src=DefaultImg}/>
+      <img
+        src={imgUrl}
+        alt={imgAlt}
+        style={imgStyle}
+        onError={e => (e.target.src = DefaultImg)}
+      />
     </div>
   );
 };
