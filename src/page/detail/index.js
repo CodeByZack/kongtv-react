@@ -52,6 +52,10 @@ const MovieDetail = props => {
 
   return (
     <div className="movie-detail-wrapper">
+      <div
+        className="blurbk"
+        style={{ backgroundImage: `url(${nowMovie.vod_pic})` }}
+      ></div>
       <NavBar
         mode="light"
         icon={<Icon type="left" />}
@@ -79,11 +83,16 @@ const MovieDetail = props => {
       </div>
 
       <div className="movie-play-list">
-        <p>
-          <Icon type="loading" />
+        <p className="movie-play-list-title">
+          <Icon type="ellipsis" />
           剧集列表
         </p>
-        <Tabs tabs={tabs} initialPage={0}>
+        <Tabs
+          tabs={tabs}
+          initialPage={0}
+          tabBarBackgroundColor="transparent"
+          tabBarInactiveTextColor="#fff"
+        >
           {tabContents}
         </Tabs>
       </div>

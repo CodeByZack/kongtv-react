@@ -5,9 +5,28 @@
 }
 
 .movie-detail-wrapper {
-  background-color: #fff;
+  // background-color: #fff;
   min-height: 100vh;
   padding-bottom: 100px;
+  .blurbk {
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: blur(210px);
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .am-navbar {
+    background: transparent;
+    .am-navbar-left,
+    .am-navbar-title {
+      color: #fff;
+    }
+  }
   .movie-detail-top {
     padding: 16px;
     display: flex;
@@ -25,8 +44,11 @@
     }
     .movie-info {
       flex: 1;
-      font-size: 14px;
+      color: #f1f1f1;
+      font-size: 16px;
       line-height: 30px;
+      font-weight: bold;
+      text-shadow: #0404044f 0px -1px 6px;
       .movie-vod-actor {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -43,17 +65,22 @@
     line-height: 1.3;
     color: white;
     h3 {
-      font-size: 24px;
+      font-size: 18px;
       margin-bottom: 10px;
     }
   }
   .movie-play-list {
     padding: 10px;
-    .am-icon {
-      vertical-align: sub;
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
+    .movie-play-list-title {
+      color: #fff;
+      font-size: 16px;
+      padding: 10px 0;
+      .am-icon {
+        vertical-align: sub;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
     }
     .list-container {
       margin-top: 10px;
