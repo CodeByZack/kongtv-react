@@ -1,5 +1,5 @@
 import React from 'react';
-
+import DefaultImg from '../../../../assets/default.png';
 const style = {
   position: "relative",
   paddingBottom: "140%"
@@ -25,7 +25,7 @@ const RatioImage = (props) => {
 
   return (
     <div className="img-wrapper" style={wrapperStyle}>
-      <img src={imgUrl} alt={imgAlt} style={imgStyle}/>
+      <img src={imgUrl} alt={imgAlt} style={imgStyle} onError={(e)=>e.target.src=DefaultImg}/>
     </div>
   );
 };
