@@ -28,18 +28,20 @@ const Home = props => {
   } = props;
 
   useEffect(() => {
-    getAdviceList();
-    getCategoryList({ type: 'dy' });
-    getCategoryList({ type: 'dm' });
-    getCategoryList({ type: 'dsj' });
-    getCategoryList({ type: 'zy' });
+    if(adviceMovieList.length === 0){
+      getAdviceList();
+      getCategoryList({ type: 'dy' });
+      getCategoryList({ type: 'dm' });
+      getCategoryList({ type: 'dsj' });
+      getCategoryList({ type: 'zy' });
+    }
   }, [getAdviceList, getCategoryList]);
 
   return (
     <div className="home-page">
       <NavBar
         mode="light"
-        icon={<img src={logo} alt="logo" style={{ width: 30 }} />}
+        icon={<img src={logo} alt="logo" style={{ width: 30 ,heigh: 30 }} />}
         rightContent={[
           <Icon
             key="0"

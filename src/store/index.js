@@ -6,7 +6,7 @@ import createRematchPersist from '@rematch/persist';
 import { init } from '@rematch/core';
 
 const persistPlugin = createRematchPersist({
-  whitelist: ['home', 'play', 'detail', 'search'],
+  whitelist: ['play', 'detail', 'search'],
   throttle: 1000,
   version: 1,
 });
