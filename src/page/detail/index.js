@@ -1,8 +1,10 @@
 import React from 'react';
-import { NavBar, Icon, Tabs } from 'antd-mobile';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import './style.less';
+
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { NavBar, Icon, Tabs } from 'antd-mobile';
+
 const MovieDetail = props => {
   const { history, nowMovie, clear, setNowPlay } = props;
 

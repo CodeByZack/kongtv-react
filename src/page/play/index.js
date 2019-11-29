@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { NavBar, Icon } from 'antd-mobile';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import './style.less';
 
 const PlayMovie = props => {

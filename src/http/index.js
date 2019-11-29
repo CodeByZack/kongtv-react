@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.baseURL = 'http://47.94.254.236:55';
-axios.defaults.timeout = 5000;
+axios.defaults.timeout = 20000;
 
 axios.interceptors.request.use(
   function(config) {
@@ -39,5 +39,14 @@ const getCategory = (type, page) => {
   });
 };
 
-export { getIndex, getCategory };
+const searchMovie = searchText => {
+  return axios.get('/hackapi.php', {
+    params: {
+      router: 'search',
+      name: searchText,
+    },
+  });
+};
+
+export { getIndex, getCategory, searchMovie };
 export default axios;

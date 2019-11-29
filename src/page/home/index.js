@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { NavBar, Icon, SearchBar, Tabs } from 'antd-mobile';
+import React, { useEffect } from 'react';
+
+import logo from '../../assets/logo192.png';
 import HomeMain from './home_main/';
 import HomeCategory from './home_category/';
+
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { NavBar, Icon, Tabs } from 'antd-mobile';
+
 const tabs = [
   { title: '首页', sub: '1' },
   { title: '电影', sub: '2' },
@@ -12,7 +17,7 @@ const tabs = [
 ];
 
 const Home = props => {
-  const { getAdviceList, getCategoryList, setTabIndex } = props;
+  const { getAdviceList, getCategoryList, setTabIndex, history } = props;
   const {
     tabIndex,
     adviceMovieList,
@@ -21,7 +26,6 @@ const Home = props => {
     dsjCategoryList,
     zyCategoryList,
   } = props;
-  const [showSearch, toggleSearch] = useState(false);
 
   useEffect(() => {
     getAdviceList();
@@ -33,8 +37,19 @@ const Home = props => {
 
   return (
     <div className="home-page">
-      {getHeader(showSearch, toggleSearch)}
-
+      <NavBar
+        mode="light"
+        icon={<img src={logo} alt="logo" style={{ width: 30 }} />}
+        rightContent={[
+          <Icon
+            key="0"
+            type="search"
+            onClick={() => history.push('/search')}
+          />,
+        ]}
+      >
+        风影院
+      </NavBar>
       <Tabs
         tabs={tabs}
         initialPage={tabIndex}
@@ -86,30 +101,4 @@ const mapDispatch = ({
   getCategoryList: d => getCategoryList(d),
   setTabIndex: i => setTabIndex(i),
 });
-export default connect(mapState, mapDispatch)(Home);
-
-const getHeader = (showSearch, toggleSearch) => {
-  return !showSearch ? (
-    <NavBar
-      mode="light"
-      icon={<Icon type="ellipsis" />}
-      onLeftClick={() => toggleSearch(true)}
-      rightContent={[
-        <Icon key="0" type="search" onClick={() => toggleSearch(true)} />,
-      ]}
-    >
-      风影院
-    </NavBar>
-  ) : (
-    <SearchBar
-      placeholder="Search"
-      onBlur={() => toggleSearch(false)}
-      onCancel={() => toggleSearch(false)}
-      showCancelButton
-      style={{ height: 45 }}
-      onChange={() => {
-        // console.log('onchange');
-      }}
-    />
-  );
-};
+export default connect(mapState, mapDispatch)(withRouter(Home));

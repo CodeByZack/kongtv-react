@@ -1,8 +1,10 @@
 import React from 'react';
 import HomeItem from './home_item';
-import Swiper from '../components/swiper';
 import store from '../../../store/index';
+import Swiper from '../components/swiper';
+
 import { withRouter } from 'react-router-dom';
+
 const HomeMain = props => {
   const { data, history } = props;
 

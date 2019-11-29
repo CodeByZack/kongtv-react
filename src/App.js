@@ -1,11 +1,13 @@
 import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
 import Home from './page/home';
-import MovieDetail from './page/detail';
-import PlayMovie from './page/play';
 import store from './store/index';
-import { Provider } from 'react-redux';
+import PlayMovie from './page/play';
+import MovieDetail from './page/detail';
+import MovieSearch from './page/search';
 import ScrollToTop from './components/ScrollToTop';
+
+import { Provider } from 'react-redux';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Switch>
               <Route path="/play" component={PlayMovie} />
               <Route path="/detail" component={MovieDetail} />
+              <Route path="/search/:query" component={MovieSearch} />
+              <Route path="/search" component={MovieSearch} />
               <Route path="/" component={Home} />
             </Switch>
           </ScrollToTop>
