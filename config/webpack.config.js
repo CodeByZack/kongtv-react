@@ -396,6 +396,7 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+                  ["import", { libraryName: "antd-mobile", style: "css" }]
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
