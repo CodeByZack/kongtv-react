@@ -41,7 +41,7 @@ const Home = props => {
     <div className="home-page">
       <NavBar
         mode="light"
-        icon={<img src={logo} alt="logo" style={{ width: 30 ,heigh: 30 }} />}
+        icon={<img src={logo} alt="logo" style={{ width: 30 ,height: 30 }} />}
         rightContent={[
           <Icon
             key="0"
