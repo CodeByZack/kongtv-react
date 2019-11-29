@@ -1,6 +1,6 @@
 ## 风影院 H5版本
 
-<img src="https://img.shields.io/travis/codebyzack/react_movie" alt="Build Status">
+[![Build Status](https://travis-ci.org/CodeByZack/react_movie.svg?branch=master)](https://travis-ci.org/CodeByZack/react_movie)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
