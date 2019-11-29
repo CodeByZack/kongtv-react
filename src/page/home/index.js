@@ -35,6 +35,7 @@ const Home = props => {
       getCategoryList({ type: 'dsj' });
       getCategoryList({ type: 'zy' });
     }
+    //eslint-disable-next-line
   }, [getAdviceList, getCategoryList]);
 
   return (
