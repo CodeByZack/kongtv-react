@@ -12,4 +12,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 [线上地址](http://movie.zackdk.top/)只能勉强观看，存在很多细节问题。
 
-开发过程中，一些配置问题的[记录（待整理）](https://link)。
+开发过程中，一些配置问题的[记录（待整理）](https://www.yuque.com/zackdk/web/an8i5p)。
