@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './page/home';
-import store from './store/index';
+import store, { persistor } from './store/index';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 import PlayMovie from './page/play';
 import MovieDetail from './page/detail';
 import MovieSearch from './page/search';
@@ -13,17 +14,19 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        <HashRouter>
-          <ScrollToTop>
-            <Switch>
-              <Route path="/play" component={PlayMovie} />
-              <Route path="/detail" component={MovieDetail} />
-              <Route path="/search/:query" component={MovieSearch} />
-              <Route path="/search" component={MovieSearch} />
-              <Route path="/" component={Home} />
-            </Switch>
-          </ScrollToTop>
-        </HashRouter>
+        <PersistGate loading={null} persistor={persistor}>
+          <HashRouter>
+            <ScrollToTop>
+              <Switch>
+                <Route path="/play" component={PlayMovie} />
+                <Route path="/detail" component={MovieDetail} />
+                <Route path="/search/:query" component={MovieSearch} />
+                <Route path="/search" component={MovieSearch} />
+                <Route path="/" component={Home} />
+              </Switch>
+            </ScrollToTop>
+          </HashRouter>
+        </PersistGate>
       </Provider>
     </div>
   );

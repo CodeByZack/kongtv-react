@@ -28,7 +28,7 @@ const Home = props => {
   } = props;
 
   useEffect(() => {
-    if(adviceMovieList.length === 0){
+    if (adviceMovieList.length === 0) {
       getAdviceList();
       getCategoryList({ type: 'dy' });
       getCategoryList({ type: 'dm' });
@@ -42,7 +42,7 @@ const Home = props => {
     <div className="home-page">
       <NavBar
         mode="light"
-        icon={<img src={logo} alt="logo" style={{ width: 30 ,height: 30 }} />}
+        icon={<img src={logo} alt="logo" style={{ width: 30, height: 30 }} />}
         rightContent={[
           <Icon
             key="0"

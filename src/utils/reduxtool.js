@@ -23,7 +23,7 @@ const createReducer = models => {
       newState[modelName] = reducer(state[modelName], ...payload);
       return newState;
     } else {
-      console.log('未找到注册的Reducers');
+      // console.log('未找到注册的Reducers');
       return newState;
     }
   };
@@ -42,13 +42,9 @@ const ejectDispatch = (store, models) => {
     const modelEffectKeys = Object.keys(model.effects);
     for (let index = 0; index < modelEffectKeys.length; index++) {
       const effectKey = modelEffectKeys[index];
-      dispatch[nameSpace][effectKey] = (args)=>{
-        model.effects[effectKey].call(
-          dispatch[nameSpace],
-          args,
-          getState()
-        );
-      } 
+      dispatch[nameSpace][effectKey] = args => {
+        model.effects[effectKey].call(dispatch[nameSpace], args, getState());
+      };
     }
     //替换所有reducer方法
     const modelReducerKeys = Object.keys(model.reducers);
@@ -71,11 +67,11 @@ const reduxtool = {
   },
   ejectDispatch: dispatch => {
     if (!_models) {
-      console.log('请先调用ReduxTool.createReducer()注入models');
+      // console.log('请先调用ReduxTool.createReducer()注入models');
       return;
     }
     if (!dispatch) {
-      console.log('请传入redux/store的dispatch方法');
+      // console.log('请传入redux/store的dispatch方法');
       return;
     }
     ejectDispatch(dispatch, _models);
