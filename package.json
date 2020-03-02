@@ -1,5 +1,6 @@
 {
   "homepage": "http://movie.zackdk.top/",
+  "envPublicUrl": "https://apks-1252514056.cos.ap-chengdu.myqcloud.com/web/",
   "name": "windcinema",
   "version": "0.1.0",
   "private": true,
