@@ -14,6 +14,4 @@ jobs:
     - name: Install Dependencies
       run: npm install
     - name: Build
-      run: npm build
-    - name: Upload CDN
-      run: npm load
+      run: npm run build
