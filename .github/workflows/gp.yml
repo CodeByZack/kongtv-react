@@ -20,3 +20,10 @@ jobs:
       env:
         SecretId: ${{ secrets.SecretId }}
         SecretKey: ${{ secrets.SecretKey }}
+    - name: gh-pages
+      uses: JamesIves/github-pages-deploy-action@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.token }}
+        BRANCH: gh-pages
+        FOLDER: build
+        BUILD_SCRIPT: npm install && npm run build
