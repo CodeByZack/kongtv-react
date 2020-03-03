@@ -11,15 +11,6 @@ jobs:
       uses: actions/setup-node@v1.1.0
     - name: Checkout
       uses: actions/checkout@master
-    - name: Install Dependencies
-      run: npm install
-    - name: Build
-      run: npm run build
-    - name: Upload
-      run: node scripts/upload.js --SecretId $SecretId --SecretKey $SecretKey
-      env:
-        SecretId: ${{ secrets.SecretId }}
-        SecretKey: ${{ secrets.SecretKey }}
     - name: gh-pages
       uses: JamesIves/github-pages-deploy-action@master
       env:
@@ -27,3 +18,8 @@ jobs:
         BRANCH: gh-pages
         FOLDER: build
         BUILD_SCRIPT: npm install && npm run build
+    - name: Upload
+      run: node scripts/upload.js --SecretId $SecretId --SecretKey $SecretKey
+      env:
+        SecretId: ${{ secrets.SecretId }}
+        SecretKey: ${{ secrets.SecretKey }}
