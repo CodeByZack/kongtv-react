@@ -15,6 +15,8 @@ jobs:
       run: npm install
     - name: Build
       run: npm run build
+    - name: Upload
+      run: node scripts/upload.js --SecretId $SecretId --SecretKey $SecretKey
       env:
         SecretId: ${{ secrets.SecretId }}
         SecretKey: ${{ secrets.SecretKey }}
