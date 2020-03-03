@@ -7,13 +7,13 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+    - name: Setup Node.js for use with actions
+      uses: actions/setup-node@v1.1.0
     - name: Checkout
       uses: actions/checkout@master
-
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.token }}
-        BRANCH: gh-pages
-        FOLDER: build
-        BUILD_SCRIPT: npm install && npm run build
+    - name: Install Dependencies
+      run: npm install
+    - name: Build
+      run: npm build
+    - name: Upload CDN
+      run: npm load
