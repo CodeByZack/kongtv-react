@@ -6,7 +6,7 @@ import HomeCategory from './home_category/';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { NavBar, Icon, Tabs } from 'antd-mobile';
+import { NavBar, Icon, Tabs, Toast } from 'antd-mobile';
 
 const tabs = [
   { title: '首页', sub: '1' },
@@ -28,7 +28,7 @@ const Home = props => {
   } = props;
 
   useEffect(() => {
-    if(adviceMovieList.length === 0){
+    if (adviceMovieList.length === 0) {
       getAdviceList();
       getCategoryList({ type: 'dy' });
       getCategoryList({ type: 'dm' });
@@ -38,11 +38,18 @@ const Home = props => {
     //eslint-disable-next-line
   }, [getAdviceList, getCategoryList]);
 
+  if (adviceMovieList.length === 0) {
+    Toast.loading('content', 0, null, true);
+    return '';
+  } else {
+    Toast.hide();
+  }
+
   return (
     <div className="home-page">
       <NavBar
         mode="light"
-        icon={<img src={logo} alt="logo" style={{ width: 30 ,height: 30 }} />}
+        icon={<img src={logo} alt="logo" style={{ width: 30, height: 30 }} />}
         rightContent={[
           <Icon
             key="0"
@@ -75,13 +82,13 @@ const Home = props => {
           getCategoryList={getCategoryList}
         />
         <HomeCategory
-          type="zy"
-          data={zyCategoryList}
+          type="dm"
+          data={dmCategoryList}
           getCategoryList={getCategoryList}
         />
         <HomeCategory
-          type="dm"
-          data={dmCategoryList}
+          type="zy"
+          data={zyCategoryList}
           getCategoryList={getCategoryList}
         />
       </Tabs>
