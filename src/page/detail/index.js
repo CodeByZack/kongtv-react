@@ -54,10 +54,10 @@ const MovieDetail = props => {
 
   return (
     <div className="movie-detail-wrapper">
-      <div
+      {/* <div
         className="blurbk"
         style={{ backgroundImage: `url(${nowMovie.vod_pic})` }}
-      ></div>
+      ></div> */}
       <NavBar
         mode="light"
         icon={<Icon type="left" />}
