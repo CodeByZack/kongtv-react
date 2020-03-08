@@ -2,11 +2,11 @@ import React from 'react';
 import MovieList from '../home/components/movieList/index';
 
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { jumpBack } from '../../utils/jumpUtil';
 import { SearchBar, Toast, NavBar, Icon } from 'antd-mobile';
 
 const MovieSearch = props => {
-  const { searchText, searchRes, setSearchText, search, history } = props;
+  const { searchText, searchRes, setSearchText, search } = props;
   const onSearch = e => {
     if (!searchText) {
       Toast.info('输入搜索关键字！');
@@ -16,11 +16,7 @@ const MovieSearch = props => {
   };
   return (
     <div className="movie-search-page">
-      <NavBar
-        mode="light"
-        icon={<Icon type="left" />}
-        onLeftClick={history.goBack}
-      >
+      <NavBar mode="light" icon={<Icon type="left" />} onLeftClick={jumpBack}>
         搜索页面
       </NavBar>
       <SearchBar
@@ -46,4 +42,4 @@ const mapDispatch = ({ search: { search, setSearchText } }) => ({
   search: e => search(e),
   setSearchText: t => setSearchText(t),
 });
-export default connect(mapState, mapDispatch)(withRouter(MovieSearch));
+export default connect(mapState, mapDispatch)(MovieSearch);

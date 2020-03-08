@@ -2,25 +2,25 @@ import React from 'react';
 import './style.less';
 
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { NavBar, Icon, Tabs } from 'antd-mobile';
+import { jumpToPlay, jumpBack } from '../../utils/jumpUtil';
 
 const MovieDetail = props => {
-  const { history, nowMovie, clear, setNowPlay } = props;
+  const { nowMovie, clear } = props;
 
   if (!nowMovie) return null;
 
   const onPlayClick = item => () => {
-    setNowPlay({
+    const palyObj = {
       title: nowMovie.vod_name,
       ...item,
-    });
-    history.push({ pathname: '/play' });
+    };
+    jumpToPlay(palyObj);
   };
 
   const onBackClick = () => {
     clear();
-    history.goBack();
+    jumpBack();
   };
 
   let playUrls = nowMovie.vod_play_url;
@@ -110,4 +110,4 @@ const mapDispatch = ({ detail: { clear }, play: { setNowPlay } }) => ({
   setNowPlay: play => setNowPlay(play),
 });
 
-export default connect(mapState, mapDispatch)(withRouter(MovieDetail));
+export default connect(mapState, mapDispatch)(MovieDetail);

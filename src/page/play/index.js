@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { NavBar, Icon } from 'antd-mobile';
-import { withRouter } from 'react-router-dom';
+import { jumpBack } from '../../utils/jumpUtil';
 import './style.less';
 
 const PlayMovie = props => {
-  const { history, nowPlay } = props;
+  const { nowPlay } = props;
 
   useEffect(() => {
     let player;
@@ -37,11 +37,7 @@ const PlayMovie = props => {
 
   return (
     <div className="play-movie-container">
-      <NavBar
-        mode="light"
-        icon={<Icon type="left" />}
-        onLeftClick={() => history.goBack()}
-      >
+      <NavBar mode="light" icon={<Icon type="left" />} onLeftClick={jumpBack}>
         {nowPlay.title}
       </NavBar>
       <div id="wrapper">
@@ -60,4 +56,4 @@ const mapState = state => ({
 const mapDispatch = ({ play: { clear } }) => ({
   clear: () => clear(),
 });
-export default connect(mapState, mapDispatch)(withRouter(PlayMovie));
+export default connect(mapState, mapDispatch)(PlayMovie);

@@ -1,12 +1,10 @@
 import React from 'react';
 import HomeItem from './home_item';
-import store from '../../../store/index';
 import Swiper from '../components/swiper';
-
-import { withRouter } from 'react-router-dom';
+import { jumpToDetail } from '../../../utils/jumpUtil';
 
 const HomeMain = props => {
-  const { data, history } = props;
+  const { data } = props;
 
   const dy = data.filter(movie => movie.type_id_1 === '1');
   const dsj = data.filter(movie => movie.type_id_1 === '2');
@@ -15,10 +13,7 @@ const HomeMain = props => {
 
   const swipers = [dy[0], dsj[0], zy[0], dm[0], dy[1]].filter(i => i);
 
-  const onSwiperItemClick = (movie, key) => {
-    store.dispatch.detail.setNowMovie(movie);
-    history.push({ pathname: '/detail' });
-  };
+  const onSwiperItemClick = movie => jumpToDetail(movie);
 
   return (
     <div className="home_main_page">
@@ -30,4 +25,4 @@ const HomeMain = props => {
     </div>
   );
 };
-export default withRouter(HomeMain);
+export default HomeMain;

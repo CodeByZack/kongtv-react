@@ -5,8 +5,8 @@ import HomeMain from './home_main/';
 import HomeCategory from './home_category/';
 
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { NavBar, Icon, Tabs, Toast } from 'antd-mobile';
+import { jumpToSearch } from '../../utils/jumpUtil';
 
 const tabs = [
   { title: '首页', sub: '1' },
@@ -17,7 +17,7 @@ const tabs = [
 ];
 
 const Home = props => {
-  const { getAdviceList, getCategoryList, setTabIndex, history } = props;
+  const { getAdviceList, getCategoryList, setTabIndex } = props;
   const {
     tabIndex,
     adviceMovieList,
@@ -50,13 +50,7 @@ const Home = props => {
       <NavBar
         mode="light"
         icon={<img src={logo} alt="logo" style={{ width: 30, height: 30 }} />}
-        rightContent={[
-          <Icon
-            key="0"
-            type="search"
-            onClick={() => history.push('/search')}
-          />,
-        ]}
+        rightContent={[<Icon key="0" type="search" onClick={jumpToSearch} />]}
       >
         风影院
       </NavBar>
@@ -111,4 +105,4 @@ const mapDispatch = ({
   getCategoryList: d => getCategoryList(d),
   setTabIndex: i => setTabIndex(i),
 });
-export default connect(mapState, mapDispatch)(withRouter(Home));
+export default connect(mapState, mapDispatch)(Home);
