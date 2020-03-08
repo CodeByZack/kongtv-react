@@ -696,7 +696,7 @@ module.exports = function(webpackEnv) {
         }),
       isEnvProduction &&
         new CompressionWebpackPlugin({
-          filename: '[path].gz[query]',
+          filename: '[path]',
           algorithm: 'gzip',
           test: new RegExp(
             '\\.(' +
