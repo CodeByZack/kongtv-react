@@ -12,7 +12,8 @@ const options = {
   SecretKey: argv.SecretKey,
   Bucket: 'apks-1252514056',
   Headers: {
-    CacheControl: 'max-age=31536000'
+    CacheControl: 'max-age=31536000',
+    ContentEncoding : "gzip"
   },
   prefix: 'web',
   src: '../build',

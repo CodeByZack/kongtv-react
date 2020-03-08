@@ -25,6 +25,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const eslint = require('eslint');
 
 const postcssNormalize = require('postcss-normalize');
@@ -692,6 +693,18 @@ module.exports = function(webpackEnv) {
           silent: true,
           // The formatter is invoked directly in WebpackDevServerUtils during development
           formatter: isEnvProduction ? typescriptFormatter : undefined,
+        }),
+      isEnvProduction &&
+        new CompressionWebpackPlugin({
+          filename: '[path].gz[query]',
+          algorithm: 'gzip',
+          test: new RegExp(
+            '\\.(' +
+            ['js', 'css'].join('|') +
+            ')$'
+          ),
+          threshold: 1024,
+          minRatio: 0.8
         }),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
