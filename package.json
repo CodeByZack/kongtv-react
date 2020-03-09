@@ -1,6 +1,5 @@
 {
   "homepage": "http://movie.zackdk.top/",
-  "envPublicUrl": "https://apks-1252514056.cos.ap-chengdu.myqcloud.com/web/",
   "name": "windcinema",
   "version": "0.1.0",
   "private": true,
@@ -156,7 +155,7 @@
     "babel-plugin-import": "^1.13.0",
     "compression-webpack-plugin": "^3.1.0",
     "prettier": "1.19.1",
-    "qcloud-upload": "^1.5.0",
+    "qcos-upload": "^1.0.1",
     "yargs": "^15.1.0"
   }
 }
