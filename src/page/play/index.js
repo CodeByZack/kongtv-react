@@ -6,31 +6,25 @@ import './style.less';
 
 const PlayMovie = props => {
   const { nowPlay } = props;
-
   useEffect(() => {
-    let player;
-    if (nowPlay) {
-      player = window.videojs(
-        'example-video',
-        { poster: '', controls: 'true' },
-        function() {
-          this.on('play', function() {
-            // console.log('正在播放');
-          });
-          //暂停--播放完毕后也会暂停
-          this.on('pause', function() {
-            // console.log('暂停中');
-          });
-          // 结束
-          this.on('ended', function() {
-            // console.log('结束');
-          });
-        }
-      );
-      player.src({ type: 'application/x-mpegURL', src: nowPlay.link });
-      player.load(nowPlay.link);
-    }
-    return () => player && player.dispose();
+
+    if(!nowPlay)return;
+
+    let playerXG = new window.HlsJsPlayer({
+      "id": "mse",
+      "url": nowPlay.link,
+      "playsinline": true,
+      "whitelist": [
+          ""
+      ],
+      playbackRate: [0.5, 0.75, 1, 1.5, 2],
+      defaultPlaybackRate: 1,
+      airplay: true,
+      "pip": true,
+      "fluid": true
+        });
+
+    return () => playerXG && playerXG.destroy();
   }, [nowPlay]);
 
   if (!nowPlay) return null;
@@ -40,13 +34,7 @@ const PlayMovie = props => {
       <NavBar mode="light" icon={<Icon type="left" />} onLeftClick={jumpBack}>
         {nowPlay.title}
       </NavBar>
-      <div id="wrapper">
-        <video
-          id="example-video"
-          className="video-js vjs-default-skin vjs-big-play-centered"
-          poster=""
-        ></video>
-      </div>
+      <div id="mse"></div>
     </div>
   );
 };
