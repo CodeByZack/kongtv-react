@@ -58,6 +58,7 @@ const useCategory = type => {
 
   useEffect(() => {
     getData();
+  // eslint-disable-next-line
   }, []);
 
   return {
