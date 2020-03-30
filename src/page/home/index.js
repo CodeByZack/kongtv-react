@@ -4,9 +4,10 @@ import logo from '../../assets/logo192.png';
 import HomeMain from './home_main/';
 import HomeCategory from './home_category/';
 
-import { connect } from 'react-redux';
 import { NavBar, Icon, Tabs, Toast } from 'antd-mobile';
 import { jumpToSearch } from '../../utils/jumpUtil';
+
+import store from "../../store";
 
 const tabs = [
   { title: '首页', sub: '1' },
@@ -17,26 +18,10 @@ const tabs = [
 ];
 
 const Home = props => {
-  const { getAdviceList, getCategoryList, setTabIndex } = props;
-  const {
-    tabIndex,
-    adviceMovieList,
-    dyCategoryList,
-    dmCategoryList,
-    dsjCategoryList,
-    zyCategoryList,
-  } = props;
 
-  useEffect(() => {
-    if (adviceMovieList.length === 0) {
-      getAdviceList();
-      getCategoryList({ type: 'dy' });
-      getCategoryList({ type: 'dm' });
-      getCategoryList({ type: 'dsj' });
-      getCategoryList({ type: 'zy' });
-    }
-    //eslint-disable-next-line
-  }, [getAdviceList, getCategoryList]);
+  const {home,dy,dsj,dm,zy} = store.useContainer();
+
+  const { setTabIndex, tabIndex, adviceMovieList  } = home;
 
   if (adviceMovieList.length === 0) {
     Toast.loading('content', 0, null, true);
@@ -67,42 +52,28 @@ const Home = props => {
         <HomeMain data={adviceMovieList} />
         <HomeCategory
           type="dy"
-          data={dyCategoryList}
-          getCategoryList={getCategoryList}
+          data={dy.list}
+          getCategoryList={dy.getData}
         />
         <HomeCategory
           type="dsj"
-          data={dsjCategoryList}
-          getCategoryList={getCategoryList}
+          data={dsj.list}
+          getCategoryList={dsj.getData}
         />
         <HomeCategory
           type="dm"
-          data={dmCategoryList}
-          getCategoryList={getCategoryList}
+          data={dm.list}
+          getCategoryList={dm.getData}
         />
         <HomeCategory
           type="zy"
-          data={zyCategoryList}
-          getCategoryList={getCategoryList}
+          data={zy.list}
+          getCategoryList={zy.getData}
         />
       </Tabs>
     </div>
   );
 };
 
-const mapState = state => ({
-  adviceMovieList: state.home.adviceMovieList,
-  dyCategoryList: state.home.dyCategory.list,
-  dmCategoryList: state.home.dmCategory.list,
-  zyCategoryList: state.home.zyCategory.list,
-  dsjCategoryList: state.home.dsjCategory.list,
-  tabIndex: state.home.tabIndex,
-});
-const mapDispatch = ({
-  home: { getAdviceList, getCategoryList, setTabIndex },
-}) => ({
-  getAdviceList: () => getAdviceList(),
-  getCategoryList: d => getCategoryList(d),
-  setTabIndex: i => setTabIndex(i),
-});
-export default connect(mapState, mapDispatch)(Home);
+
+export default Home;

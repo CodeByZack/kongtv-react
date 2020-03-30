@@ -1,20 +1,22 @@
 import React from 'react';
+import store from "../../store";
 import './style.less';
 
-import { connect } from 'react-redux';
 import { NavBar, Icon, Tabs } from 'antd-mobile';
 import { jumpToPlay, jumpBack } from '../../utils/jumpUtil';
 
-const MovieDetail = props => {
-  const { nowMovie, clear } = props;
 
+const MovieDetail = () => {
+
+  const { detail, play } =  store.useContainer();
+  const { nowMovie , clear } = detail;
   if (!nowMovie) return null;
-
   const onPlayClick = item => () => {
     const palyObj = {
       title: nowMovie.vod_name,
       ...item,
     };
+    play.setNowPlay(palyObj);
     jumpToPlay(palyObj);
   };
 
@@ -102,12 +104,4 @@ const MovieDetail = props => {
   );
 };
 
-const mapState = state => ({
-  nowMovie: state.detail.nowMovie,
-});
-const mapDispatch = ({ detail: { clear }, play: { setNowPlay } }) => ({
-  clear: () => clear(),
-  setNowPlay: play => setNowPlay(play),
-});
-
-export default connect(mapState, mapDispatch)(MovieDetail);
+export default MovieDetail;

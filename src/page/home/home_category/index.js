@@ -5,7 +5,6 @@ import './style.less';
 
 const HomeCategory = props => {
   const { data, type, getCategoryList } = props;
-
   const realDom = useRef(null);
 
   const handleScroll = e => {

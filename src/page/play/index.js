@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { NavBar, Icon } from 'antd-mobile';
 import { jumpBack } from '../../utils/jumpUtil';
+import store from '../../store';
+
 
 const PlayMovie = props => {
-  const { nowPlay } = props;
+  const { play } = store.useContainer();
+  const { nowPlay } = play;
   useEffect(() => {
 
     if(!nowPlay)return;
@@ -37,10 +40,4 @@ const PlayMovie = props => {
     </div>
   );
 };
-const mapState = state => ({
-  nowPlay: state.play.nowPlay,
-});
-const mapDispatch = ({ play: { clear } }) => ({
-  clear: () => clear(),
-});
-export default connect(mapState, mapDispatch)(PlayMovie);
+export default PlayMovie;

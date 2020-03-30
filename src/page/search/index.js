@@ -1,12 +1,13 @@
 import React from 'react';
 import MovieList from '../home/components/movieList/index';
 
-import { connect } from 'react-redux';
 import { jumpBack } from '../../utils/jumpUtil';
 import { SearchBar, Toast, NavBar, Icon } from 'antd-mobile';
+import store from '../../store';
 
 const MovieSearch = props => {
-  const { searchText, searchRes, setSearchText, search } = props;
+  const { searchState } = store.useContainer();
+  const { searchText,searchRes,setSearchText,search  } = searchState;
   const onSearch = e => {
     if (!searchText) {
       Toast.info('输入搜索关键字！');
@@ -33,13 +34,4 @@ const MovieSearch = props => {
     </div>
   );
 };
-const mapState = state => ({
-  searchText: state.search.searchText,
-  searchRes: state.search.searchRes,
-  isSearching: state.search.isSearching,
-});
-const mapDispatch = ({ search: { search, setSearchText } }) => ({
-  search: e => search(e),
-  setSearchText: t => setSearchText(t),
-});
-export default connect(mapState, mapDispatch)(MovieSearch);
+export default MovieSearch;
