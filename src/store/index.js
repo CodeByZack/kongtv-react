@@ -1,9 +1,9 @@
-import { useContainer, createContainer } from './unstate-next';
-import { useReducer, useState, useEffect } from 'react';
+import { createContainer } from './unstate-next';
+import { useState, useEffect } from 'react';
 import { getCategory, getIndex, searchMovie } from '../http';
 import { Toast } from 'antd-mobile';
 
-const useStore = initState => {
+const useStore = () => {
   const home = useHome();
   const dy = useCategory('dy');
   const dsj = useCategory('dsj');
@@ -88,7 +88,7 @@ const usePlay = () => {
 const useSearch = () => {
   const [searchText, setSearchText] = useState('');
   const [searchRes, setSearchRes] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
+  // const [isSearching, setIsSearching] = useState(false);
 
   const search = async () => {
     Toast.loading('正在加载数据', 0);
@@ -104,7 +104,6 @@ const useSearch = () => {
   };
 
   return {
-    isSearching,
     searchText,
     setSearchText,
     searchRes,

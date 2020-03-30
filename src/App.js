@@ -1,18 +1,18 @@
 import React from 'react';
 import Home from './page/home';
+import Store from './store';
+
 import PlayMovie from './page/play';
 import MovieDetail from './page/detail';
 import MovieSearch from './page/search';
 import ScrollToTop from './components/ScrollToTop';
 
-import { Provider } from 'react-redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import store from './store';
 
 function App() {
   return (
     <div className="App">
-        <store.Provider>
+        <Store.Provider>
         <HashRouter>
           <ScrollToTop>
             <Switch>
@@ -24,7 +24,7 @@ function App() {
             </Switch>
           </ScrollToTop>
         </HashRouter>
-        </store.Provider>
+        </Store.Provider>
     </div>
   );
 }

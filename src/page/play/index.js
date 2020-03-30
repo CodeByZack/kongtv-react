@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
 import { NavBar, Icon } from 'antd-mobile';
 import { jumpBack } from '../../utils/jumpUtil';
 import store from '../../store';

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import logo from '../../assets/logo192.png';
 import HomeMain from './home_main/';
@@ -17,7 +17,7 @@ const tabs = [
   { title: '综艺', sub: '5' },
 ];
 
-const Home = props => {
+const Home = () => {
 
   const {home,dy,dsj,dm,zy} = store.useContainer();
 
