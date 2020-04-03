@@ -1,10 +1,10 @@
 import React from 'react';
-import store from "../../store";
+import {  Tabs } from 'antd-mobile';
+import { NavBar,Icon } from '@/components';
+import store from "@/store";
+import { jumpToPlay, jumpBack } from '@/utils/jumpUtil';
+
 import './style.less';
-
-import { NavBar, Icon, Tabs } from 'antd-mobile';
-import { jumpToPlay, jumpBack } from '../../utils/jumpUtil';
-
 
 const MovieDetail = () => {
 

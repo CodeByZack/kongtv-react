@@ -1,11 +1,11 @@
 import React from 'react';
-import Home from './page/home';
-import Store from './store';
 
-import PlayMovie from './page/play';
-import MovieDetail from './page/detail';
-import MovieSearch from './page/search';
-import ScrollToTop from './components/ScrollToTop';
+import Store from '@/store';
+import Home from '@/page/home';
+import PlayMovie from '@/page/play';
+import MovieDetail from '@/page/detail';
+import MovieSearch from '@/page/search';
+import ScrollToTop from '@/components/scrollToTop';
 
 import { HashRouter, Route, Switch } from 'react-router-dom';
 

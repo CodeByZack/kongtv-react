@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import RatioImage from '../ratioImage/';
+import RatioImage from '../../../../components/ratioImage';
 import './style.less';
 
 const defaultStyle = { visibility: 'hidden', width: 0, height: 0 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { jumpToDetail } from '../../../../utils/jumpUtil';
-import RatioImage from '../ratioImage/';
+import RatioImage from '../../../../components/ratioImage';
 import store from "../../../../store";
 import './style.less';
 

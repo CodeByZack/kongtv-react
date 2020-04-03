@@ -1,5 +1,5 @@
 import React from 'react';
-import DefaultImg from '../../../../assets/default.png';
+import DefaultImg from '@/assets/default.png';
 const style = {
   position: 'relative',
   paddingBottom: '140%',

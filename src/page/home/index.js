@@ -1,13 +1,13 @@
 import React from 'react';
 
-import logo from '../../assets/logo192.png';
+import {  Tabs, Toast } from 'antd-mobile';
+import { NavBar,Icon } from '@/components';
 import HomeMain from './home_main/';
 import HomeCategory from './home_category/';
 
-import { NavBar, Icon, Tabs, Toast } from 'antd-mobile';
-import { jumpToSearch } from '../../utils/jumpUtil';
-
-import store from "../../store";
+import store from "@/store";
+import logo from '@/assets/logo192.png';
+import { jumpToSearch } from '@/utils/jumpUtil';
 
 const tabs = [
   { title: '首页', sub: '1' },

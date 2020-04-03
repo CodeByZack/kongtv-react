@@ -1,11 +1,13 @@
 import React from 'react';
-import MovieList from '../home/components/movieList/index';
+import { SearchBar, Toast } from 'antd-mobile';
 
-import { jumpBack } from '../../utils/jumpUtil';
-import { SearchBar, Toast, NavBar, Icon } from 'antd-mobile';
-import store from '../../store';
+import { Icon,NavBar } from '@/components'
 
-const MovieSearch = props => {
+import store from '@/store';
+import { jumpBack } from '@/utils/jumpUtil';
+import MovieList from '@/page/home/components/movieList/index';
+
+const MovieSearch = () => {
   const { searchState } = store.useContainer();
   const { searchText,searchRes,setSearchText,search  } = searchState;
   const onSearch = e => {

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import MovieList from '../components/movieList/';
-import { throttle } from '../../../utils/';
+import { throttle } from '@/utils/';
 import './style.less';
 
 const HomeCategory = props => {

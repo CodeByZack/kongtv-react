@@ -1,6 +1,6 @@
 import { createContainer } from './unstate-next';
 import { useState, useEffect } from 'react';
-import { getCategory, getIndex, searchMovie } from '../http';
+import { getCategory, getIndex, searchMovie } from '@/http';
 import { Toast } from 'antd-mobile';
 
 const useStore = () => {

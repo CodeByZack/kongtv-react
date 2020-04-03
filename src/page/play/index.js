@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { NavBar, Icon } from 'antd-mobile';
-import { jumpBack } from '../../utils/jumpUtil';
-import store from '../../store';
+// import { NavBar } from 'antd-mobile';
+import { Icon,NavBar } from '@/components';
+import store from '@/store';
+import { jumpBack } from '@/utils/jumpUtil';
 
 
-const PlayMovie = props => {
+const PlayMovie = () => {
   const { play } = store.useContainer();
   const { nowPlay } = play;
   useEffect(() => {
