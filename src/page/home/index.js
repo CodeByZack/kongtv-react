@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { Tabs } from 'antd-mobile';
-import { NavBar, Icon, Toast } from '@/components';
+import { NavBar, Icon } from '@/components';
+import Toast from '@/components/toast/toast';
 import HomeMain from './home_main/';
 import HomeCategory from './home_category/';
 
@@ -23,10 +24,7 @@ const Home = () => {
   const { setTabIndex, tabIndex, adviceMovieList } = home;
 
   if (adviceMovieList.length === 0) {
-    Toast.loading('content', 0, null, true);
-    return '';
-  } else {
-    Toast.hide();
+    return <Toast type="loading" content="加载数据中..."/>;
   }
 
   return (

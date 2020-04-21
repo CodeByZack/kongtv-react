@@ -5,7 +5,7 @@ import Notification from './notification';
 const createNotification = () => {
   const div = document.createElement('div');
   document.body.appendChild(div);
-  const notification = ReactDOM.render(<Notification />, div);
+  const notification = ReactDOM.render(<Notification/>, div);
   return {
     showNotice(notice) {
       return notification.addNotice(notice);
