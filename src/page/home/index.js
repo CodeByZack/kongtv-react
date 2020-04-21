@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {  Tabs, Toast } from 'antd-mobile';
-import { NavBar,Icon } from '@/components';
+import { Tabs } from 'antd-mobile';
+import { NavBar, Icon, Toast } from '@/components';
 import HomeMain from './home_main/';
 import HomeCategory from './home_category/';
 
-import store from "@/store";
+import store from '@/store';
 import logo from '@/assets/logo192.png';
 import { jumpToSearch } from '@/utils/jumpUtil';
 
@@ -18,10 +18,9 @@ const tabs = [
 ];
 
 const Home = () => {
+  const { home, dy, dsj, dm, zy } = store.useContainer();
 
-  const {home,dy,dsj,dm,zy} = store.useContainer();
-
-  const { setTabIndex, tabIndex, adviceMovieList  } = home;
+  const { setTabIndex, tabIndex, adviceMovieList } = home;
 
   if (adviceMovieList.length === 0) {
     Toast.loading('content', 0, null, true);
@@ -50,30 +49,17 @@ const Home = () => {
         }}
       >
         <HomeMain data={adviceMovieList} />
-        <HomeCategory
-          type="dy"
-          data={dy.list}
-          getCategoryList={dy.getData}
-        />
+        <HomeCategory type="dy" data={dy.list} getCategoryList={dy.getData} />
         <HomeCategory
           type="dsj"
           data={dsj.list}
           getCategoryList={dsj.getData}
         />
-        <HomeCategory
-          type="dm"
-          data={dm.list}
-          getCategoryList={dm.getData}
-        />
-        <HomeCategory
-          type="zy"
-          data={zy.list}
-          getCategoryList={zy.getData}
-        />
+        <HomeCategory type="dm" data={dm.list} getCategoryList={dm.getData} />
+        <HomeCategory type="zy" data={zy.list} getCategoryList={zy.getData} />
       </Tabs>
     </div>
   );
 };
-
 
 export default Home;

@@ -1,15 +1,16 @@
 import React from 'react';
-import { SearchBar, Toast } from 'antd-mobile';
+import { SearchBar } from 'antd-mobile';
 
-import { Icon,NavBar } from '@/components'
+import { Icon, NavBar, Toast } from '@/components';
 
 import store from '@/store';
 import { jumpBack } from '@/utils/jumpUtil';
 import MovieList from '@/page/home/components/movieList/index';
+import './style.less';
 
 const MovieSearch = () => {
   const { searchState } = store.useContainer();
-  const { searchText,searchRes,setSearchText,search  } = searchState;
+  const { searchText, searchRes, setSearchText, search } = searchState;
   const onSearch = e => {
     if (!searchText) {
       Toast.info('输入搜索关键字！');

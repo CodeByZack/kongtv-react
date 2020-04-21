@@ -4,7 +4,6 @@ import Swiper from '../components/swiper';
 import { jumpToDetail } from '../../../utils/jumpUtil';
 import store from '../../../store';
 
-
 const HomeMain = props => {
   const { data } = props;
 

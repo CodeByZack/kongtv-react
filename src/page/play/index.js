@@ -1,30 +1,25 @@
 import React, { useEffect } from 'react';
-// import { NavBar } from 'antd-mobile';
-import { Icon,NavBar } from '@/components';
+import { Icon, NavBar } from '@/components';
 import store from '@/store';
 import { jumpBack } from '@/utils/jumpUtil';
-
 
 const PlayMovie = () => {
   const { play } = store.useContainer();
   const { nowPlay } = play;
   useEffect(() => {
-
-    if(!nowPlay)return;
+    if (!nowPlay) return;
 
     let playerXG = new window.HlsJsPlayer({
-      "id": "mse",
-      "url": nowPlay.link,
-      "playsinline": true,
-      "whitelist": [
-          ""
-      ],
+      id: 'mse',
+      url: nowPlay.link,
+      playsinline: true,
+      whitelist: [''],
       playbackRate: [0.5, 0.75, 1, 1.5, 2],
       defaultPlaybackRate: 1,
       airplay: true,
-      "pip": true,
-      "fluid": true
-        });
+      pip: true,
+      fluid: true,
+    });
 
     return () => playerXG && playerXG.destroy();
   }, [nowPlay]);

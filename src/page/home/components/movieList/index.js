@@ -1,17 +1,17 @@
 import React from 'react';
 import { jumpToDetail } from '../../../../utils/jumpUtil';
 import RatioImage from '../../../../components/ratioImage';
-import store from "../../../../store";
+import store from '../../../../store';
 import './style.less';
 
 const MovieList = props => {
   const { movies } = props;
-  
+
   const { detail } = store.useContainer();
 
   const onMovieClick = movie => () => {
     detail.setNowMovie(movie);
-    jumpToDetail(movie)
+    jumpToDetail(movie);
   };
   return (
     <div className="movie-list">

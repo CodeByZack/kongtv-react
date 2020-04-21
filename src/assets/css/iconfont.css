@@ -7,39 +7,3 @@
   url('//at.alicdn.com/t/font_1724904_8ryev8rq29r.ttf') format('truetype'),
   url('//at.alicdn.com/t/font_1724904_8ryev8rq29r.svg#iconfont') format('svg');
 }
-
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 20px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-search:before {
-  content: "\e63c";
-}
-
-.icon-list:before {
-  content: "\e64f";
-}
-
-.icon-left:before {
-  content: "\e658";
-}
-
-.icon-warn:before {
-  content: "\e663";
-}
-
-.icon-loading:before {
-  content: "\e6da";
-}
-
-.icon-info:before {
-  content: "\e617";
-}
-
-.icon-error:before {
-  content: "\e66f";
-}

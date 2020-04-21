@@ -1,0 +1,54 @@
+.toast-mask {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.toast-container {
+  min-width: 60px;
+  border-radius: 3px;
+  color: #fff;
+  background-color: rgba(58, 58, 58, 0.9);
+  line-height: 1.5;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  .icon-loading {
+    animation: loading 1s linear infinite;
+  }
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: 0.5s ease-out;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: 800ms ease-out;
+}

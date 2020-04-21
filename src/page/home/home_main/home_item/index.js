@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'antd-mobile';
+import { Icon } from '@/components';
 import MovieList from '../../components/movieList/';
 import './style.less';
 

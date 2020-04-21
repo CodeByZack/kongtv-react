@@ -8,11 +8,10 @@ import MovieSearch from '@/page/search';
 import ScrollToTop from '@/components/scrollToTop';
 
 import { HashRouter, Route, Switch } from 'react-router-dom';
-
 function App() {
   return (
     <div className="App">
-        <Store.Provider>
+      <Store.Provider>
         <HashRouter>
           <ScrollToTop>
             <Switch>
@@ -24,7 +23,7 @@ function App() {
             </Switch>
           </ScrollToTop>
         </HashRouter>
-        </Store.Provider>
+      </Store.Provider>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { createContainer } from './unstate-next';
 import { useState, useEffect } from 'react';
 import { getCategory, getIndex, searchMovie } from '@/http';
-import { Toast } from 'antd-mobile';
+import { Toast } from '@/components';
 
 const useStore = () => {
   const home = useHome();
@@ -58,7 +58,7 @@ const useCategory = type => {
 
   useEffect(() => {
     getData();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   return {

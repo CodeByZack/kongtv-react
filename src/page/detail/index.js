@@ -1,15 +1,14 @@
 import React from 'react';
-import {  Tabs } from 'antd-mobile';
-import { NavBar,Icon } from '@/components';
-import store from "@/store";
+import { Tabs } from 'antd-mobile';
+import { NavBar, Icon } from '@/components';
+import store from '@/store';
 import { jumpToPlay, jumpBack } from '@/utils/jumpUtil';
 
 import './style.less';
 
 const MovieDetail = () => {
-
-  const { detail, play } =  store.useContainer();
-  const { nowMovie , clear } = detail;
+  const { detail, play } = store.useContainer();
+  const { nowMovie, clear } = detail;
   if (!nowMovie) return null;
   const onPlayClick = item => () => {
     const palyObj = {
