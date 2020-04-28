@@ -1,7 +1,7 @@
 import React from 'react';
-import { SearchBar } from 'antd-mobile';
+// import { SearchBar } from 'antd-mobile';
 
-import { Icon, NavBar, Toast } from '@/components';
+import { Icon, NavBar, Toast, SearchBar } from '@/components';
 
 import store from '@/store';
 import { jumpBack } from '@/utils/jumpUtil';
@@ -24,11 +24,9 @@ const MovieSearch = () => {
         搜索页面
       </NavBar>
       <SearchBar
-        onCancel={onSearch}
-        onSubmit={onSearch}
+        onSearch={onSearch}
         placeholder="输入你要搜索的名字"
         value={searchText}
-        cancelText="搜索"
         onChange={setSearchText}
       />
       <div style={{ padding: '0 8px' }}>

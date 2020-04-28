@@ -1,0 +1,29 @@
+.search-bar{
+    height: 44px;
+    line-height: 44px;
+    display: flex;
+    padding: 0 8px;
+    background-color: #efeff4;
+    
+    .icon-search{
+        position: absolute;
+        color: #bbb;
+        left: 16px;
+    }
+    &-input{
+        flex: 1;
+        margin: 8px 0;
+        border-radius: 4px;
+        border: 0;
+        padding-left: 32px;
+        &::placeholder{
+            color: #bbb;
+        }
+    }
+    &-btn{
+        color: #108ee9;
+        padding-left: 8px;
+        min-width: 32px;
+        font-size: 16px;
+    }
+}
