@@ -43,6 +43,7 @@ const Home = () => {
           setTabIndex(index);
         }}
         onTabClick={index => {
+          console.log(index);
           setTabIndex(index);
         }}
       >

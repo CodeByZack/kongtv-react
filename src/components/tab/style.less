@@ -29,9 +29,12 @@
   &-content {
     position: relative;
     width: 100%;
+    display: flex;
+    overflow: scroll;
     &-item {
-      position: absolute;
+      // position: absolute;
       width: 100vw;
+      flex-shrink: 0;
       transition: all 0.3s ease-in-out;
     }
   }

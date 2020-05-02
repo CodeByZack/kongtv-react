@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.less';
 const Tab = props => {
-  const [nowTab, setNowTab] = useState(0);
-
+  
   let {
     tabs = [],
     initialPage = 0,
@@ -10,7 +9,13 @@ const Tab = props => {
     onTabClick,
     children = [],
   } = props;
-
+  
+  const [nowTab, setNowTab] = useState(0);
+  
+  useEffect(()=>{
+    setNowTab(initialPage);
+  },[initialPage]);
+  
   if (tabs.length < children.length) {
     children = children.slice(0, tabs.length);
   }
@@ -35,20 +40,20 @@ const Tab = props => {
   };
 
   //todo
-  // const createTabContents = children => {
-  //   return children.map((child, index) => {
-  //     const style = {
-  //       left: `${(index - nowTab) * 100}%`,
-  //       display: `${index === nowTab ? 'block' : 'null'}`,
-  //     };
+  const createTabContents = children => {
+    return children.map((child, index) => {
+      const style = {
+        left: `${(index - nowTab) * 100}%`,
+        display: `${index === nowTab ? 'block' : 'null'}`,
+      };
 
-  //     return (
-  //       <div style={style} className="tabs-content-item">
-  //         {child}
-  //       </div>
-  //     );
-  //   });
-  // };
+      return (
+        <div style={style} className="tabs-content-item">
+          {child}
+        </div>
+      );
+    });
+  };
 
   const underlineStyle = {
     width: `${100 / tabs.length}%`,
@@ -59,10 +64,11 @@ const Tab = props => {
     <div className="tabs">
       <div className="tabs-bar">
         {createTabBars(tabs)}
-        <span className="bar-underline" style={underlineStyle}></span>
+        <span className="bar-underline" style={{}}></span>
       </div>
       <div className="tabs-content">
-        <div key={nowTab}>{children[nowTab]}</div>
+        {/* <div key={nowTab}>{children[nowTab]}</div> */}
+        {createTabContents(children)}
       </div>
     </div>
   );
