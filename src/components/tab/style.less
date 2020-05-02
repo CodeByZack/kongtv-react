@@ -1,0 +1,38 @@
+.tabs {
+  background-color: #fff;
+  font-size: 16px;
+  &-bar {
+    display: flex;
+    position: relative;
+    &-item {
+      padding: 8px 0;
+      cursor: pointer;
+      flex: 1;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      &:hover {
+        color: #108ee9;
+      }
+    }
+    &-item.choose {
+      color: #108ee9;
+    }
+    .bar-underline {
+      position: absolute;
+      width: 20%;
+      height: 2px;
+      background-color: #108ee9;
+      bottom: 0;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+  &-content {
+    position: relative;
+    width: 100%;
+    &-item {
+      position: absolute;
+      width: 100vw;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}

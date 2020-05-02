@@ -3,5 +3,7 @@ import RatioImage from './ratioImage';
 import NavBar from './navBar';
 import Toast from './toast';
 import SearchBar from './searchBar';
+import Tabs from './tab';
+import Loading from './loading';
 
-export { Icon, RatioImage, NavBar, Toast, SearchBar };
+export { Icon, RatioImage, NavBar, Toast, SearchBar, Tabs, Loading };

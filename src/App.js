@@ -6,8 +6,8 @@ import PlayMovie from '@/page/play';
 import MovieDetail from '@/page/detail';
 import MovieSearch from '@/page/search';
 import ScrollToTop from '@/components/scrollToTop';
-
 import { HashRouter, Route, Switch } from 'react-router-dom';
+
 function App() {
   return (
     <div className="App">

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Tabs } from 'antd-mobile';
-import { NavBar, Icon } from '@/components';
+// import { Tabs } from 'antd-mobile';
+import { NavBar, Icon, Tabs } from '@/components';
 import Toast from '@/components/toast/toast';
 import HomeMain from './home_main/';
 import HomeCategory from './home_category/';
@@ -24,7 +24,7 @@ const Home = () => {
   const { setTabIndex, tabIndex, adviceMovieList } = home;
 
   if (adviceMovieList.length === 0) {
-    return <Toast type="loading" content="加载数据中..."/>;
+    return <Toast type="loading" content="加载数据中..." />;
   }
 
   return (
@@ -42,19 +42,35 @@ const Home = () => {
         onChange={(tab, index) => {
           setTabIndex(index);
         }}
-        onTabClick={(tab, index) => {
+        onTabClick={index => {
           setTabIndex(index);
         }}
       >
         <HomeMain data={adviceMovieList} />
-        <HomeCategory type="dy" data={dy.list} getCategoryList={dy.getData} />
+        <HomeCategory
+          type="dy"
+          isLoading={dy.isFetching}
+          data={dy.list}
+          getCategoryList={dy.getData}
+        />
         <HomeCategory
           type="dsj"
+          isLoading={dsj.isFetching}
           data={dsj.list}
           getCategoryList={dsj.getData}
         />
-        <HomeCategory type="dm" data={dm.list} getCategoryList={dm.getData} />
-        <HomeCategory type="zy" data={zy.list} getCategoryList={zy.getData} />
+        <HomeCategory
+          isLoading={dm.isFetching}
+          type="dm"
+          data={dm.list}
+          getCategoryList={dm.getData}
+        />
+        <HomeCategory
+          isLoading={zy.isFetching}
+          type="zy"
+          data={zy.list}
+          getCategoryList={zy.getData}
+        />
       </Tabs>
     </div>
   );
