@@ -1,6 +1,5 @@
 import React from 'react';
-import { Tabs } from 'antd-mobile';
-import { NavBar, Icon } from '@/components';
+import { NavBar, Icon,Tabs } from '@/components';
 import store from '@/store';
 import { jumpToPlay, jumpBack } from '@/utils/jumpUtil';
 

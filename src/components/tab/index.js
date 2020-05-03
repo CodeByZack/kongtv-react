@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './style.less';
+
+let pageX,pageY,isMove;
+
 const Tab = props => {
   
   let {
@@ -11,11 +14,17 @@ const Tab = props => {
   } = props;
   
   const [nowTab, setNowTab] = useState(0);
-  
+  const tabRef = useRef();
   useEffect(()=>{
     setNowTab(initialPage);
   },[initialPage]);
   
+  // useEffect(()=>{
+  //   if(onTabClick){
+  //     onTabClick(nowTab);
+  //   }
+  // },[nowTab]);
+
   if (tabs.length < children.length) {
     children = children.slice(0, tabs.length);
   }
@@ -55,6 +64,66 @@ const Tab = props => {
     });
   };
 
+  const onTouchStart = (e)=>{
+    console.log(e.touches);
+    pageX = e.touches[0].pageX;
+    pageY = e.touches[0].pageY;
+    isMove = true;
+  }
+  const onTouchMove = (e)=>{
+
+    if(isMove){
+      // const scrollWidth = tabRef.current.scrollWidth;
+      // const overX = scrollWidth/tabs.length/3;
+
+      // const nowPageX = e.changedTouches[0].pageX;
+      // const deltaX = pageX - nowPageX;
+
+      // console.log(tabRef.current.scrollLeft);
+
+      // // console.log(nowPageX,pageX);
+      // if(nowPageX - pageX > 0){
+      //   console.log("swipe right")
+      // }else if(nowPageX - pageX < 0){
+      //   console.log("swipe left")
+      // }
+
+    }
+
+  }
+  const onTouchEnd = (e)=>{
+    isMove = false;
+    const scrollWidth = tabRef.current.scrollWidth;
+      const overX = scrollWidth/tabs.length/3;
+      const nowPageX = e.changedTouches[0].pageX;
+      const deltaX = pageX - nowPageX;
+      // console.log(nowPageX,pageX);
+      if(deltaX > 0){
+        console.log("swipe right",deltaX,overX);
+        if(deltaX < overX){
+          // scrollToTab(nowTab);
+        }else{
+          let newTab = nowTab+1;
+          newTab = newTab < tabs.length ? newTab : tabs.length - 1;
+          setNowTab(newTab);
+          onTabClick(newTab);
+
+          // scrollToTab(newTab);
+        }
+      }else if(deltaX < 0){
+        console.log("swipe left",deltaX,overX)
+        if( -deltaX < overX){
+          // scrollToTab(nowTab);
+        }else{
+          let newTab = nowTab-1;
+          newTab = newTab >= 0 ? newTab : 0;
+          console.log(newTab);
+          onTabClick(newTab);
+          setNowTab(newTab);
+          // scrollToTab(newTab);
+        }
+      }
+  }
   const underlineStyle = {
     width: `${100 / tabs.length}%`,
     left: `${(100 / tabs.length) * nowTab}%`,
@@ -64,11 +133,17 @@ const Tab = props => {
     <div className="tabs">
       <div className="tabs-bar">
         {createTabBars(tabs)}
-        <span className="bar-underline" style={{}}></span>
+        <span className="bar-underline" style={underlineStyle}></span>
       </div>
-      <div className="tabs-content">
-        {/* <div key={nowTab}>{children[nowTab]}</div> */}
-        {createTabContents(children)}
+      <div
+      ref={tabRef} 
+      className="tabs-content"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      >
+        <div key={nowTab}>{children[nowTab]}</div>
+        {/* {createTabContents(children)} */}
       </div>
     </div>
   );
