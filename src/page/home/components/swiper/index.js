@@ -60,6 +60,7 @@ const Swiper = props => {
   const [_styles, setStyle] = useState([]);
   let xStart;
   const startHandle = e => {
+    e.stopPropagation();
     xStart = e.touches[0].pageX;
   };
   const moveHandle = e => {
