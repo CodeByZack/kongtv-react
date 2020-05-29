@@ -1,14 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import MovieList from '../components/movieList/';
-import { throttle } from '../../../utils/';
+import { Loading } from '@/components';
 import './style.less';
 
 const HomeCategory = props => {
-  const { data, type, getCategoryList } = props;
-
-  const realDom = useRef(null);
+  const { data, type, getCategoryList, isLoading } = props;
 
   const handleScroll = e => {
+    if (isLoading) return;
     const { scrollHeight, scrollTop, offsetHeight } = e.target;
     if (scrollHeight - scrollTop - offsetHeight < 20) {
       getCategoryList({ type });
@@ -16,12 +15,9 @@ const HomeCategory = props => {
   };
 
   return (
-    <div
-      ref={realDom}
-      onScroll={throttle(handleScroll, 100)}
-      className="home_category_page"
-    >
+    <div onScroll={handleScroll} className="home_category_page">
       <MovieList movies={data} />
+      {isLoading && <Loading />}
     </div>
   );
 };

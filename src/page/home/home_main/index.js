@@ -1,7 +1,8 @@
 import React from 'react';
 import HomeItem from './home_item';
 import Swiper from '../components/swiper';
-import { jumpToDetail } from '../../../utils/jumpUtil';
+// import { jumpToDetail } from '../../../utils/jumpUtil';
+import store from '../../../store';
 
 const HomeMain = props => {
   const { data } = props;
@@ -11,9 +12,15 @@ const HomeMain = props => {
   const zy = data.filter(movie => movie.type_id === '3');
   const dm = data.filter(movie => movie.type_id === '4');
 
+  const { detail, jumpUtil } = store.useContainer();
+  const { jumpToDetail } = jumpUtil;
+
   const swipers = [dy[0], dsj[0], zy[0], dm[0], dy[1]].filter(i => i);
 
-  const onSwiperItemClick = movie => jumpToDetail(movie);
+  const onSwiperItemClick = movie => {
+    detail.setNowMovie(movie);
+    jumpToDetail(movie);
+  };
 
   return (
     <div className="home_main_page">

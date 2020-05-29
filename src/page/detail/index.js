@@ -1,20 +1,24 @@
 import React from 'react';
+import { NavBar, Icon, Tabs } from '@/components';
+import store from '@/store';
+// import { jumpToPlay, jumpBack, jumpToHome } from '@/utils/jumpUtil';
+
 import './style.less';
 
-import { connect } from 'react-redux';
-import { NavBar, Icon, Tabs } from 'antd-mobile';
-import { jumpToPlay, jumpBack } from '../../utils/jumpUtil';
-
-const MovieDetail = props => {
-  const { nowMovie, clear } = props;
-
-  if (!nowMovie) return null;
-
+const MovieDetail = () => {
+  const { detail, play, jumpUtil } = store.useContainer();
+  const { jumpToPlay, jumpBack, jumpToHome } = jumpUtil;
+  const { nowMovie, clear } = detail;
+  if (!nowMovie) {
+    jumpToHome('数据丢掉了,返回首页!');
+    return null;
+  }
   const onPlayClick = item => () => {
     const palyObj = {
       title: nowMovie.vod_name,
       ...item,
     };
+    play.setNowPlay(palyObj);
     jumpToPlay(palyObj);
   };
 
@@ -102,12 +106,4 @@ const MovieDetail = props => {
   );
 };
 
-const mapState = state => ({
-  nowMovie: state.detail.nowMovie,
-});
-const mapDispatch = ({ detail: { clear }, play: { setNowPlay } }) => ({
-  clear: () => clear(),
-  setNowPlay: play => setNowPlay(play),
-});
-
-export default connect(mapState, mapDispatch)(MovieDetail);
+export default MovieDetail;

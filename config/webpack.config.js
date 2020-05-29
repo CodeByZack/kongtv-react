@@ -42,6 +42,7 @@ const imageInlineSizeLimit = parseInt(
   process.env.IMAGE_INLINE_SIZE_LIMIT || '10000'
 );
 
+const isBuildDev = process.argv[2] === 'dev';
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
@@ -67,9 +68,9 @@ module.exports = function(webpackEnv) {
   // Webpack uses `publicPath` to determine where the app is being served from.
   // It requires a trailing slash, or the file assets will get an incorrect path.
   // In development, we always serve from the root. This makes config easier.
-  const publicPath = isEnvProduction
+  const publicPath = (isEnvProduction && !isBuildDev)
     ? paths.servedPath
-    : isEnvDevelopment && '/';
+    : (isEnvDevelopment||isBuildDev) && '/';
   // Some apps do not use client-side routing with pushState.
   // For these, "homepage" can be set to "." to enable relative asset paths.
   const shouldUseRelativeAssetPaths = publicPath === './';
@@ -77,9 +78,9 @@ module.exports = function(webpackEnv) {
   // `publicUrl` is just like `publicPath`, but we will provide it to our app
   // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
-  const publicUrl = isEnvProduction
+  const publicUrl = (isEnvProduction && !isBuildDev)
     ? publicPath.slice(0, -1)
-    : isEnvDevelopment && '';
+    : (isEnvDevelopment||isBuildDev) && '';
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(publicUrl);
 
@@ -307,6 +308,7 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
+        '@': path.resolve('src'),
         // Allows for better profiling with ReactDevTools
         ...(isEnvProductionProfile && {
           'react-dom$': 'react-dom/profiling',
@@ -578,6 +580,32 @@ module.exports = function(webpackEnv) {
             : undefined
         )
       ),
+      new HtmlWebpackPlugin(
+        Object.assign(
+          {},
+          {
+            filename: '404.html',
+            inject: true,
+            template: paths.appHtml,
+          },
+          isEnvProduction
+            ? {
+                minify: {
+                  removeComments: true,
+                  collapseWhitespace: true,
+                  removeRedundantAttributes: true,
+                  useShortDoctype: true,
+                  removeEmptyAttributes: true,
+                  removeStyleLinkTypeAttributes: true,
+                  keepClosingSlash: true,
+                  minifyJS: true,
+                  minifyCSS: true,
+                  minifyURLs: true,
+                },
+              }
+            : undefined
+        )
+      ),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       // https://github.com/facebook/create-react-app/issues/5358
@@ -694,7 +722,7 @@ module.exports = function(webpackEnv) {
           // The formatter is invoked directly in WebpackDevServerUtils during development
           formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
-      isEnvProduction &&
+      (isEnvProduction && !isBuildDev) &&
         new CompressionWebpackPlugin({
           filename: '[path]',
           algorithm: 'gzip',

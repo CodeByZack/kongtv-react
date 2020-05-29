@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import logo from '../../assets/logo192.png';
+// import { Tabs } from 'antd-mobile';
+import { NavBar, Icon, Tabs } from '@/components';
+import Toast from '@/components/toast/toast';
 import HomeMain from './home_main/';
 import HomeCategory from './home_category/';
 
-import { connect } from 'react-redux';
-import { NavBar, Icon, Tabs, Toast } from 'antd-mobile';
-import { jumpToSearch } from '../../utils/jumpUtil';
+import store from '@/store';
+import logo from '@/assets/logo192.png';
+// import { jumpToSearch } from '@/utils/jumpUtil';
 
 const tabs = [
   { title: '首页', sub: '1' },
@@ -16,33 +18,13 @@ const tabs = [
   { title: '综艺', sub: '5' },
 ];
 
-const Home = props => {
-  const { getAdviceList, getCategoryList, setTabIndex } = props;
-  const {
-    tabIndex,
-    adviceMovieList,
-    dyCategoryList,
-    dmCategoryList,
-    dsjCategoryList,
-    zyCategoryList,
-  } = props;
-
-  useEffect(() => {
-    if (adviceMovieList.length === 0) {
-      getAdviceList();
-      getCategoryList({ type: 'dy' });
-      getCategoryList({ type: 'dm' });
-      getCategoryList({ type: 'dsj' });
-      getCategoryList({ type: 'zy' });
-    }
-    //eslint-disable-next-line
-  }, [getAdviceList, getCategoryList]);
+const Home = () => {
+  const { home, dy, dsj, dm, zy, jumpUtil } = store.useContainer();
+  const { jumpToSearch } = jumpUtil;
+  const { setTabIndex, tabIndex, adviceMovieList } = home;
 
   if (adviceMovieList.length === 0) {
-    Toast.loading('content', 0, null, true);
-    return '';
-  } else {
-    Toast.hide();
+    return <Toast type="loading" content="加载数据中..." />;
   }
 
   return (
@@ -60,49 +42,38 @@ const Home = props => {
         onChange={(tab, index) => {
           setTabIndex(index);
         }}
-        onTabClick={(tab, index) => {
+        onTabClick={index => {
           setTabIndex(index);
         }}
       >
         <HomeMain data={adviceMovieList} />
         <HomeCategory
           type="dy"
-          data={dyCategoryList}
-          getCategoryList={getCategoryList}
+          isLoading={dy.isFetching}
+          data={dy.list}
+          getCategoryList={dy.getData}
         />
         <HomeCategory
           type="dsj"
-          data={dsjCategoryList}
-          getCategoryList={getCategoryList}
+          isLoading={dsj.isFetching}
+          data={dsj.list}
+          getCategoryList={dsj.getData}
         />
         <HomeCategory
+          isLoading={dm.isFetching}
           type="dm"
-          data={dmCategoryList}
-          getCategoryList={getCategoryList}
+          data={dm.list}
+          getCategoryList={dm.getData}
         />
         <HomeCategory
+          isLoading={zy.isFetching}
           type="zy"
-          data={zyCategoryList}
-          getCategoryList={getCategoryList}
+          data={zy.list}
+          getCategoryList={zy.getData}
         />
       </Tabs>
     </div>
   );
 };
 
-const mapState = state => ({
-  adviceMovieList: state.home.adviceMovieList,
-  dyCategoryList: state.home.dyCategory.list,
-  dmCategoryList: state.home.dmCategory.list,
-  zyCategoryList: state.home.zyCategory.list,
-  dsjCategoryList: state.home.dsjCategory.list,
-  tabIndex: state.home.tabIndex,
-});
-const mapDispatch = ({
-  home: { getAdviceList, getCategoryList, setTabIndex },
-}) => ({
-  getAdviceList: () => getAdviceList(),
-  getCategoryList: d => getCategoryList(d),
-  setTabIndex: i => setTabIndex(i),
-});
-export default connect(mapState, mapDispatch)(Home);
+export default Home;

@@ -1,12 +1,17 @@
 import React from 'react';
-import MovieList from '../home/components/movieList/index';
+// import { SearchBar } from 'antd-mobile';
 
-import { connect } from 'react-redux';
-import { jumpBack } from '../../utils/jumpUtil';
-import { SearchBar, Toast, NavBar, Icon } from 'antd-mobile';
+import { Icon, NavBar, Toast, SearchBar } from '@/components';
 
-const MovieSearch = props => {
-  const { searchText, searchRes, setSearchText, search } = props;
+import store from '@/store';
+// import { jumpBack } from '@/utils/jumpUtil';
+import MovieList from '@/page/home/components/movieList/index';
+import './style.less';
+
+const MovieSearch = () => {
+  const { searchState, jumpUtil } = store.useContainer();
+  const { jumpBack } = jumpUtil;
+  const { searchText, searchRes, setSearchText, search } = searchState;
   const onSearch = e => {
     if (!searchText) {
       Toast.info('输入搜索关键字！');
@@ -20,11 +25,9 @@ const MovieSearch = props => {
         搜索页面
       </NavBar>
       <SearchBar
-        onCancel={onSearch}
-        onSubmit={onSearch}
+        onSearch={onSearch}
         placeholder="输入你要搜索的名字"
         value={searchText}
-        cancelText="搜索"
         onChange={setSearchText}
       />
       <div style={{ padding: '0 8px' }}>
@@ -33,13 +36,4 @@ const MovieSearch = props => {
     </div>
   );
 };
-const mapState = state => ({
-  searchText: state.search.searchText,
-  searchRes: state.search.searchRes,
-  isSearching: state.search.isSearching,
-});
-const mapDispatch = ({ search: { search, setSearchText } }) => ({
-  search: e => search(e),
-  setSearchText: t => setSearchText(t),
-});
-export default connect(mapState, mapDispatch)(MovieSearch);
+export default MovieSearch;

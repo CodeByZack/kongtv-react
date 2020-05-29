@@ -13,13 +13,37 @@
 
 还在开发中....
 
-技术栈: react rematch react-router react-redux antd-mobile
+技术栈: react react-hook unstate-next react-router
+
+
+## 运行项目
+
+### 本地
+
+``` 
+git clone https://github.com/CodeByZack/kongtv-react 
+
+npm i
+
+npm run start
+```
+
+### 打包
+
+`npm run build`用于github action自动构建,请勿使用。
+
+请使用`npm run build-dev`。
+
 
 
 ## 问题记录
 开发过程中，一些配置问题的[记录（待整理）](https://www.yuque.com/zackdk/web/an8i5p)。
 
 ## todo
+
+~~删除redux相关，使用unstated-next~~
+
+~~删除antd-mobild~~
 
 优化体验
 

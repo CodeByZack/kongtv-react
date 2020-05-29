@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import RatioImage from '../ratioImage/';
+import RatioImage from '../../../../components/ratioImage';
 import './style.less';
 
 const defaultStyle = { visibility: 'hidden', width: 0, height: 0 };
@@ -60,6 +60,7 @@ const Swiper = props => {
   const [_styles, setStyle] = useState([]);
   let xStart;
   const startHandle = e => {
+    e.stopPropagation();
     xStart = e.touches[0].pageX;
   };
   const moveHandle = e => {

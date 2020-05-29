@@ -1,19 +1,18 @@
 import React from 'react';
-import Home from './page/home';
-import store from './store/index';
-import PlayMovie from './page/play';
-import MovieDetail from './page/detail';
-import MovieSearch from './page/search';
-import ScrollToTop from './components/ScrollToTop';
 
-import { Provider } from 'react-redux';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import Store from '@/store';
+import Home from '@/page/home';
+import PlayMovie from '@/page/play';
+import MovieDetail from '@/page/detail';
+import MovieSearch from '@/page/search';
+import ScrollToTop from '@/components/scrollToTop';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <Provider store={store}>
-        <HashRouter>
+      <BrowserRouter>
+        <Store.Provider>
           <ScrollToTop>
             <Switch>
               <Route path="/play" component={PlayMovie} />
@@ -23,8 +22,8 @@ function App() {
               <Route path="/" component={Home} />
             </Switch>
           </ScrollToTop>
-        </HashRouter>
-      </Provider>
+        </Store.Provider>
+      </BrowserRouter>
     </div>
   );
 }

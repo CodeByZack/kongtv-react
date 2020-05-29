@@ -1,33 +1,35 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { NavBar, Icon } from 'antd-mobile';
-import { jumpBack } from '../../utils/jumpUtil';
+import { Icon, NavBar } from '@/components';
+import store from '@/store';
+// import { jumpBack,jumpToHome } from '@/utils/jumpUtil';
 
-const PlayMovie = props => {
-  const { nowPlay } = props;
+const PlayMovie = () => {
+  const { play, jumpUtil } = store.useContainer();
+  const { jumpBack, jumpToHome } = jumpUtil;
+  const { nowPlay } = play;
   useEffect(() => {
-
-    if(!nowPlay)return;
+    if (!nowPlay) return;
 
     let playerXG = new window.HlsJsPlayer({
-      "id": "mse",
-      "url": nowPlay.link,
-      "playsinline": true,
-      "whitelist": [
-          ""
-      ],
+      id: 'mse',
+      url: nowPlay.link,
+      playsinline: true,
+      whitelist: [''],
       playbackRate: [0.5, 0.75, 1, 1.5, 2],
       defaultPlaybackRate: 1,
       download: true,
       closeVideoTouch: true,
       airplay: true,
-      "fluid": true
-        });
+      fluid: true,
+    });
 
     return () => playerXG && playerXG.destroy();
   }, [nowPlay]);
 
-  if (!nowPlay) return null;
+  if (!nowPlay) {
+    jumpToHome('数据丢掉了,返回首页!');
+    return null;
+  }
 
   return (
     <div className="play-movie-container">
@@ -38,10 +40,4 @@ const PlayMovie = props => {
     </div>
   );
 };
-const mapState = state => ({
-  nowPlay: state.play.nowPlay,
-});
-const mapDispatch = ({ play: { clear } }) => ({
-  clear: () => clear(),
-});
-export default connect(mapState, mapDispatch)(PlayMovie);
+export default PlayMovie;
