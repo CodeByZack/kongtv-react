@@ -21,14 +21,11 @@
 ### 本地
 
 ``` 
-
 git clone https://github.com/CodeByZack/kongtv-react 
 
 npm i
 
 npm run start
-
-
 ```
 
 ### 打包
