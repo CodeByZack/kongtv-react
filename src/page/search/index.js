@@ -4,12 +4,13 @@ import React from 'react';
 import { Icon, NavBar, Toast, SearchBar } from '@/components';
 
 import store from '@/store';
-import { jumpBack } from '@/utils/jumpUtil';
+// import { jumpBack } from '@/utils/jumpUtil';
 import MovieList from '@/page/home/components/movieList/index';
 import './style.less';
 
 const MovieSearch = () => {
-  const { searchState } = store.useContainer();
+  const { searchState, jumpUtil } = store.useContainer();
+  const { jumpBack } = jumpUtil;
   const { searchText, searchRes, setSearchText, search } = searchState;
   const onSearch = e => {
     if (!searchText) {

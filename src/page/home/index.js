@@ -8,7 +8,7 @@ import HomeCategory from './home_category/';
 
 import store from '@/store';
 import logo from '@/assets/logo192.png';
-import { jumpToSearch } from '@/utils/jumpUtil';
+// import { jumpToSearch } from '@/utils/jumpUtil';
 
 const tabs = [
   { title: '首页', sub: '1' },
@@ -19,8 +19,8 @@ const tabs = [
 ];
 
 const Home = () => {
-  const { home, dy, dsj, dm, zy } = store.useContainer();
-
+  const { home, dy, dsj, dm, zy, jumpUtil } = store.useContainer();
+  const { jumpToSearch } = jumpUtil;
   const { setTabIndex, tabIndex, adviceMovieList } = home;
 
   if (adviceMovieList.length === 0) {

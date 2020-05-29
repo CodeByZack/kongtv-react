@@ -1,5 +1,5 @@
 import React from 'react';
-import { jumpToDetail } from '../../../../utils/jumpUtil';
+// import { jumpToDetail } from '../../../../utils/jumpUtil';
 import RatioImage from '../../../../components/ratioImage';
 import store from '../../../../store';
 import './style.less';
@@ -7,7 +7,8 @@ import './style.less';
 const MovieList = props => {
   const { movies } = props;
 
-  const { detail } = store.useContainer();
+  const { detail, jumpUtil } = store.useContainer();
+  const { jumpToDetail } = jumpUtil;
 
   const onMovieClick = movie => () => {
     detail.setNowMovie(movie);

@@ -1,14 +1,18 @@
 import React from 'react';
-import { NavBar, Icon,Tabs } from '@/components';
+import { NavBar, Icon, Tabs } from '@/components';
 import store from '@/store';
-import { jumpToPlay, jumpBack } from '@/utils/jumpUtil';
+// import { jumpToPlay, jumpBack, jumpToHome } from '@/utils/jumpUtil';
 
 import './style.less';
 
 const MovieDetail = () => {
-  const { detail, play } = store.useContainer();
+  const { detail, play, jumpUtil } = store.useContainer();
+  const { jumpToPlay, jumpBack, jumpToHome } = jumpUtil;
   const { nowMovie, clear } = detail;
-  if (!nowMovie) return null;
+  if (!nowMovie) {
+    jumpToHome('数据丢掉了,返回首页!');
+    return null;
+  }
   const onPlayClick = item => () => {
     const palyObj = {
       title: nowMovie.vod_name,

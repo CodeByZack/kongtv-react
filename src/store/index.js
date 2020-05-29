@@ -2,6 +2,7 @@ import { createContainer } from './unstate-next';
 import { useState, useEffect } from 'react';
 import { getCategory, getIndex, searchMovie } from '@/http';
 import { Toast } from '@/components';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const useStore = () => {
   const home = useHome();
@@ -12,6 +13,7 @@ const useStore = () => {
   const detail = useDetail();
   const play = usePlay();
   const searchState = useSearch();
+  const jumpUtil = useJumpUtil();
   return {
     home,
     dy,
@@ -21,7 +23,34 @@ const useStore = () => {
     detail,
     play,
     searchState,
+    jumpUtil,
   };
+};
+
+const useJumpUtil = () => {
+  const history = useHistory();
+
+  const jumpToDetail = state => {
+    history.push({ pathname: '/detail', state });
+  };
+
+  const jumpToSearch = () => {
+    history.push({ pathname: '/search' });
+  };
+
+  const jumpToPlay = state => {
+    history.push({ pathname: '/play', state });
+  };
+
+  const jumpToHome = msg => {
+    // eslint-disable-next-line no-console
+    console.log(msg);
+    history.push({ pathname: '/' });
+  };
+
+  const jumpBack = () => history.goBack();
+
+  return { jumpToDetail, jumpToSearch, jumpToPlay, jumpBack, jumpToHome };
 };
 
 const useHome = () => {
@@ -71,7 +100,8 @@ const useCategory = type => {
   };
 };
 const useDetail = () => {
-  const [nowMovie, setNowMovie] = useState(null);
+  const location = useLocation();
+  const [nowMovie, setNowMovie] = useState(location.state);
   const clear = () => setNowMovie(null);
   return {
     nowMovie,
@@ -80,7 +110,8 @@ const useDetail = () => {
   };
 };
 const usePlay = () => {
-  const [nowPlay, setNowPlay] = useState(null);
+  const location = useLocation();
+  const [nowPlay, setNowPlay] = useState(location.state);
   const clear = () => setNowPlay(null);
   return {
     nowPlay,

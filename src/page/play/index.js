@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { Icon, NavBar } from '@/components';
 import store from '@/store';
-import { jumpBack } from '@/utils/jumpUtil';
+// import { jumpBack,jumpToHome } from '@/utils/jumpUtil';
 
 const PlayMovie = () => {
-  const { play } = store.useContainer();
+  const { play, jumpUtil } = store.useContainer();
+  const { jumpBack, jumpToHome } = jumpUtil;
   const { nowPlay } = play;
   useEffect(() => {
     if (!nowPlay) return;
@@ -24,7 +25,10 @@ const PlayMovie = () => {
     return () => playerXG && playerXG.destroy();
   }, [nowPlay]);
 
-  if (!nowPlay) return null;
+  if (!nowPlay) {
+    jumpToHome('数据丢掉了,返回首页!');
+    return null;
+  }
 
   return (
     <div className="play-movie-container">
