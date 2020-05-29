@@ -131,9 +131,9 @@ const Tab = props => {
       <div
         ref={tabRef}
         className="tabs-content"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
+        // onTouchStart={onTouchStart}
+        // onTouchMove={onTouchMove}
+        // onTouchEnd={onTouchEnd}
       >
         <div key={nowTab}>{children[nowTab]}</div>
         {/* {createTabContents(children)} */}
