@@ -7,7 +7,6 @@ const HomeCategory = props => {
   const { data, type, getCategoryList, isLoading } = props;
 
   const handleScroll = e => {
-    console.log(isLoading);
     if (isLoading) return;
     const { scrollHeight, scrollTop, offsetHeight } = e.target;
     if (scrollHeight - scrollTop - offsetHeight < 20) {

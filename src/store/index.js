@@ -49,7 +49,6 @@ const useCategory = type => {
   const [isFetching, setIsFetching] = useState(false);
 
   const getData = async () => {
-    console.log(isFetching);
     if (isFetching) return;
     setIsFetching(true);
     const data = await getCategory(type, page + 1);
