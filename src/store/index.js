@@ -34,8 +34,8 @@ const useJumpUtil = () => {
     history.push({ pathname: '/detail', state });
   };
 
-  const jumpToSearch = () => {
-    history.push({ pathname: '/search' });
+  const jumpToSearch = (state) => {
+    history.push({ pathname: '/search', state });
   };
 
   const jumpToPlay = state => {
@@ -101,7 +101,8 @@ const useCategory = type => {
 };
 const useDetail = () => {
   const location = useLocation();
-  const [nowMovie, setNowMovie] = useState(location.state);
+  const nowMovieFromState = location.pathname === '/detail' ? location.state : null;
+  const [nowMovie, setNowMovie] = useState(nowMovieFromState);
   const clear = () => setNowMovie(null);
   return {
     nowMovie,
@@ -111,7 +112,8 @@ const useDetail = () => {
 };
 const usePlay = () => {
   const location = useLocation();
-  const [nowPlay, setNowPlay] = useState(location.state);
+  const nowPlayFromState = location.pathname === '/play' ? location.state : null;
+  const [nowPlay, setNowPlay] = useState(nowPlayFromState);
   const clear = () => setNowPlay(null);
   return {
     nowPlay,
