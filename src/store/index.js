@@ -34,8 +34,8 @@ const useJumpUtil = () => {
     history.push({ pathname: '/detail', state });
   };
 
-  const jumpToSearch = (state) => {
-    history.push({ pathname: '/search', state });
+  const jumpToSearch = () => {
+    history.push({ pathname: '/search' });
   };
 
   const jumpToPlay = state => {
@@ -122,13 +122,23 @@ const usePlay = () => {
   };
 };
 const useSearch = () => {
-  const [searchText, setSearchText] = useState('');
-  const [searchRes, setSearchRes] = useState([]);
+  const history = useHistory();
+  const location = useLocation();
+  let fromState = {};
+  if(location.pathname === '/search'){
+    const { state = {} } = location;
+    const { searchRes = [], searchText='' } = state;
+    fromState = {searchRes,searchText};
+  }
+
+  const [searchText, setSearchText] = useState(fromState.searchText);
+  const [searchRes, setSearchRes] = useState(fromState.searchRes);
   // const [isSearching, setIsSearching] = useState(false);
 
   const search = async () => {
     Toast.loading('正在加载数据', 0);
     setSearchText(searchText);
+    history.replace(location.pathname,{searchText});
     const data = await searchMovie(searchText);
     if (data.length === 0) {
       Toast.hide();
@@ -137,6 +147,7 @@ const useSearch = () => {
       Toast.hide();
     }
     setSearchRes(data);
+    history.replace(location.pathname,{searchText,searchRes:data});
   };
 
   return {
