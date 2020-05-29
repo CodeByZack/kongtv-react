@@ -10,10 +10,12 @@ const MovieList = props => {
   const { detail, jumpUtil } = store.useContainer();
   const { jumpToDetail } = jumpUtil;
 
+  
   const onMovieClick = movie => () => {
     detail.setNowMovie(movie);
     jumpToDetail(movie);
   };
+  if(!movies)return null;
   return (
     <div className="movie-list">
       {movies.map(item => {

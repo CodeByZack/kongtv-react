@@ -17,8 +17,9 @@ const PlayMovie = () => {
       whitelist: [''],
       playbackRate: [0.5, 0.75, 1, 1.5, 2],
       defaultPlaybackRate: 1,
+      download: true,
+      closeVideoTouch: true,
       airplay: true,
-      pip: true,
       fluid: true,
     });
 
