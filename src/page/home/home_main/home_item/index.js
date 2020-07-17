@@ -7,10 +7,10 @@ const HomeItem = props => {
   const { title, movies } = props;
   return (
     <div className="home-item-section">
-      <div className="home-item-title">
+      {/* <div className="home-item-title">
         <Icon type="search" />
         {title}
-      </div>
+      </div> */}
       <MovieList movies={movies} />
     </div>
   );

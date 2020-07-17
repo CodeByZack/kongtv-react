@@ -5,5 +5,6 @@ import Toast from './toast';
 import SearchBar from './searchBar';
 import Tabs from './tab';
 import Loading from './loading';
+import MyAppBar from './MyAppBar';
 
-export { Icon, RatioImage, NavBar, Toast, SearchBar, Tabs, Loading };
+export { Icon, RatioImage, NavBar, Toast, SearchBar, Tabs, Loading, MyAppBar };
