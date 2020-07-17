@@ -1,6 +1,5 @@
 import React from 'react';
 // import { jumpToDetail } from '../../../../utils/jumpUtil';
-import RatioImage from '../../../../components/ratioImage';
 import store from '../../../../store';
 import './style.less';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,9 +8,11 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { RatioImage } from '@/components';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    width:"100%",
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -20,8 +21,12 @@ const useStyles = makeStyles(theme => ({
   },
   gridList: {
     // width: 500,
+    width:"100%",
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
+  },
+  gridListItem:{
+    // height:"300px!important"
   },
   titleBar: {
     background:
@@ -65,26 +70,15 @@ const MovieList = props => {
   if (!movies) return null;
   return (
     <div className={classes.root}>
-      {/* {movies.map(item => {
-        return (
-          <div
-            className="movie-item"
-            onClick={onMovieClick(item)}
-            key={item.vod_id}
-          >
-            <RatioImage imgUrl={item.vod_pic} ratio={1.4} />
-            <div className="movie-name">{item.vod_name}</div>
-          </div>
-        );
-      })} */}
-      <GridList cols={3} cellHeight={100} spacing={1} className={classes.gridList}>
+      <GridList cols={3} cellHeight={"auto"} spacing={1} className={classes.gridList}>
         {movies.map((tile, index) => (
           <GridListTile
             key={tile.vod_pic}
-            cols={index === 0 ? 2 : 1}
-            rows={index === 0 ? 2 : 1}
+            classes={{
+              root: classes.gridListItem
+            }}
           >
-            <img src={tile.vod_pic} alt={tile.vod_name} />
+            <RatioImage imgUrl={tile.vod_pic} imgAlt={tile.vod_name} ratio={4/3} />
             <GridListTileBar
               title={tile.vod_name}
               titlePosition="bottom"
