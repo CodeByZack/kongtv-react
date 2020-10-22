@@ -1,11 +1,11 @@
-import React from 'react';
-import { Icon, Tabs } from '@/components';
+import React, { useState } from 'react';
+import { Icon } from '@/components';
 import store from '@/store';
 // import { jumpToPlay, jumpBack, jumpToHome } from '@/utils/jumpUtil';
 
 import './style.less';
 import { NavBar } from '@/components/MyAppBar';
-import { Toolbar, Paper, makeStyles, Card, CardMedia, Box, Typography,useTheme, Hidden } from '@material-ui/core';
+import { Toolbar, Paper, makeStyles, Card, CardMedia, Box, Typography,useTheme, Hidden, Tabs,Tab } from '@material-ui/core';
 
 const useStyles = makeStyles((theme)=>({
   root : {
@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme)=>({
   },
   movieList : {
     margin : theme.spacing(2),
+    padding : theme.spacing(1)
 
   }
 }));
@@ -53,6 +54,8 @@ const MovieDetail = () => {
   const { jumpToPlay, jumpBack, jumpToHome } = jumpUtil;
   const { nowMovie, clear } = detail;
   const styles = useStyles();
+
+  const [tabValue,setTabValue] = useState(0);
 
   if (!nowMovie) {
     jumpToHome('数据丢掉了,返回首页!');
@@ -119,24 +122,20 @@ const MovieDetail = () => {
         </div>
 
         <Paper className={styles.movieDesc}>
-          <h3>简介：</h3>
-          <p>{nowMovie.vod_content}</p>
+          <Typography gutterBottom component="h3" >简介：</Typography>
+          <Typography component="p">{nowMovie.vod_content}</Typography>
         </Paper>
 
-        <div className={styles.movieList}>
+        <Paper className={styles.movieList}>
           <p className="movie-play-list-title">
             <Icon type="ellipsis" />
             剧集列表
           </p>
-          <Tabs
-            tabs={tabs}
-            initialPage={0}
-            tabBarBackgroundColor="transparent"
-            tabBarInactiveTextColor="#fff"
-          >
-            {tabContents}
+          <Tabs value={tabValue} onChange={(_,v)=>setTabValue(v)}>
+            {tabs.map(t=><Tab label={t.title}/>)}
           </Tabs>
-        </div>
+            {tabContents[tabValue]}
+        </Paper>
     </div>
   );
 };
