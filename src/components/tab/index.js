@@ -30,7 +30,7 @@ const Tab = props => {
 
   const onTabBarClick = index => () => {
     setNowTab(index);
-    onTabClick(index);
+    onTabClick && onTabClick(index);
   };
 
   const createTabBars = tabs => {

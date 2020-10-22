@@ -56,7 +56,12 @@ const Home = (props) => {
       <Toolbar />
       <Toolbar />
 
-      <HomeMain data={adviceMovieList} />
+      {value === 0 && <HomeMain data={adviceMovieList} />}
+      {value === 1 && <HomeCategory type="dy" data={dy.list} isLoading={dy.isFetching} getCategoryList={dy.getData} />}
+      {value === 2 && <HomeCategory type="dsj" data={dsj.list} isLoading={dsj.isFetching} getCategoryList={dsj.getData} />}
+      {value === 3 && <HomeCategory type="dm" data={dm.list} isLoading={dm.isFetching} getCategoryList={dm.getData} />}
+      {value === 4 && <HomeCategory type="zy" data={zy.list} isLoading={zy.isFetching} getCategoryList={zy.getData} />}
+
       {/* <NavBar
         mode="light"
         icon={<img src={logo} alt="logo" style={{ width: 30, height: 30 }} />}

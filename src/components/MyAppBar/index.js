@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import SearchIcon from '@material-ui/icons/Search';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
@@ -122,6 +123,25 @@ const MyAppBar = props => {
         {props.children}
       </AppBar>
     </HideOnScroll>
+  );
+};
+
+export const NavBar = props => {
+
+  const { title = '风影院', onBack = noop } = props;
+  const classes = useStyles();
+
+  return (
+    <AppBar position="sticky">
+      <Toolbar>
+        <IconButton onClick={onBack} edge="start" className={classes.menuButton} color="inherit">
+          <ArrowBackIcon />
+        </IconButton>
+        <Typography className={classes.title} variant="h6" noWrap>
+          {title}
+        </Typography>
+      </Toolbar>
+    </AppBar>
   );
 };
 

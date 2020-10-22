@@ -5,7 +5,7 @@ import { Icon, NavBar, Toast, SearchBar } from '@/components';
 
 import store from '@/store';
 // import { jumpBack } from '@/utils/jumpUtil';
-import MovieList from '@/page/home/components/movieList/index';
+import MovieList from '@/page/components/movieList/index';
 import './style.less';
 
 const MovieSearch = () => {
