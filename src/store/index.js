@@ -11,7 +11,6 @@ const useStore = () => {
   const dm = useCategory('dm');
   const zy = useCategory('zy');
   const detail = useDetail();
-  const play = usePlay();
   const searchState = useSearch();
   const jumpUtil = useJumpUtil();
   return {
@@ -21,7 +20,6 @@ const useStore = () => {
     dm,
     zy,
     detail,
-    play,
     searchState,
     jumpUtil,
   };
@@ -39,7 +37,8 @@ const useJumpUtil = () => {
   };
 
   const jumpToPlay = state => {
-    history.push({ pathname: '/play', state });
+    const url = `/play?name=${state.title}-${state.text}&url=${state.link}`
+    history.push(url);
   };
 
   const jumpToHome = msg => {
@@ -110,17 +109,7 @@ const useDetail = () => {
     clear,
   };
 };
-const usePlay = () => {
-  const location = useLocation();
-  const nowPlayFromState = location.pathname === '/play' ? location.state : null;
-  const [nowPlay, setNowPlay] = useState(nowPlayFromState);
-  const clear = () => setNowPlay(null);
-  return {
-    nowPlay,
-    setNowPlay,
-    clear,
-  };
-};
+
 const useSearch = () => {
   const history = useHistory();
   const location = useLocation();

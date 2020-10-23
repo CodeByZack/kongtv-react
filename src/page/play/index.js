@@ -1,42 +1,53 @@
 import React, { useEffect } from 'react';
-import { Icon, NavBar } from '@/components';
+import { Icon } from '@/components';
 import store from '@/store';
+import { NavBar } from '@/components/MyAppBar';
+import { makeStyles } from '@material-ui/core';
+import { useLocation } from 'react-router-dom';
+import { getQuery } from '@/utils';
 // import { jumpBack,jumpToHome } from '@/utils/jumpUtil';
 
-const PlayMovie = () => {
-  const { play, jumpUtil } = store.useContainer();
-  const { jumpBack, jumpToHome } = jumpUtil;
-  const { nowPlay } = play;
-  useEffect(() => {
-    if (!nowPlay) return;
+const VIDEO_ID = 'VIDEO_ID';
 
-    let playerXG = new window.HlsJsPlayer({
-      id: 'mse',
-      url: nowPlay.link,
-      playsinline: true,
-      whitelist: [''],
-      playbackRate: [0.5, 0.75, 1, 1.5, 2],
-      defaultPlaybackRate: 1,
-      download: true,
-      closeVideoTouch: true,
-      airplay: true,
-      fluid: true,
-    });
+const PLAYER_CONFIG = url=>({
+  id: VIDEO_ID,
+  url,
+  playsinline: true,
+  whitelist: [''],
+  playbackRate: [0.5, 0.75, 1, 1.5, 2],
+  defaultPlaybackRate: 1,
+  download: true,
+  closeVideoTouch: true,
+  airplay: true,
+  fluid: true
+});
 
-    return () => playerXG && playerXG.destroy();
-  }, [nowPlay]);
+const useStyles = makeStyles((theme)=>({
 
-  if (!nowPlay) {
-    jumpToHome('数据丢掉了,返回首页!');
-    return null;
+  root : {
+    backgroundColor : theme.palette.background.default,
+    minHeight : '100vh'
   }
 
+}));
+
+const PlayMovie = () => {
+  const { jumpUtil } = store.useContainer();
+  const { jumpBack } = jumpUtil;
+  const  styles = useStyles();
+  const location = useLocation();
+  const nowPlay = getQuery(location.search);
+
+  useEffect(() => {
+    if (!nowPlay.url) return;
+    let playerXG = new window.HlsJsPlayer(PLAYER_CONFIG(nowPlay.url));
+    return () => playerXG.destroy();
+  }, [nowPlay.url]);
+
   return (
-    <div className="play-movie-container">
-      <NavBar mode="light" icon={<Icon type="left" />} onLeftClick={jumpBack}>
-        {nowPlay.title}
-      </NavBar>
-      <div id="mse"></div>
+    <div className={styles.root}>
+      <NavBar title={nowPlay.name}  onBack={jumpBack}/>
+      <div id={VIDEO_ID}></div>
     </div>
   );
 };

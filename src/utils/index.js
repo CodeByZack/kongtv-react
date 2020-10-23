@@ -10,3 +10,14 @@ export const throttle = (func, wait) => {
     }
   };
 };
+
+export const getQuery = str => {
+  const queryStr = str.split('?')[1];
+  const arr = queryStr.split('&');
+  const obj = arr.reduce((acc, now) => {
+    const [k, v] = now.split('=');
+    acc[k] = decodeURIComponent(v);
+    return acc;
+  }, {});
+  return obj;
+};
