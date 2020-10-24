@@ -52,3 +52,14 @@ const PlayMovie = () => {
   );
 };
 export default PlayMovie;
+
+
+
+// electron sdk    
+
+// 纯监考（ admin school exam）
+
+// 三随机 ( school exam )
+
+
+// 测试考场限制(5min) 

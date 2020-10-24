@@ -6,7 +6,7 @@ import Toast from '@/components/toast/toast';
 import HomeMain from './home_main/';
 import HomeCategory from './home_category/';
 import store from "@/store";
-import { Tab,Tabs,Toolbar,CssBaseline } from "@material-ui/core";
+import { Tab,Tabs,Toolbar,CssBaseline, Fade,Paper } from "@material-ui/core";
 
 
 const tabs = [
@@ -40,6 +40,7 @@ const Home = (props) => {
   if (adviceMovieList.length === 0) {
     return <Toast type="loading" content="加载数据中..." />;
   }
+  console.log(value);
   return (
     <div className="home-page">
       <CssBaseline />
@@ -56,55 +57,12 @@ const Home = (props) => {
       <Toolbar />
       <Toolbar />
 
-      {value === 0 && <HomeMain data={adviceMovieList} />}
-      {value === 1 && <HomeCategory type="dy" data={dy.list} isLoading={dy.isFetching} getCategoryList={dy.getData} />}
-      {value === 2 && <HomeCategory type="dsj" data={dsj.list} isLoading={dsj.isFetching} getCategoryList={dsj.getData} />}
-      {value === 3 && <HomeCategory type="dm" data={dm.list} isLoading={dm.isFetching} getCategoryList={dm.getData} />}
-      {value === 4 && <HomeCategory type="zy" data={zy.list} isLoading={zy.isFetching} getCategoryList={zy.getData} />}
+      <Fade mountOnEnter unmountOnExit in={value===0} ><div><HomeMain data={adviceMovieList} /></div></Fade>
+      <Fade mountOnEnter unmountOnExit in={value===1} ><div><HomeCategory type="dy" data={dy.list} isLoading={dy.isFetching} getCategoryList={dy.getData} /></div></Fade>
+      <Fade mountOnEnter unmountOnExit in={value===2} ><div><HomeCategory type="dsj" data={dsj.list} isLoading={dsj.isFetching} getCategoryList={dsj.getData} /></div></Fade>
+      <Fade mountOnEnter unmountOnExit in={value===3} ><div><HomeCategory type="dm" data={dm.list} isLoading={dm.isFetching} getCategoryList={dm.getData} /></div></Fade>
+      <Fade mountOnEnter unmountOnExit in={value===4} ><div><HomeCategory type="zy" data={zy.list} isLoading={zy.isFetching} getCategoryList={zy.getData} /></div></Fade>
 
-      {/* <NavBar
-        mode="light"
-        icon={<img src={logo} alt="logo" style={{ width: 30, height: 30 }} />}
-        rightContent={[<Icon key="0" type="search" onClick={jumpToSearch} />]}
-      >
-        风影院
-      </NavBar> */}
-      {/* <Tabs
-        tabs={tabs}
-        initialPage={tabIndex}
-        onChange={(tab, index) => {
-          setTabIndex(index);
-        }}
-        onTabClick={index => {
-          setTabIndex(index);
-        }}
-      >
-        <HomeMain data={adviceMovieList} />
-        <HomeCategory
-          type="dy"
-          isLoading={dy.isFetching}
-          data={dy.list}
-          getCategoryList={dy.getData}
-        />
-        <HomeCategory
-          type="dsj"
-          isLoading={dsj.isFetching}
-          data={dsj.list}
-          getCategoryList={dsj.getData}
-        />
-        <HomeCategory
-          isLoading={dm.isFetching}
-          type="dm"
-          data={dm.list}
-          getCategoryList={dm.getData}
-        />
-        <HomeCategory
-          isLoading={zy.isFetching}
-          type="zy"
-          data={zy.list}
-          getCategoryList={zy.getData}
-        />
-      </Tabs> */}
     </div>
   );
 };

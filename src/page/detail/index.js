@@ -5,7 +5,7 @@ import store from '@/store';
 
 import './style.less';
 import { NavBar } from '@/components/MyAppBar';
-import { Toolbar, Paper, makeStyles, Card, CardMedia, Box, Typography,useTheme, Hidden, Tabs,Tab, Grid, Button } from '@material-ui/core';
+import { Toolbar, Paper, makeStyles, Card, CardMedia, Box, Typography,useTheme, Hidden, Tabs,Tab, Grid, Button, Fade } from '@material-ui/core';
 
 const useStyles = makeStyles((theme)=>({
   root : {
@@ -128,20 +128,25 @@ const MovieDetail = () => {
           <Tabs value={tabValue} onChange={(_,v)=>setTabValue(v)}>
             {playSources.map((t,i)=><Tab label={`源${i}`}/>)}
           </Tabs>
-          <Grid container spacing={1} className={styles.jujiList}>
-            {
-              playSources[tabValue].map(juji=>{
-                return (
-                  <Grid item xs={3}>
-                    <Button size="small" variant="outlined" color="secondary" onClick={onPlayClick(juji)}>
-                    {juji.text}
-                    </Button>
-                  </Grid>
-                )
-              })
-            }
-          </Grid>
-            {/* {playSources[tabValue]} */}
+          {
+            playSources.map((playSource,index)=>{
+              return <Fade unmountOnExit in={ tabValue === index }  >
+                <Grid container spacing={1} className={styles.jujiList}>
+                  {
+                    playSource.map(juji=>{
+                      return (
+                        <Grid item xs={3}>
+                          <Button size="small" variant="outlined" color="secondary" onClick={onPlayClick(juji)}>
+                          {juji.text}
+                          </Button>
+                        </Grid>
+                      )
+                    })
+                  }
+                </Grid>
+              </Fade>
+            })
+          }
         </Paper>
     </div>
   );
