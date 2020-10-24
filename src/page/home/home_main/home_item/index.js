@@ -4,7 +4,6 @@ import { makeStyles, Typography, Box, Divider, Paper  } from '@material-ui/core'
 import MovieList from '@/page/components/movieList/';
 import LocalMoviesIcon from '@material-ui/icons/LocalMovies';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import './style.less';
 
 const useStyles = makeStyles((theme)=>({
 
