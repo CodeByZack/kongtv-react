@@ -1,12 +1,13 @@
 import React from 'react';
 // import { SearchBar } from 'antd-mobile';
 
-import { Icon, NavBar, Toast, SearchBar } from '@/components';
+import { Icon, Toast, SearchBar } from '@/components';
 
 import store from '@/store';
 // import { jumpBack } from '@/utils/jumpUtil';
 import MovieList from '@/page/components/movieList/index';
 import './style.less';
+import { NavBar } from '@/components/MyAppBar';
 
 const MovieSearch = () => {
   const { searchState, jumpUtil } = store.useContainer();
@@ -21,16 +22,14 @@ const MovieSearch = () => {
   };
   return (
     <div className="movie-search-page">
-      <NavBar mode="light" icon={<Icon type="left" />} onLeftClick={jumpBack}>
-        搜索页面
-      </NavBar>
       <SearchBar
+        onBack={jumpBack}
         onSearch={onSearch}
         placeholder="输入你要搜索的名字"
         value={searchText}
         onChange={setSearchText}
       />
-      <div style={{ padding: '0 8px' }}>
+      <div style={{ padding: '8px' }}>
         <MovieList movies={searchRes} />
       </div>
     </div>

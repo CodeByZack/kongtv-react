@@ -35,6 +35,7 @@ const Home = (props) => {
   };
   const onSearch = (value)=>{
     console.log(value);
+    jumpToSearch();
   };
 
   if (adviceMovieList.length === 0) {

@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // axios.defaults.baseURL = 'http://47.94.254.236:55';
-axios.defaults.baseURL = 'https://fengxiaoci.cn';
+// axios.defaults.baseURL = 'https://fengxiaoci.cn';
+axios.defaults.baseURL = 'http://127.0.0.1:8360/movie';
 axios.defaults.timeout = 20000;
 
 axios.interceptors.request.use(
@@ -24,27 +25,27 @@ axios.interceptors.response.use(
 );
 
 const getIndex = () => {
-  return axios.get('/hackapi.php', {
+  return axios.get('/index', {
     params: {
       router: 'index',
     },
   });
 };
 
-const getCategory = (type, page) => {
-  return axios.get('/hackapi.php', {
+const getCategory = (type, page, pagesize = 9) => {
+  return axios.get(`/${type}`, {
     params: {
-      router: type,
       page,
+      pagesize
     },
   });
 };
 
 const searchMovie = searchText => {
-  return axios.get('/hackapi.php', {
+  return axios.get('/search', {
     params: {
       router: 'search',
-      name: searchText,
+      word: searchText,
     },
   });
 };
