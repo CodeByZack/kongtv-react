@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme)=>({
     boxSizing : 'border-box',
     backgroundColor : theme.palette.common.white,
     padding : theme.spacing(1),
-    WebkitOverflowScrolling : 'touch'
+    // WebkitOverflowScrolling : 'touch'
   },
 }))
 

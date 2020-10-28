@@ -48,19 +48,51 @@ const Home = props => {
           onChange={handleChange}
           aria-label="simple tabs example"
         >
-          <Tab label="首页"  />
-          <Tab label="电影"  />
-          <Tab label="电视剧"/>
-          <Tab label="动漫"  />
-          <Tab label="综艺"  />
+          <Tab label="首页" />
+          <Tab label="电影" />
+          <Tab label="电视剧" />
+          <Tab label="动漫" />
+          <Tab label="综艺" />
         </Tabs>
       </MyAppBar>
-      <MyDrawer/>
+      <MyDrawer />
       <Toolbar />
       <Toolbar />
 
       {tabIndex === 0 && <HomeMain data={adviceMovieList} />}
-      {/* <Fade mountOnEnter unmountOnExit in={tabIndex===0} ><div><HomeMain data={adviceMovieList} /></div></Fade> */}
+      {tabIndex === 1 && (
+        <HomeCategory
+          type="dsj"
+          data={dsj.list}
+          isLoading={dsj.isFetching}
+          getCategoryList={dsj.getData}
+        />
+      )}
+      {tabIndex === 2 && (
+        <HomeCategory
+          type="dm"
+          data={dm.list}
+          isLoading={dm.isFetching}
+          getCategoryList={dm.getData}
+        />
+      )}
+      {tabIndex === 3 && (
+        <HomeCategory
+          type="dy"
+          data={dy.list}
+          isLoading={dy.isFetching}
+          getCategoryList={dy.getData}
+        />
+      )}
+      {tabIndex === 4 && (
+        <HomeCategory
+          type="zy"
+          data={zy.list}
+          isLoading={zy.isFetching}
+          getCategoryList={zy.getData}
+        />
+      )}
+      {/* <Fade mountOnEnter unmountOnExit in={tabIndex===0} ><div><HomeMain data={adviceMovieList} /></div></Fade>
       <Fade mountOnEnter unmountOnExit in={tabIndex === 1}>
         <div>
           <HomeCategory
@@ -100,7 +132,7 @@ const Home = props => {
             getCategoryList={zy.getData}
           />
         </div>
-      </Fade>
+      </Fade> */}
     </div>
   );
 };
