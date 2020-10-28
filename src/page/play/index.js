@@ -9,7 +9,7 @@ import { getQuery } from '@/utils';
 
 const VIDEO_ID = 'VIDEO_ID';
 
-const PLAYER_CONFIG = url=>({
+const PLAYER_CONFIG = url => ({
   id: VIDEO_ID,
   url,
   playsinline: true,
@@ -19,22 +19,20 @@ const PLAYER_CONFIG = url=>({
   download: true,
   closeVideoTouch: true,
   airplay: true,
-  fluid: true
+  fluid: true,
 });
 
-const useStyles = makeStyles((theme)=>({
-
-  root : {
-    backgroundColor : theme.palette.background.default,
-    minHeight : '100vh'
-  }
-
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: theme.palette.background.default,
+    minHeight: '100vh',
+  },
 }));
 
 const PlayMovie = () => {
   const { jumpUtil } = store.useContainer();
   const { jumpBack } = jumpUtil;
-  const  styles = useStyles();
+  const styles = useStyles();
   const location = useLocation();
   const nowPlay = getQuery(location.search);
 
@@ -46,20 +44,17 @@ const PlayMovie = () => {
 
   return (
     <div className={styles.root}>
-      <NavBar title={nowPlay.name}  onBack={jumpBack}/>
+      <NavBar title={nowPlay.name} onBack={jumpBack} />
       <div id={VIDEO_ID}></div>
     </div>
   );
 };
 export default PlayMovie;
 
-
-
-// electron sdk    
+// electron sdk
 
 // 纯监考（ admin school exam）
 
 // 三随机 ( school exam )
 
-
-// 测试考场限制(5min) 
+// 测试考场限制(5min)

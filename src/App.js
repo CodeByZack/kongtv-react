@@ -18,16 +18,14 @@ const routes = [
   { path: '/', Component: Home },
 ];
 
-
 const isSafari = checkBrowser() === 'Safari';
 
 const renderWithTransition = (path, Component) => {
   const render = props => {
     const { match, history } = props;
-    console.log("isSafari",isSafari);
-    
-    
-    if(!isSafari){
+    console.log('isSafari', isSafari);
+
+    if (!isSafari) {
       const direction = history.action === 'POP' ? 'right' : 'left';
       return (
         <Slide direction={direction} in={match != null} unmountOnExit>
@@ -36,12 +34,12 @@ const renderWithTransition = (path, Component) => {
           </div>
         </Slide>
       );
-    }else{
-      if(history.action === 'POP'){
-        return <Component />
-      }else{
+    } else {
+      if (history.action === 'POP') {
+        return <Component />;
+      } else {
         return (
-          <Slide direction='left' in={match != null} unmountOnExit>
+          <Slide direction="left" in={match != null} unmountOnExit>
             <div className="page">
               <Component />
             </div>
@@ -64,7 +62,9 @@ const App = () => {
         <Store.Provider>
           <ScrollToTop>
             <Switch>
-              {routes.map(({ path, Component }) => renderWithTransition(path, Component))}
+              {routes.map(({ path, Component }) =>
+                renderWithTransition(path, Component)
+              )}
             </Switch>
           </ScrollToTop>
         </Store.Provider>
@@ -74,5 +74,3 @@ const App = () => {
 };
 
 export default App;
-
-

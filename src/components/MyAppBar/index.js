@@ -127,14 +127,18 @@ const MyAppBar = props => {
 };
 
 export const NavBar = props => {
-
   const { title = '风影院', onBack = noop } = props;
   const classes = useStyles();
 
   return (
     <AppBar position="sticky">
       <Toolbar>
-        <IconButton onClick={onBack} edge="start" className={classes.menuButton} color="inherit">
+        <IconButton
+          onClick={onBack}
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+        >
           <ArrowBackIcon />
         </IconButton>
         <Typography className={classes.title} variant="h6" noWrap>

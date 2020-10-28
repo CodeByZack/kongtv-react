@@ -10,8 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 const noop = () => {};
 const defaultPlaceHolder = '请输入';
 
-const useStyles = makeStyles((theme) => ({
-
+const useStyles = makeStyles(theme => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputRoot: {
     color: 'inherit',
-    width: '100%'
+    width: '100%',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -43,16 +42,21 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       width: '20ch',
     },
-  }
+  },
 }));
 
-
 const SearchBar = props => {
-  const { onSearch, value, placeholder = defaultPlaceHolder, onBack = noop, onChange = noop } = props;
+  const {
+    onSearch,
+    value,
+    placeholder = defaultPlaceHolder,
+    onBack = noop,
+    onChange = noop,
+  } = props;
 
   const classes = useStyles();
 
-  const handleInput = (e) => {
+  const handleInput = e => {
     const value = e.target.value;
     if (onChange) {
       onChange(value);
@@ -68,7 +72,12 @@ const SearchBar = props => {
   return (
     <AppBar position="sticky">
       <Toolbar>
-        <IconButton onClick={onBack} edge="start" className={classes.menuButton} color="inherit">
+        <IconButton
+          onClick={onBack}
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+        >
           <ArrowBackIcon />
         </IconButton>
         <InputBase
@@ -82,7 +91,12 @@ const SearchBar = props => {
           }}
           inputProps={{ 'aria-label': 'search' }}
         />
-        <IconButton onClick={onSearch} edge="end" className={classes.menuButton} color="inherit">
+        <IconButton
+          onClick={onSearch}
+          edge="end"
+          className={classes.menuButton}
+          color="inherit"
+        >
           <SearchIcon />
         </IconButton>
       </Toolbar>

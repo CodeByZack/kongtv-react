@@ -6,16 +6,20 @@ import './style.less';
 const HomeCategory = props => {
   const { data, type, getCategoryList, isLoading } = props;
 
-  useEffect(()=>{
+  useEffect(() => {
     let ticking = false;
-    const doSomething = ()=> {
+    const doSomething = () => {
       if (isLoading) return;
-      const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
+      const {
+        scrollHeight,
+        scrollTop,
+        clientHeight,
+      } = document.documentElement;
       if (scrollHeight - scrollTop - clientHeight < 20) {
-        console.log("到底部了")
+        console.log('到底部了');
         getCategoryList({ type });
       }
-    }
+    };
     const handleScroll = e => {
       if (!ticking) {
         window.requestAnimationFrame(function() {
@@ -25,11 +29,11 @@ const HomeCategory = props => {
         ticking = true;
       }
     };
-    window.addEventListener("scroll",handleScroll);
-    return ()=>{
-      window.removeEventListener("scroll",handleScroll);
-    }
-  },[isLoading]);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isLoading]);
 
   return (
     <div className="home_category_page">

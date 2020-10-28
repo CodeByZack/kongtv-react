@@ -1,26 +1,25 @@
 import React from 'react';
 import { Icon } from '@/components';
-import { makeStyles, Typography, Box, Divider, Paper  } from '@material-ui/core';
+import { makeStyles, Typography, Box, Divider, Paper } from '@material-ui/core';
 import MovieList from '@/page/components/movieList/';
 import LocalMoviesIcon from '@material-ui/icons/LocalMovies';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
-const useStyles = makeStyles((theme)=>({
-
-  homeItemRoot : {
-    margin : `0 ${theme.spacing(2)}px`,
-    marginBottom : theme.spacing(1)
+const useStyles = makeStyles(theme => ({
+  homeItemRoot: {
+    margin: `0 ${theme.spacing(2)}px`,
+    marginBottom: theme.spacing(1),
   },
-  homeItemTitle : {
-    padding : `${theme.spacing(1)}px 0`,
-    fontSize : theme.spacing(2),
-    color : theme.palette.text.secondary,
-    display : 'flex',
+  homeItemTitle: {
+    padding: `${theme.spacing(1)}px 0`,
+    fontSize: theme.spacing(2),
+    color: theme.palette.text.secondary,
+    display: 'flex',
     alignItems: 'center',
-    "& span" : {
-      flex : 1
-    }
-  }
+    '& span': {
+      flex: 1,
+    },
+  },
 }));
 
 const HomeItem = props => {
@@ -29,9 +28,13 @@ const HomeItem = props => {
   return (
     <div className={styles.homeItemRoot}>
       <div className={styles.homeItemTitle}>
-        <LocalMoviesIcon/>
-        <Typography variant="span"><Box fontWeight={600} component="span" >{title}</Box></Typography>
-        <KeyboardArrowRightIcon/>
+        <LocalMoviesIcon />
+        <Typography variant="span">
+          <Box fontWeight={600} component="span">
+            {title}
+          </Box>
+        </Typography>
+        <KeyboardArrowRightIcon />
       </div>
       <MovieList movies={movies} />
     </div>

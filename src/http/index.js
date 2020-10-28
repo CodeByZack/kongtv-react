@@ -36,7 +36,7 @@ const getCategory = (type, page, pagesize = 9) => {
   return axios.get(`/${type}`, {
     params: {
       page,
-      pagesize
+      pagesize,
     },
   });
 };
