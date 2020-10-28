@@ -1,10 +1,21 @@
 import React, { useEffect } from 'react';
 import MovieList from '@/page/components/movieList/';
 import { Loading } from '@/components';
-import './style.less';
+import { makeStyles, useScrollTrigger } from '@material-ui/core';
+
+const useStyles = makeStyles((theme)=>({
+  homeCategoryRoot : {
+    height : 'calc(100vh - 80px)',
+    boxSizing : 'border-box',
+    backgroundColor : theme.palette.common.white,
+    padding : theme.spacing(1),
+    WebkitOverflowScrolling : 'touch'
+  },
+}))
 
 const HomeCategory = props => {
   const { data, type, getCategoryList, isLoading } = props;
+  const styles = useStyles();
 
   useEffect(() => {
     let ticking = false;
@@ -36,7 +47,7 @@ const HomeCategory = props => {
   }, [isLoading]);
 
   return (
-    <div className="home_category_page">
+    <div className={styles.homeCategoryRoot}>
       <MovieList movies={data} />
       {isLoading && <Loading />}
     </div>

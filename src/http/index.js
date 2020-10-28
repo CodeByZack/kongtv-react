@@ -1,3 +1,4 @@
+import { Toast } from '@/components';
 import axios from 'axios';
 
 // axios.defaults.baseURL = 'http://47.94.254.236:55';
@@ -20,6 +21,7 @@ axios.interceptors.response.use(
     return response.data;
   },
   function(error) {
+    Toast.error(error.message);
     return Promise.reject(error);
   }
 );

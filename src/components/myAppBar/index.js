@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import SearchIcon from '@material-ui/icons/Search';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Slide from '@material-ui/core/Slide';
+import Fade from '@material-ui/core/Fade';
 
 const noop = () => {};
 function HideOnScroll(props) {
@@ -17,9 +17,9 @@ function HideOnScroll(props) {
   const trigger = useScrollTrigger();
 
   return (
-    <Slide appear={false} direction="down" in={!trigger}>
+    <Fade appear={false} direction="down" in={!trigger}>
       {children}
-    </Slide>
+    </Fade>
   );
 }
 const useStyles = makeStyles(theme => ({
