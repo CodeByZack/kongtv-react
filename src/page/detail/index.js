@@ -4,7 +4,7 @@ import store from '@/store';
 // import { jumpToPlay, jumpBack, jumpToHome } from '@/utils/jumpUtil';
 
 import './style.less';
-import { NavBar } from '@/components/MyAppBar';
+import { NavBar } from '@/components/myAppBar';
 import {
   Toolbar,
   Paper,

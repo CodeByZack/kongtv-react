@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import store from '@/store';
 import { getQuery } from '@/utils';
-import { NavBar } from '@/components/MyAppBar';
+import { NavBar } from '@/components/myAppBar';
 import { makeStyles } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 
