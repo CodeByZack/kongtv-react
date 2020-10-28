@@ -5,9 +5,9 @@ import Home from '@/page/home';
 import PlayMovie from '@/page/play';
 import MovieDetail from '@/page/detail';
 import MovieSearch from '@/page/search';
-import { Fade, Slide } from '@material-ui/core';
+import { Slide } from '@material-ui/core';
 import ScrollToTop from '@/components/scrollToTop';
-import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { checkBrowser } from './utils';
 
 const routes = [
@@ -23,7 +23,6 @@ const isSafari = checkBrowser() === 'Safari';
 const renderWithTransition = (path, Component) => {
   const render = props => {
     const { match, history } = props;
-    console.log('isSafari', isSafari);
 
     if (!isSafari) {
       const direction = history.action === 'POP' ? 'right' : 'left';

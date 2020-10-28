@@ -1,13 +1,7 @@
 import React from 'react';
-// import { SearchBar } from 'antd-mobile';
-
-import { Icon, Toast, SearchBar } from '@/components';
-
 import store from '@/store';
-// import { jumpBack } from '@/utils/jumpUtil';
+import { Toast, SearchBar } from '@/components';
 import MovieList from '@/page/components/movieList/index';
-import './style.less';
-import { NavBar } from '@/components/MyAppBar';
 
 const MovieSearch = () => {
   const { searchState, jumpUtil } = store.useContainer();

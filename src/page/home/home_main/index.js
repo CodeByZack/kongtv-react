@@ -1,7 +1,6 @@
 import React from 'react';
 import HomeItem from './home_item';
 import Swiper from '../components/swiper';
-// import { jumpToDetail } from '../../../utils/jumpUtil';
 import store from '../../../store';
 
 const HomeMain = props => {
@@ -22,15 +21,9 @@ const HomeMain = props => {
     jumpToDetail(movie);
   };
 
-  console.log(data);
-  console.log(dy);
-  console.log(dsj);
-  console.log(zy);
-  console.log(dm);
-
   return (
     <div className="home_main_page">
-      {/* <Swiper imgArr={swipers} onSwiperItemClick={onSwiperItemClick}></Swiper> */}
+      <Swiper imgArr={swipers} onSwiperItemClick={onSwiperItemClick}></Swiper>
       <HomeItem title={'热播电影'} movies={dy} />
       <HomeItem title={'热播影视'} movies={dsj} />
       <HomeItem title={'热播动漫'} movies={zy} />

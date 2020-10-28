@@ -1,11 +1,9 @@
 import React from 'react';
-
-// import { Tabs } from 'antd-mobile';
-import { NavBar, Icon, MyAppBar } from '@/components';
-import Toast from '@/components/toast/toast';
+import { MyAppBar } from '@/components';
+import store from '@/store';
 import HomeMain from './home_main/';
 import HomeCategory from './home_category/';
-import store from '@/store';
+import Toast from '@/components/toast/toast';
 import {
   Tab,
   Tabs,
@@ -23,21 +21,13 @@ const tabs = [
   { title: '综艺', sub: '5' },
 ];
 
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
 const Home = props => {
   const { home, dy, dsj, dm, zy, jumpUtil } = store.useContainer();
   const { jumpToSearch } = jumpUtil;
   const { setTabIndex, tabIndex, adviceMovieList } = home;
 
-  const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setTabIndex(newValue);
   };
   const onSearch = value => {
     console.log(value);
@@ -47,31 +37,30 @@ const Home = props => {
   if (adviceMovieList.length === 0) {
     return <Toast type="loading" content="加载数据中..." />;
   }
-  console.log(value);
   return (
     <div className="home-page">
       <CssBaseline />
       <MyAppBar onSearch={onSearch}>
         <Tabs
           variant="fullWidth"
-          value={value}
+          value={tabIndex}
           onChange={handleChange}
           aria-label="simple tabs example"
         >
-          <Tab label="首页" {...a11yProps(0)} />
-          <Tab label="电影" {...a11yProps(1)} />
-          <Tab label="电视剧" {...a11yProps(2)} />
-          <Tab label="综艺" {...a11yProps(3)} />
-          <Tab label="动漫" {...a11yProps(4)} />
+          <Tab label="首页"  />
+          <Tab label="电影"  />
+          <Tab label="电视剧"/>
+          <Tab label="动漫"  />
+          <Tab label="综艺"  />
         </Tabs>
       </MyAppBar>
 
       <Toolbar />
       <Toolbar />
 
-      {value === 0 && <HomeMain data={adviceMovieList} />}
-      {/* <Fade mountOnEnter unmountOnExit in={value===0} ><div><HomeMain data={adviceMovieList} /></div></Fade> */}
-      <Fade mountOnEnter unmountOnExit in={value === 1}>
+      {tabIndex === 0 && <HomeMain data={adviceMovieList} />}
+      {/* <Fade mountOnEnter unmountOnExit in={tabIndex===0} ><div><HomeMain data={adviceMovieList} /></div></Fade> */}
+      <Fade mountOnEnter unmountOnExit in={tabIndex === 1}>
         <div>
           <HomeCategory
             type="dy"
@@ -81,7 +70,7 @@ const Home = props => {
           />
         </div>
       </Fade>
-      <Fade mountOnEnter unmountOnExit in={value === 2}>
+      <Fade mountOnEnter unmountOnExit in={tabIndex === 2}>
         <div>
           <HomeCategory
             type="dsj"
@@ -91,7 +80,7 @@ const Home = props => {
           />
         </div>
       </Fade>
-      <Fade mountOnEnter unmountOnExit in={value === 3}>
+      <Fade mountOnEnter unmountOnExit in={tabIndex === 3}>
         <div>
           <HomeCategory
             type="dm"
@@ -101,7 +90,7 @@ const Home = props => {
           />
         </div>
       </Fade>
-      <Fade mountOnEnter unmountOnExit in={value === 4}>
+      <Fade mountOnEnter unmountOnExit in={tabIndex === 4}>
         <div>
           <HomeCategory
             type="zy"

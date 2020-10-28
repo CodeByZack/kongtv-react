@@ -86,7 +86,6 @@ const MyAppBar = props => {
   };
 
   const search = () => {
-    console.log(searchValue);
     onSearch();
   };
   return (

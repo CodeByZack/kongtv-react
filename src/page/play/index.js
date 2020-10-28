@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-import { Icon } from '@/components';
 import store from '@/store';
+import { getQuery } from '@/utils';
 import { NavBar } from '@/components/MyAppBar';
 import { makeStyles } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
-import { getQuery } from '@/utils';
-// import { jumpBack,jumpToHome } from '@/utils/jumpUtil';
 
 const VIDEO_ID = 'VIDEO_ID';
 
@@ -50,11 +48,3 @@ const PlayMovie = () => {
   );
 };
 export default PlayMovie;
-
-// electron sdk
-
-// 纯监考（ admin school exam）
-
-// 三随机 ( school exam )
-
-// 测试考场限制(5min)
