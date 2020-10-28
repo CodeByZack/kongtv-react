@@ -10,6 +10,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import SearchIcon from '@material-ui/icons/Search';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Fade from '@material-ui/core/Fade';
+import Store from '@/store';
 
 const noop = () => {};
 function HideOnScroll(props) {
@@ -75,14 +76,20 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MyAppBar = props => {
-  const { title = '风影院', onSearch = noop } = props;
+  const { title = '风影院', onSearch = noop} = props;
   const classes = useStyles();
   const [searchValue, setSearchValue] = useState('');
+  const { home } = Store.useContainer();
+  const { setDrawerStatus = noop, drawerStatus } = home;
 
   const handleKeyDown = e => {
     if (e.keyCode === 13) {
       onSearch(searchValue);
     }
+  };
+
+  const onLeftClick = ()=>{
+    setDrawerStatus(!drawerStatus);
   };
 
   const search = () => {
@@ -97,6 +104,7 @@ const MyAppBar = props => {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            onClick={onLeftClick}
           >
             <MenuIcon />
           </IconButton>

@@ -54,6 +54,7 @@ const useJumpUtil = () => {
 
 const useHome = () => {
   const [tabIndex, setTabIndex] = useState(0);
+  const [drawerStatus,setDrawerStatus] = useState(false);
   const [adviceMovieList, setAdviceMovieList] = useState([]);
 
   const getAdviceData = async () => {
@@ -69,6 +70,7 @@ const useHome = () => {
     tabIndex,
     setTabIndex,
     adviceMovieList,
+    drawerStatus,setDrawerStatus
   };
 };
 const useCategory = type => {

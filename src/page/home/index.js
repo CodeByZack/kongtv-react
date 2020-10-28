@@ -12,6 +12,7 @@ import {
   Fade,
   Paper,
 } from '@material-ui/core';
+import MyDrawer from './home_drawer';
 
 const tabs = [
   { title: '首页', sub: '1' },
@@ -54,7 +55,7 @@ const Home = props => {
           <Tab label="综艺"  />
         </Tabs>
       </MyAppBar>
-
+      <MyDrawer/>
       <Toolbar />
       <Toolbar />
 
