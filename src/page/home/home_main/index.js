@@ -1,16 +1,15 @@
 import React from 'react';
 import HomeItem from './home_item';
 import Swiper from '../components/swiper';
-// import { jumpToDetail } from '../../../utils/jumpUtil';
 import store from '../../../store';
 
 const HomeMain = props => {
   const { data } = props;
 
-  const dy = data.filter(movie => movie.type_id_1 === '1');
-  const dsj = data.filter(movie => movie.type_id_1 === '2');
-  const zy = data.filter(movie => movie.type_id === '3');
-  const dm = data.filter(movie => movie.type_id === '4');
+  const dy = data.filter(movie => movie.type_id_1 === 1);
+  const dsj = data.filter(movie => movie.type_id_1 === 2);
+  const zy = data.filter(movie => movie.type_id === 3);
+  const dm = data.filter(movie => movie.type_id === 4);
 
   const { detail, jumpUtil } = store.useContainer();
   const { jumpToDetail } = jumpUtil;
@@ -27,8 +26,8 @@ const HomeMain = props => {
       <Swiper imgArr={swipers} onSwiperItemClick={onSwiperItemClick}></Swiper>
       <HomeItem title={'热播电影'} movies={dy} />
       <HomeItem title={'热播影视'} movies={dsj} />
-      <HomeItem title={'热播综艺'} movies={zy} />
-      <HomeItem title={'热播动漫'} movies={dm} />
+      <HomeItem title={'热播动漫'} movies={zy} />
+      <HomeItem title={'热播综艺'} movies={dm} />
     </div>
   );
 };

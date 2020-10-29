@@ -1,6 +1,9 @@
+import { Toast } from '@/components';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://47.94.254.236:55';
+// axios.defaults.baseURL = 'http://47.94.254.236:55';
+// axios.defaults.baseURL = 'https://fengxiaoci.cn';
+axios.defaults.baseURL = 'https://api.fengxiaoci.cn/movie';
 axios.defaults.timeout = 20000;
 
 axios.interceptors.request.use(
@@ -18,32 +21,33 @@ axios.interceptors.response.use(
     return response.data;
   },
   function(error) {
+    Toast.error(error.message);
     return Promise.reject(error);
   }
 );
 
 const getIndex = () => {
-  return axios.get('/hackapi.php', {
+  return axios.get('/index', {
     params: {
       router: 'index',
     },
   });
 };
 
-const getCategory = (type, page) => {
-  return axios.get('/hackapi.php', {
+const getCategory = (type, page, pagesize = 9) => {
+  return axios.get(`/${type}`, {
     params: {
-      router: type,
       page,
+      pagesize,
     },
   });
 };
 
 const searchMovie = searchText => {
-  return axios.get('/hackapi.php', {
+  return axios.get('/search', {
     params: {
       router: 'search',
-      name: searchText,
+      word: searchText,
     },
   });
 };

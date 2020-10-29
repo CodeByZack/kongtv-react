@@ -1,6 +1,7 @@
 {
   "short_name": "风影院",
-  "name": "风影院,像风一样自由...",
+  "name": "风影院",
+  "description": "风影院,像风一样自由...",
   "icons": [
     {
       "src": "favicon.ico",

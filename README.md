@@ -45,10 +45,25 @@ npm run start
 
 ~~删除antd-mobild~~
 
+~~使用material ui~~
+
+~~添加PWA支持（IOS需要手动添加到主屏幕）~~
+
+增加本地观看记录
+
+增加分类
+
 优化体验
+
+## gif预览
+
+![gif预览](https://apks-1252514056.cos.ap-chengdu.myqcloud.com/demo.gif)
+
 
 ## 截图预览
 
 ![首页](https://apks-1252514056.cos.ap-chengdu.myqcloud.com/%E9%A6%96%E9%A1%B5web.png)
+
 ![详情页](https://apks-1252514056.cos.ap-chengdu.myqcloud.com/%E8%AF%A6%E6%83%85web.png)
+
 ![播放页](https://apks-1252514056.cos.ap-chengdu.myqcloud.com/%E6%92%AD%E6%94%BE-web.png)
