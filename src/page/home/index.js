@@ -49,9 +49,9 @@ const Home = props => {
           aria-label="simple tabs example"
         >
           <Tab label="首页" />
-          <Tab label="电影" />
           <Tab label="电视剧" />
           <Tab label="动漫" />
+          <Tab label="电影" />
           <Tab label="综艺" />
         </Tabs>
       </MyAppBar>
