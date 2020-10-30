@@ -88,7 +88,7 @@ const decodeJuJi = playUrls => {
       return { text, link };
     });
     return jujiArr;
-  });
+  }).filter(arr=>arr[0].link.endsWith('.m3u8'));
 };
 
 const MovieDetail = () => {
