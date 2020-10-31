@@ -24,10 +24,10 @@ const HomeMain = props => {
   return (
     <div className="home_main_page">
       <Swiper imgArr={swipers} onSwiperItemClick={onSwiperItemClick}></Swiper>
-      <HomeItem title={'热播电影'} movies={dy} />
       <HomeItem title={'热播影视'} movies={dsj} />
-      <HomeItem title={'热播动漫'} movies={zy} />
-      <HomeItem title={'热播综艺'} movies={dm} />
+      <HomeItem title={'热播电影'} movies={dy} />
+      <HomeItem title={'热播综艺'} movies={zy} />
+      <HomeItem title={'热播动漫'} movies={dm} />
     </div>
   );
 };

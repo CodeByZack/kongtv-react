@@ -4,6 +4,7 @@ import axios from 'axios';
 // axios.defaults.baseURL = 'http://47.94.254.236:55';
 // axios.defaults.baseURL = 'https://fengxiaoci.cn';
 axios.defaults.baseURL = 'https://api.fengxiaoci.cn/movie';
+// axios.defaults.baseURL = 'http://127.0.0.1:8360/movie';
 axios.defaults.timeout = 20000;
 
 axios.interceptors.request.use(

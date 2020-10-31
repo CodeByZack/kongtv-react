@@ -1,5 +1,5 @@
 import React from 'react';
-import DefaultImg from '@/assets/default.png';
+import DefaultImg from '@/assets/placeholder.png';
 const style = {
   position: 'relative',
   paddingBottom: '140%',
@@ -11,6 +11,7 @@ const imgStyle = {
   right: 0,
   width: '100%',
   height: '100%',
+  objectFit: 'cover'
 };
 
 const RatioImage = props => {

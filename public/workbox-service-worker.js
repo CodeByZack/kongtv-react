@@ -12,8 +12,13 @@ if (workbox) {
 }
 
 
+
+// 处理html
+registerRoute(({request})=>request.destination === 'document',new NetworkFirst());
+
 // 处理js
 registerRoute(({request})=>request.destination === 'script',new NetworkFirst());
+
 
 
 // 处理css
@@ -28,8 +33,8 @@ const imageCache = new CacheFirst({
     cacheName : 'image-cache',
     plugins : [
         new ExpirationPlugin({
-            // Cache only 20 images.
-            maxEntries: 20,
+            // Cache only 100 images.
+            maxEntries: 100,
             // Cache for a maximum of a week.
             maxAgeSeconds: 7 * 24 * 60 * 60,
         })
