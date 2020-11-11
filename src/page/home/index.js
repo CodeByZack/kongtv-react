@@ -66,6 +66,8 @@ const Home = props => {
           data={dsj.list}
           isLoading={dsj.isFetching}
           getCategoryList={dsj.getData}
+          filterOption={dsj.filterOption}
+          setFilterOption={dsj.setFilterOption}
         />
       )}
       {tabIndex === 2 && (
@@ -74,6 +76,8 @@ const Home = props => {
           data={dm.list}
           isLoading={dm.isFetching}
           getCategoryList={dm.getData}
+          filterOption={dm.filterOption}
+          setFilterOption={dm.setFilterOption}
         />
       )}
       {tabIndex === 3 && (
@@ -82,6 +86,8 @@ const Home = props => {
           data={dy.list}
           isLoading={dy.isFetching}
           getCategoryList={dy.getData}
+          filterOption={dy.filterOption}
+          setFilterOption={dy.setFilterOption}
         />
       )}
       {tabIndex === 4 && (
@@ -90,6 +96,8 @@ const Home = props => {
           data={zy.list}
           isLoading={zy.isFetching}
           getCategoryList={zy.getData}
+          filterOption={zy.filterOption}
+          setFilterOption={zy.setFilterOption}
         />
       )}
       {/* <Fade mountOnEnter unmountOnExit in={tabIndex===0} ><div><HomeMain data={adviceMovieList} /></div></Fade>

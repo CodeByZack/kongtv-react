@@ -8,7 +8,7 @@ import MovieSearch from '@/page/search';
 import { Slide } from '@material-ui/core';
 import ScrollToTop from '@/components/scrollToTop';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { checkBrowser,checkIsMobile } from './utils';
+import { checkBrowser, checkIsMobile } from './utils';
 
 const routes = [
   { path: '/play', Component: PlayMovie },

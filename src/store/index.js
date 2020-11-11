@@ -54,7 +54,7 @@ const useJumpUtil = () => {
 
 const useHome = () => {
   const [tabIndex, setTabIndex] = useState(0);
-  const [drawerStatus,setDrawerStatus] = useState(false);
+  const [drawerStatus, setDrawerStatus] = useState(false);
   const [adviceMovieList, setAdviceMovieList] = useState([]);
 
   const getAdviceData = async () => {
@@ -70,18 +70,30 @@ const useHome = () => {
     tabIndex,
     setTabIndex,
     adviceMovieList,
-    drawerStatus,setDrawerStatus
+    drawerStatus,
+    setDrawerStatus,
   };
 };
 const useCategory = type => {
   const [page, setPage] = useState(0);
   const [list, setList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [filterOption, setFilterOption] = useState({});
 
-  const getData = async () => {
+  const getData = async resetPage => {
+    if (resetPage) {
+      setIsFetching(true);
+      const data = await getCategory(type, filterOption, 1);
+      const newList = [...data];
+      setList(newList);
+      setPage(1);
+      setIsFetching(false);
+      return;
+    }
+
     if (isFetching) return;
     setIsFetching(true);
-    const data = await getCategory(type, page + 1);
+    const data = await getCategory(type, filterOption, page + 1);
     const newList = [...list, ...data];
     setList(newList);
     setPage(page + 1);
@@ -89,15 +101,17 @@ const useCategory = type => {
   };
 
   useEffect(() => {
-    getData();
+    getData(true);
     // eslint-disable-next-line
-  }, []);
+  }, [filterOption]);
 
   return {
     isFetching,
     page,
     list,
     getData,
+    filterOption,
+    setFilterOption,
   };
 };
 const useDetail = () => {

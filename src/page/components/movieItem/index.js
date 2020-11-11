@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
   },
   movieImage: {
-    paddingTop: '133.33%'
+    paddingTop: '133.33%',
   },
   movieTitle: {
     padding: '5px 10px!important',
@@ -37,7 +37,7 @@ const MovieItem = props => {
   return (
     <Card className={styles.movieRoot} onClick={onMovieClick}>
       <CardMedia
-        style={{backgroundImage:bkUrl}}
+        style={{ backgroundImage: bkUrl }}
         className={styles.movieImage}
         // image={tile.vod_pic}
         title={tile.vod_name}
@@ -57,4 +57,3 @@ const MovieItem = props => {
   );
 };
 export default MovieItem;
-

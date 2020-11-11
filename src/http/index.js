@@ -35,11 +35,12 @@ const getIndex = () => {
   });
 };
 
-const getCategory = (type, page, pagesize = 9) => {
+const getCategory = (type, options = {}, page, pagesize = 9) => {
   return axios.get(`/${type}`, {
     params: {
       page,
       pagesize,
+      ...options,
     },
   });
 };
@@ -49,6 +50,7 @@ const searchMovie = searchText => {
     params: {
       router: 'search',
       word: searchText,
+      pagesize: 100,
     },
   });
 };

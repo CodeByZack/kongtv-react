@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MyAppBar = props => {
-  const { title = '风影院', onSearch = noop} = props;
+  const { title = '风影院', onSearch = noop } = props;
   const classes = useStyles();
   const [searchValue, setSearchValue] = useState('');
   const { home } = Store.useContainer();
@@ -88,7 +88,7 @@ const MyAppBar = props => {
     }
   };
 
-  const onLeftClick = ()=>{
+  const onLeftClick = () => {
     setDrawerStatus(!drawerStatus);
   };
 
