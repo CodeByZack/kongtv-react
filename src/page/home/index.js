@@ -35,7 +35,7 @@ const Home = props => {
       <CssBaseline />
       <MyAppBar onSearch={onSearch}>
         <Tabs
-          variant="fullWidth"
+          variant="scrollable"
           value={tabIndex}
           onChange={handleChange}
           aria-label="simple tabs example"
@@ -45,6 +45,7 @@ const Home = props => {
           <Tab label="动漫" />
           <Tab label="电影" />
           <Tab label="综艺" />
+          <Tab label="福利" />
         </Tabs>
       </MyAppBar>
       <MyDrawer />
@@ -56,6 +57,7 @@ const Home = props => {
       {tabIndex === 2 && <HomeCategory type="dm" />}
       {tabIndex === 3 && <HomeCategory type="dy" />}
       {tabIndex === 4 && <HomeCategory type="zy" />}
+      {tabIndex === 5 && <HomeCategory type="ll" />}
     </div>
   );
 };

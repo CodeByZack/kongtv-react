@@ -10,6 +10,7 @@ const useStore = () => {
   const dsj = useCategory('dsj');
   const dm = useCategory('dm');
   const zy = useCategory('zy');
+  const ll = useCategory('ll');
   const detail = useDetail();
   const searchState = useSearch();
   const jumpUtil = useJumpUtil();
@@ -19,6 +20,7 @@ const useStore = () => {
     dsj,
     dm,
     zy,
+    ll,
     detail,
     searchState,
     jumpUtil,
