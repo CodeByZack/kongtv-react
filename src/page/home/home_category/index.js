@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import MovieList from '@/page/components/movieList/';
 import { Loading } from '@/components';
 import { makeStyles } from '@material-ui/core';

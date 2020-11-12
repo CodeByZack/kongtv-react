@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
-import { Icon } from '@/components';
 import store from '@/store';
 // import { jumpToPlay, jumpBack, jumpToHome } from '@/utils/jumpUtil';
 
 import './style.less';
 import { NavBar } from '@/components/myAppBar';
 import {
-  Toolbar,
   Paper,
   makeStyles,
   Card,
   CardMedia,
-  Box,
   Typography,
-  useTheme,
-  Hidden,
   Tabs,
   Tab,
   Grid,
@@ -95,8 +90,8 @@ const decodeJuJi = playUrls => {
 };
 
 const MovieDetail = () => {
-  const { detail, play, jumpUtil } = store.useContainer();
-  const { jumpToPlay, jumpBack, jumpToHome } = jumpUtil;
+  const { detail, jumpUtil } = store.useContainer();
+  const { jumpToPlay, jumpBack } = jumpUtil;
   const { nowMovie, clear } = detail;
   const [tabValue, setTabValue] = useState(0);
   const styles = useStyles();

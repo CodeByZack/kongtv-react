@@ -7,13 +7,13 @@ import Toast from '@/components/toast/toast';
 import { Tab, Tabs, Toolbar, CssBaseline } from '@material-ui/core';
 import MyDrawer from './home_drawer';
 
-const tabs = [
-  { title: '首页', sub: '1' },
-  { title: '电影', sub: '2' },
-  { title: '电视剧', sub: '3' },
-  { title: '动漫', sub: '4' },
-  { title: '综艺', sub: '5' },
-];
+// const tabs = [
+//   { title: '首页', sub: '1' },
+//   { title: '电影', sub: '2' },
+//   { title: '电视剧', sub: '3' },
+//   { title: '动漫', sub: '4' },
+//   { title: '综艺', sub: '5' },
+// ];
 
 const Home = props => {
   const { home, jumpUtil } = store.useContainer();
