@@ -4,14 +4,7 @@ import store from '@/store';
 import HomeMain from './home_main/';
 import HomeCategory from './home_category/';
 import Toast from '@/components/toast/toast';
-import {
-  Tab,
-  Tabs,
-  Toolbar,
-  CssBaseline,
-  Fade,
-  Paper,
-} from '@material-ui/core';
+import { Tab, Tabs, Toolbar, CssBaseline } from '@material-ui/core';
 import MyDrawer from './home_drawer';
 
 const tabs = [
@@ -23,7 +16,7 @@ const tabs = [
 ];
 
 const Home = props => {
-  const { home, dy, dsj, dm, zy, jumpUtil } = store.useContainer();
+  const { home, jumpUtil } = store.useContainer();
   const { jumpToSearch } = jumpUtil;
   const { setTabIndex, tabIndex, adviceMovieList } = home;
 
@@ -31,7 +24,6 @@ const Home = props => {
     setTabIndex(newValue);
   };
   const onSearch = value => {
-    console.log(value);
     jumpToSearch();
   };
 
@@ -60,87 +52,10 @@ const Home = props => {
       <Toolbar />
 
       {tabIndex === 0 && <HomeMain data={adviceMovieList} />}
-      {tabIndex === 1 && (
-        <HomeCategory
-          type="dsj"
-          data={dsj.list}
-          isLoading={dsj.isFetching}
-          getCategoryList={dsj.getData}
-          filterOption={dsj.filterOption}
-          setFilterOption={dsj.setFilterOption}
-        />
-      )}
-      {tabIndex === 2 && (
-        <HomeCategory
-          type="dm"
-          data={dm.list}
-          isLoading={dm.isFetching}
-          getCategoryList={dm.getData}
-          filterOption={dm.filterOption}
-          setFilterOption={dm.setFilterOption}
-        />
-      )}
-      {tabIndex === 3 && (
-        <HomeCategory
-          type="dy"
-          data={dy.list}
-          isLoading={dy.isFetching}
-          getCategoryList={dy.getData}
-          filterOption={dy.filterOption}
-          setFilterOption={dy.setFilterOption}
-        />
-      )}
-      {tabIndex === 4 && (
-        <HomeCategory
-          type="zy"
-          data={zy.list}
-          isLoading={zy.isFetching}
-          getCategoryList={zy.getData}
-          filterOption={zy.filterOption}
-          setFilterOption={zy.setFilterOption}
-        />
-      )}
-      {/* <Fade mountOnEnter unmountOnExit in={tabIndex===0} ><div><HomeMain data={adviceMovieList} /></div></Fade>
-      <Fade mountOnEnter unmountOnExit in={tabIndex === 1}>
-        <div>
-          <HomeCategory
-            type="dy"
-            data={dy.list}
-            isLoading={dy.isFetching}
-            getCategoryList={dy.getData}
-          />
-        </div>
-      </Fade>
-      <Fade mountOnEnter unmountOnExit in={tabIndex === 2}>
-        <div>
-          <HomeCategory
-            type="dsj"
-            data={dsj.list}
-            isLoading={dsj.isFetching}
-            getCategoryList={dsj.getData}
-          />
-        </div>
-      </Fade>
-      <Fade mountOnEnter unmountOnExit in={tabIndex === 3}>
-        <div>
-          <HomeCategory
-            type="dm"
-            data={dm.list}
-            isLoading={dm.isFetching}
-            getCategoryList={dm.getData}
-          />
-        </div>
-      </Fade>
-      <Fade mountOnEnter unmountOnExit in={tabIndex === 4}>
-        <div>
-          <HomeCategory
-            type="zy"
-            data={zy.list}
-            isLoading={zy.isFetching}
-            getCategoryList={zy.getData}
-          />
-        </div>
-      </Fade> */}
+      {tabIndex === 1 && <HomeCategory type="dsj" />}
+      {tabIndex === 2 && <HomeCategory type="dm" />}
+      {tabIndex === 3 && <HomeCategory type="dy" />}
+      {tabIndex === 4 && <HomeCategory type="zy" />}
     </div>
   );
 };
