@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardMedia,
-  makeStyles,
-  CardContent,
-  Typography,
-} from '@material-ui/core';
+import { Card, CardMedia, makeStyles, CardContent, Typography } from '@material-ui/core';
 import React from 'react';
 import store from '@/store';
 import defaultImg from '@/assets/placeholder.png';
@@ -43,13 +37,7 @@ const MovieItem = props => {
         title={tile.vod_name}
       />
       <CardContent className={styles.movieTitle}>
-        <Typography
-          align="center"
-          noWrap
-          variant="body2"
-          color="textSecondary"
-          component="p"
-        >
+        <Typography align="center" noWrap variant="body2" color="textSecondary" component="p">
           {tile.vod_name}
         </Typography>
       </CardContent>

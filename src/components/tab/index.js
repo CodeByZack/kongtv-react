@@ -4,13 +4,7 @@ import './style.less';
 let pageX, pageY, isMove;
 
 const Tab = props => {
-  let {
-    tabs = [],
-    initialPage = 0,
-    onChange,
-    onTabClick,
-    children = [],
-  } = props;
+  let { tabs = [], initialPage = 0, onChange, onTabClick, children = [] } = props;
 
   const [nowTab, setNowTab] = useState(0);
   const tabRef = useRef();

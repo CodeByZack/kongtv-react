@@ -50,11 +50,7 @@ class Notification extends Component {
     return (
       <TransitionGroup className="toast-notification">
         {notices.map(notice => (
-          <CSSTransition
-            key={notice.key}
-            classNames="fade"
-            timeout={this.transitionTime}
-          >
+          <CSSTransition key={notice.key} classNames="fade" timeout={this.transitionTime}>
             <Toast {...notice} />
           </CSSTransition>
         ))}

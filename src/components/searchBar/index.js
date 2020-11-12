@@ -72,12 +72,7 @@ const SearchBar = props => {
   return (
     <AppBar position="sticky">
       <Toolbar>
-        <IconButton
-          onClick={onBack}
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-        >
+        <IconButton onClick={onBack} edge="start" className={classes.menuButton} color="inherit">
           <ArrowBackIcon />
         </IconButton>
         <InputBase
@@ -91,12 +86,7 @@ const SearchBar = props => {
           }}
           inputProps={{ 'aria-label': 'search' }}
         />
-        <IconButton
-          onClick={onSearch}
-          edge="end"
-          className={classes.menuButton}
-          color="inherit"
-        >
+        <IconButton onClick={onSearch} edge="end" className={classes.menuButton} color="inherit">
           <SearchIcon />
         </IconButton>
       </Toolbar>

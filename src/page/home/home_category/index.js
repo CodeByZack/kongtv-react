@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     height: 'calc(100vh - 80px)',
     boxSizing: 'border-box',
     backgroundColor: theme.palette.common.white,
-    padding: theme.spacing(1)
+    padding: theme.spacing(1),
   },
 }));
 
@@ -18,17 +18,13 @@ const HomeCategory = props => {
   const { type } = props;
   const styles = useStyles();
   const categoryObj = store.useContainer()[type];
-  const { filterOption,setFilterOption,getData,isFetching,list } = categoryObj;
+  const { filterOption, setFilterOption, getData, isFetching, list } = categoryObj;
 
   useEffect(() => {
     let ticking = false;
     const doSomething = () => {
       if (isFetching) return;
-      const {
-        scrollHeight,
-        scrollTop,
-        clientHeight,
-      } = document.documentElement;
+      const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
       if (scrollHeight - scrollTop - clientHeight < 20) {
         getData();
       }
@@ -49,20 +45,14 @@ const HomeCategory = props => {
   }, [isFetching]);
 
   const handleFilterChange = key => item => {
-    const option = {...filterOption,[key]: item};
+    const option = { ...filterOption, [key]: item };
     setFilterOption(option);
   };
 
   return (
     <div className={styles.homeCategoryRoot}>
-      <YearChipList
-        nowShow={filterOption.year}
-        onChange={handleFilterChange('year')}
-      />
-      <AreaChipList
-        nowShow={filterOption.area}
-        onChange={handleFilterChange('area')}
-      />
+      <YearChipList nowShow={filterOption.year} onChange={handleFilterChange('year')} />
+      <AreaChipList nowShow={filterOption.area} onChange={handleFilterChange('area')} />
       <MovieList movies={list} />
       {isFetching && <Loading />}
     </div>

@@ -62,9 +62,7 @@ const App = () => {
         <Store.Provider>
           <ScrollToTop>
             <Switch>
-              {routes.map(({ path, Component }) =>
-                renderWithTransition(path, Component)
-              )}
+              {routes.map(({ path, Component }) => renderWithTransition(path, Component))}
             </Switch>
           </ScrollToTop>
         </Store.Provider>

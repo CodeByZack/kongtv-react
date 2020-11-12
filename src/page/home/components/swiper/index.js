@@ -112,11 +112,7 @@ const Swiper = props => {
   }, [imgArr]);
 
   return (
-    <div
-      className="ks-swiper"
-      onTouchStart={startHandle}
-      onTouchMove={moveHandle}
-    >
+    <div className="ks-swiper" onTouchStart={startHandle} onTouchMove={moveHandle}>
       {imgArr.map((d, i) => {
         return (
           <div

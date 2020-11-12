@@ -26,12 +26,7 @@ const RatioImage = props => {
 
   return (
     <div className="img-wrapper" style={wrapperStyle}>
-      <img
-        src={imgUrl}
-        alt={imgAlt}
-        style={imgStyle}
-        onError={e => (e.target.src = DefaultImg)}
-      />
+      <img src={imgUrl} alt={imgAlt} style={imgStyle} onError={e => (e.target.src = DefaultImg)} />
     </div>
   );
 };

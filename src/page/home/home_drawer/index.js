@@ -46,11 +46,7 @@ const MyDrawer = props => {
   const styles = useStyles();
 
   return (
-    <Drawer
-      open={drawerStatus}
-      anchor={'left'}
-      onClose={() => setDrawerStatus(false)}
-    >
+    <Drawer open={drawerStatus} anchor={'left'} onClose={() => setDrawerStatus(false)}>
       <div className={styles.drawerTop}>
         <Avatar src={appLogo} className={styles.drawerIcon} />
         <Typography component="p" className={styles.drawerAppName}>

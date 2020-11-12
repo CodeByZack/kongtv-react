@@ -1,17 +1,7 @@
 import { Chip, makeStyles } from '@material-ui/core';
 import React, { useState } from 'react';
 
-const year = [
-  '全部',
-  '2020',
-  '2019',
-  '2018',
-  '2017',
-  '2016',
-  '2015',
-  '2014',
-  '2013',
-];
+const year = ['全部', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013'];
 const area = [
   '全部',
   '大陆',
@@ -81,15 +71,11 @@ const ChipList = props => {
 };
 
 export const YearChipList = ({ onChange, nowShow }) => {
-  return (
-    <ChipList title="年代" now={nowShow} data={year} onChange={onChange} />
-  );
+  return <ChipList title="年代" now={nowShow} data={year} onChange={onChange} />;
 };
 
 export const AreaChipList = ({ onChange, nowShow }) => {
-  return (
-    <ChipList title="地区" now={nowShow} data={area} onChange={onChange} />
-  );
+  return <ChipList title="地区" now={nowShow} data={area} onChange={onChange} />;
 };
 
 export default ChipList;

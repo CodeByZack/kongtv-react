@@ -116,8 +116,7 @@ const useCategory = type => {
 };
 const useDetail = () => {
   const location = useLocation();
-  const nowMovieFromState =
-    location.pathname === '/detail' ? location.state : null;
+  const nowMovieFromState = location.pathname === '/detail' ? location.state : null;
   const [nowMovie, setNowMovie] = useState(nowMovieFromState);
   const clear = () => setNowMovie(null);
   return {
