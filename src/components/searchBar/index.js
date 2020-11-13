@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
@@ -55,6 +55,7 @@ const SearchBar = props => {
   } = props;
 
   const classes = useStyles();
+  const [showHistory,setShowHistory] = useState(false);
 
   const handleInput = e => {
     const value = e.target.value;
@@ -66,7 +67,13 @@ const SearchBar = props => {
   const handleKeyUp = e => {
     if (e.keyCode === 13 && onSearch) {
       onSearch();
+      setShowHistory(false);
     }
+  };
+
+  const handleFocus = (e)=>{
+    console.log(e);
+    setShowHistory(true);
   };
 
   return (
@@ -76,6 +83,7 @@ const SearchBar = props => {
           <ArrowBackIcon />
         </IconButton>
         <InputBase
+          onFocus={handleFocus}
           onKeyUp={handleKeyUp}
           value={value}
           placeholder={placeholder}
@@ -90,6 +98,7 @@ const SearchBar = props => {
           <SearchIcon />
         </IconButton>
       </Toolbar>
+      {showHistory && <div>历史记录，</div>}
     </AppBar>
   );
 };

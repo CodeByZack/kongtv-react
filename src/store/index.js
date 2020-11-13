@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { getCategory, getIndex, searchMovie } from '@/http';
 import { Toast } from '@/components';
 import { useHistory, useLocation } from 'react-router-dom';
+import storeUtils from '@/utils/storeUtils';
 
 const useStore = () => {
   const home = useHome();
@@ -37,6 +38,7 @@ const useJumpUtil = () => {
   };
 
   const jumpToPlay = state => {
+    storeUtils.addWatchHistory(state);
     const url = `/play?name=${state.title}-${state.text}&url=${state.link}`;
     history.push(url);
   };
@@ -143,6 +145,7 @@ const useSearch = () => {
   const search = async () => {
     Toast.loading('正在加载数据', 0);
     setSearchText(searchText);
+    storeUtils.addSearchHistory(searchText);
     history.replace(location.pathname, { searchText });
     const data = await searchMovie(searchText);
     if (data.length === 0) {
