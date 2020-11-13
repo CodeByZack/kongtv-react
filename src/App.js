@@ -7,8 +7,15 @@ import MovieDetail from '@/page/detail';
 import MovieSearch from '@/page/search';
 import { Slide } from '@material-ui/core';
 import ScrollToTop from '@/components/scrollToTop';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, matchPath } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import { checkBrowser } from './utils';
+import { Integrations } from "@sentry/tracing";
+import * as Sentry from "@sentry/react";
+
+const history = createBrowserHistory();
+
+
 
 const routes = [
   { path: '/play', Component: PlayMovie },
@@ -17,6 +24,20 @@ const routes = [
   { path: '/search', Component: MovieSearch },
   { path: '/', Component: Home },
 ];
+
+Sentry.init({
+  dsn: "https://9b7d035b5c8c4853a689ccfeac8426df@o476076.ingest.sentry.io/5515101",
+  integrations: [
+    new Integrations.BrowserTracing({
+      // Can also use reactRouterV4Instrumentation
+      routingInstrumentation: Sentry.reactRouterV5Instrumentation(history,routes,matchPath),
+    })
+  ],
+
+  // We recommend adjusting this value in production, or using tracesSampler
+  // for finer control
+  tracesSampleRate: 1.0,
+});
 
 const isSafari = checkBrowser() === 'Safari';
 // const isMobile = checkIsMobile();
@@ -58,7 +79,7 @@ const renderWithTransition = (path, Component) => {
 const App = () => {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter history={history}>
         <Store.Provider>
           <ScrollToTop>
             <Switch>
