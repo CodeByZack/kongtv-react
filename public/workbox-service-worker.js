@@ -41,3 +41,21 @@ const imageCache = new CacheFirst({
     ]
 });
 registerRoute(imageCapture,imageCache);
+
+
+// 处理m3u8 和 ts 文件
+const matchCb = ({url, request, event}) => {
+  return /(\.m3u8|\.ts)/.test(url.pathname);
+};
+
+registerRoute( matchCb,new CacheFirst({
+  cacheName : 'video-cache',
+  plugins : [
+      new ExpirationPlugin({
+          // Cache only 100 images.
+          maxEntries: 10000,
+          // Cache for a maximum of a week.
+          maxAgeSeconds: 24 * 60 * 60,
+      })
+  ]
+}))
