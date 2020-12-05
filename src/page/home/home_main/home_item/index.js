@@ -1,5 +1,7 @@
 import React from 'react';
-import { makeStyles, Typography, Box } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
 import MovieList from '@/page/components/movieList/';
 import LocalMoviesIcon from '@material-ui/icons/LocalMovies';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';

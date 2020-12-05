@@ -6,7 +6,6 @@ import './style.less';
 import { NavBar } from '@/components/myAppBar';
 import {
   Paper,
-  makeStyles,
   Card,
   CardMedia,
   Typography,
@@ -16,6 +15,7 @@ import {
   Button,
   Fade,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {

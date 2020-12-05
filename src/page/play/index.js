@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import store from '@/store';
 import { getQuery } from '@/utils';
 import { NavBar } from '@/components/myAppBar';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { useLocation } from 'react-router-dom';
 
 const VIDEO_ID = 'VIDEO_ID';

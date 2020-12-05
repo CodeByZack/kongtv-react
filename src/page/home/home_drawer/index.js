@@ -5,13 +5,14 @@ import bk from '@/assets/sun_main.png';
 import {
   Avatar,
   Drawer,
-  makeStyles,
   Typography,
   List,
   ListItem,
   ListItemText,
   ListItemIcon,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
 import HistoryIcon from '@material-ui/icons/History';
 import InfoIcon from '@material-ui/icons/Info';
 

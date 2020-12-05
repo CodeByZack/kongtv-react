@@ -1,11 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import InputBase from '@material-ui/core/InputBase';
+import React, { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
+import { InputBase, AppBar, Toolbar, IconButton } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 const noop = () => {};
 const defaultPlaceHolder = '请输入';
@@ -55,6 +52,7 @@ const SearchBar = props => {
   } = props;
 
   const classes = useStyles();
+  const [showHistory, setShowHistory] = useState(false);
 
   const handleInput = e => {
     const value = e.target.value;
@@ -66,7 +64,13 @@ const SearchBar = props => {
   const handleKeyUp = e => {
     if (e.keyCode === 13 && onSearch) {
       onSearch();
+      setShowHistory(false);
     }
+  };
+
+  const handleFocus = e => {
+    console.log(e);
+    setShowHistory(true);
   };
 
   return (
@@ -76,6 +80,7 @@ const SearchBar = props => {
           <ArrowBackIcon />
         </IconButton>
         <InputBase
+          onFocus={handleFocus}
           onKeyUp={handleKeyUp}
           value={value}
           placeholder={placeholder}
@@ -90,6 +95,7 @@ const SearchBar = props => {
           <SearchIcon />
         </IconButton>
       </Toolbar>
+      {/* {showHistory && <div>历史记录，</div>} */}
     </AppBar>
   );
 };
