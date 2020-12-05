@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import MovieList from '@/page/components/movieList/';
 import { Loading } from '@/components';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { AreaChipList, YearChipList } from '../components/chipList';
 import store from '@/store';
 

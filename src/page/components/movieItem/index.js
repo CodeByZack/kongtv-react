@@ -1,4 +1,6 @@
-import { Card, CardMedia, makeStyles, CardContent, Typography } from '@material-ui/core';
+import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
 import React from 'react';
 import store from '@/store';
 import defaultImg from '@/assets/placeholder.png';
