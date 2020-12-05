@@ -14,10 +14,10 @@ if (workbox) {
 
 
 // 处理html
-registerRoute(({request})=>request.destination === 'document',new NetworkFirst());
+registerRoute(({request})=>request.destination === 'document',new StaleWhileRevalidate());
 
 // 处理js
-registerRoute(({request})=>request.destination === 'script',new NetworkFirst());
+registerRoute(({request})=>request.destination === 'script',new StaleWhileRevalidate());
 
 
 
