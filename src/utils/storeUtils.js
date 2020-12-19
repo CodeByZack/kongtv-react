@@ -29,7 +29,7 @@ const addWatchHistory = obj => {
 
 const addSearchHistory = obj => {
   SEARCH_HISTORY.push(obj);
-  if (SEARCH_HISTORY.length > 5) {
+  if (SEARCH_HISTORY.length > 10) {
     SEARCH_HISTORY.shift();
   }
   localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify(SEARCH_HISTORY));
