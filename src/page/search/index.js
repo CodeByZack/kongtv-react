@@ -8,11 +8,11 @@ const MovieSearch = () => {
   const { jumpBack } = jumpUtil;
   const { searchText, searchRes, setSearchText, search } = searchState;
   const onSearch = e => {
-    if (!searchText) {
+    if (!e) {
       Toast.info('输入搜索关键字！');
       return;
     }
-    search(searchText);
+    search(e);
   };
   return (
     <div className="movie-search-page">

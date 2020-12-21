@@ -129,25 +129,13 @@ const useDetail = () => {
 };
 
 const useSearch = () => {
-  const history = useHistory();
-  const location = useLocation();
-  let fromState = {};
-  if (location.pathname === '/search') {
-    const { state = {} } = location;
-    const { searchRes = [], searchText = '' } = state;
-    fromState = { searchRes, searchText };
-  }
+  const [searchRes, setSearchRes] = useState([]);
 
-  const [searchText, setSearchText] = useState(fromState.searchText);
-  const [searchRes, setSearchRes] = useState(fromState.searchRes);
-  // const [isSearching, setIsSearching] = useState(false);
-
-  const search = async () => {
+  const search = async (text) => {
     Toast.loading('正在加载数据', 0);
-    setSearchText(searchText);
-    storeUtils.addSearchHistory(searchText);
-    history.replace(location.pathname, { searchText });
-    const data = await searchMovie(searchText);
+    // setSearchText(searchText);
+    storeUtils.addSearchHistory(text);
+    const data = await searchMovie(text);
     if (data.length === 0) {
       Toast.hide();
       Toast.info('没有搜索到相关影片');
@@ -155,12 +143,8 @@ const useSearch = () => {
       Toast.hide();
     }
     setSearchRes(data);
-    history.replace(location.pathname, { searchText, searchRes: data });
   };
-
   return {
-    searchText,
-    setSearchText,
     searchRes,
     search,
   };
