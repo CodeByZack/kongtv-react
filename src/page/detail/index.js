@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import store from '@/store';
-// import { jumpToPlay, jumpBack, jumpToHome } from '@/utils/jumpUtil';
-
+import storeUtils from '@/utils/storeUtils';
 import './style.less';
 import { NavBar } from '@/components/myAppBar';
 import {
@@ -99,6 +98,7 @@ const MovieDetail = () => {
   if (!nowMovie) return null;
 
   const onPlayClick = item => () => {
+    storeUtils.addWatchHistory(nowMovie,item);
     const palyObj = {
       title: nowMovie.vod_name,
       ...item,

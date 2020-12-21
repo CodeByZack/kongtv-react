@@ -37,8 +37,11 @@ const useJumpUtil = () => {
     history.push({ pathname: '/search' });
   };
 
+  const jumpToWatchHistory = () => {
+    history.push({ pathname: '/watchhistory' });
+  };
+
   const jumpToPlay = state => {
-    storeUtils.addWatchHistory(state);
     const url = `/play?name=${state.title}-${state.text}&url=${state.link}`;
     history.push(url);
   };
@@ -51,7 +54,7 @@ const useJumpUtil = () => {
 
   const jumpBack = () => history.goBack();
 
-  return { jumpToDetail, jumpToSearch, jumpToPlay, jumpBack, jumpToHome };
+  return { jumpToDetail,jumpToWatchHistory, jumpToSearch, jumpToPlay, jumpBack, jumpToHome };
 };
 
 const useHome = () => {
