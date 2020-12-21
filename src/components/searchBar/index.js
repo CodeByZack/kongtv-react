@@ -72,7 +72,6 @@ const SearchBar = props => {
   };
 
   const handleHistoryClick = e => () => {
-    console.log(e);
     setSearchText(e);
     onSearch(e);
     setShowHistory(false);

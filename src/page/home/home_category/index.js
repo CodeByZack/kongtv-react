@@ -42,6 +42,7 @@ const HomeCategory = props => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+  // eslint-disable-next-line
   }, [isFetching]);
 
   const handleFilterChange = key => item => {

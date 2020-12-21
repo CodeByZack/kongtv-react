@@ -2,9 +2,6 @@ import storeUtils from '@/utils/storeUtils';
 import { useState, useEffect } from 'react';
 import { List, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import ImageIcon from '@material-ui/icons/Image';
-import WorkIcon from '@material-ui/icons/Work';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import { NavBar } from '@/components/myAppBar';
 import store from '@/store';
 
@@ -35,7 +32,6 @@ const WatchHistory = () => {
   const { jumpBack,jumpToDetail } = jumpUtil;
   useEffect(() => {
     const watchHistory = storeUtils.getWatchHistory();
-    console.log(watchHistory);
     if (watchHistory.length) {
       setHistory(watchHistory);
     }
