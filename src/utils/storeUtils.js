@@ -19,12 +19,23 @@ const getSearchHistory = () => {
   return SEARCH_HISTORY;
 };
 
-const addWatchHistory = obj => {
-  WATCH_HISTORY.push(obj);
-  if (SEARCH_HISTORY.length > 30) {
-    SEARCH_HISTORY.shift();
+const addWatchHistory = (obj,item) => {
+
+  const oldRecord = WATCH_HISTORY.find(o=>obj.vod_id === o.vod_id);
+  if(oldRecord && oldRecord.watch_history === item.text)return;
+ 
+  if( !oldRecord ){
+    obj.watch_history = item.text;
+    WATCH_HISTORY.push(obj);
+    if (SEARCH_HISTORY.length > 30) {
+      SEARCH_HISTORY.shift();
+    }
+    localStorage.setItem(WATCH_HISTORY_KEY, JSON.stringify(WATCH_HISTORY));
+  }else {
+    oldRecord.watch_history = item.text;
+    localStorage.setItem(WATCH_HISTORY_KEY, JSON.stringify(WATCH_HISTORY));
   }
-  localStorage.setItem(WATCH_HISTORY_KEY, JSON.stringify(WATCH_HISTORY));
+
 };
 
 const addSearchHistory = obj => {

@@ -41,10 +41,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MyDrawer = props => {
-  const { home } = Store.useContainer();
+  const { home,jumpUtil } = Store.useContainer();
   const { setDrawerStatus, drawerStatus } = home;
 
   const styles = useStyles();
+
+  const handleClick = (type)=>()=>{
+
+    if(type === "watchhistory"){
+      jumpUtil.jumpToWatchHistory();
+      setDrawerStatus(false);
+    }
+
+  };
 
   return (
     <Drawer open={drawerStatus} anchor={'left'} onClose={() => setDrawerStatus(false)}>
@@ -55,7 +64,7 @@ const MyDrawer = props => {
         </Typography>
       </div>
       <List component="nav" aria-label="main mailbox folders">
-        <ListItem button>
+        <ListItem button onClick={handleClick('watchhistory')}>
           <ListItemIcon>
             <HistoryIcon />
           </ListItemIcon>
