@@ -721,19 +721,7 @@ module.exports = function(webpackEnv) {
           silent: true,
           // The formatter is invoked directly in WebpackDevServerUtils during development
           formatter: isEnvProduction ? typescriptFormatter : undefined,
-        }),
-      (isEnvProduction && !isBuildDev) &&
-        new CompressionWebpackPlugin({
-          filename: '[path]',
-          algorithm: 'gzip',
-          test: new RegExp(
-            '\\.(' +
-            ['js', 'css'].join('|') +
-            ')$'
-          ),
-          threshold: 1024,
-          minRatio: 0.8
-        }),
+        })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

@@ -8,7 +8,7 @@ if (!argv.SecretId || !argv.SecretKey) {
 const setHeaders = (obj)=>{
     const reg = /.*\.(js|css|gz)$/
     if(reg.test(obj.Key)){
-      obj.ContentEncoding = "gzip";
+      // obj.ContentEncoding = "gzip";
     }
     return obj;
 };
