@@ -64,7 +64,7 @@ const renderWithTransition = (path, Component) => {
 
 
 const App = () => {
-  const [theme,setTheme] = useState(themeArr.themeDark);
+  const [theme,setTheme] = useState(themeArr.themeNormal);
   const toggoleTheme = (type)=>{
     if(type === "dark"){
       setTheme(themeArr.themeDark);
