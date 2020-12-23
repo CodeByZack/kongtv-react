@@ -62,6 +62,7 @@ const MyDrawer = props => {
     }else{
       themeHelper.toggoleTheme("dark");
     }
+    setDrawerStatus(false);
   };
 
 
