@@ -1,0 +1,2 @@
+.movie-list{display:flex;flex-wrap:wrap}.movie-list .movie-item{border-radius:5px;text-align:center;width:31%;margin-right:3%;overflow:hidden;box-shadow:3px 2px 5px rgba(51,51,51,.2784313725490196);margin-bottom:10px}.movie-list .movie-item:nth-child(3n){margin-right:0}.movie-list .movie-item .movie-name{font-size:12px;line-height:30px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+/*# sourceMappingURL=moviesearch.4323595f.chunk.css.map */
