@@ -1,21 +1,20 @@
-import React, { Suspense, lazy } from 'react';
-
+import React, { Suspense, lazy, useState } from 'react';
 import Store from '@/store';
-// import Home from '@/page/home';
-// import PlayMovie from '@/page/play';
-// import MovieDetail from '@/page/detail';
-// import MovieSearch from '@/page/search';
 import { Slide } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core/styles';
 import ScrollToTop from '@/components/scrollToTop';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { checkBrowser } from './utils';
 import { Loading } from './components';
+import themeObj from '@/utils/theme';
 
 const Home = lazy(() => import(/* webpackChunkName: "home" */ '@/page/home'));
 const PlayMovie = lazy(() => import(/* webpackChunkName: "playmovie" */ '@/page/play'));
 const MovieDetail = lazy(() => import(/* webpackChunkName: "moviedetail" */ '@/page/detail'));
 const MovieSearch = lazy(() => import(/* webpackChunkName: "moviesearch" */ '@/page/search'));
-const WatchHistory = lazy(() => import(/* webpackChunkName: "watchhistory" */ '@/page/watchHistory'));
+const WatchHistory = lazy(() =>
+  import(/* webpackChunkName: "watchhistory" */ '@/page/watchHistory')
+);
 
 const routes = [
   { path: '/play', Component: PlayMovie },
@@ -63,22 +62,37 @@ const renderWithTransition = (path, Component) => {
   );
 };
 
+
 const App = () => {
+  const [theme,setTheme] = useState(themeObj.defaultTheme);
+  const toggoleTheme = (type)=>{
+    if(type === "dark"){
+      setTheme(themeObj.ThemeArr.dark);
+      themeObj.setThemeLocal("dark");
+    }else{
+      themeObj.setThemeLocal("light");
+      setTheme(themeObj.ThemeArr.light);
+    }
+  };
   return (
     <div className="App">
       <BrowserRouter>
+        <Store.Provider initialState={{toggoleTheme,theme}}>
         <Suspense fallback={<Loading fullpage />}>
-          <Store.Provider>
-            <ScrollToTop>
+          <ScrollToTop>
+            <ThemeProvider theme={theme}>
               <Switch>
                 {routes.map(({ path, Component }) => renderWithTransition(path, Component))}
               </Switch>
-            </ScrollToTop>
-          </Store.Provider>
+            </ThemeProvider>
+          </ScrollToTop>
         </Suspense>
+        </Store.Provider>
       </BrowserRouter>
     </div>
   );
 };
+
+
 
 export default App;

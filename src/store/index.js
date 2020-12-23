@@ -4,8 +4,9 @@ import { getCategory, getIndex, searchMovie } from '@/http';
 import { Toast } from '@/components';
 import { useHistory, useLocation } from 'react-router-dom';
 import storeUtils from '@/utils/storeUtils';
+import React from 'react';
 
-const useStore = () => {
+const useStore = (themeHelper) => {
   const home = useHome();
   const dy = useCategory('dy');
   const dsj = useCategory('dsj');
@@ -14,6 +15,7 @@ const useStore = () => {
   const detail = useDetail();
   const searchState = useSearch();
   const jumpUtil = useJumpUtil();
+
   return {
     home,
     dy,
@@ -23,6 +25,7 @@ const useStore = () => {
     detail,
     searchState,
     jumpUtil,
+    themeHelper
   };
 };
 
@@ -54,7 +57,7 @@ const useJumpUtil = () => {
 
   const jumpBack = () => history.goBack();
 
-  return { jumpToDetail,jumpToWatchHistory, jumpToSearch, jumpToPlay, jumpBack, jumpToHome };
+  return { jumpToDetail, jumpToWatchHistory, jumpToSearch, jumpToPlay, jumpBack, jumpToHome };
 };
 
 const useHome = () => {
@@ -134,7 +137,7 @@ const useDetail = () => {
 const useSearch = () => {
   const [searchRes, setSearchRes] = useState([]);
 
-  const search = async (text) => {
+  const search = async text => {
     Toast.loading('正在加载数据', 0);
     // setSearchText(searchText);
     storeUtils.addSearchHistory(text);
@@ -154,5 +157,11 @@ const useSearch = () => {
 };
 
 const store = createContainer(useStore);
+
+export const injectStore = Com => props => (
+  <store.Provider>
+    <Com {...props} />
+  </store.Provider>
+);
 
 export default store;

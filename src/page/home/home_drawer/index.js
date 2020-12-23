@@ -15,6 +15,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import HistoryIcon from '@material-ui/icons/History';
 import InfoIcon from '@material-ui/icons/Info';
+import DarkIcon from '@material-ui/icons/Brightness4';
+import LightIcon from '@material-ui/icons/Brightness7';
+import themeObj from '@/utils/theme';
+
 
 const useStyles = makeStyles(theme => ({
   drawerTop: {
@@ -41,19 +45,25 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MyDrawer = props => {
-  const { home,jumpUtil } = Store.useContainer();
+  const { home,jumpUtil,themeHelper } = Store.useContainer();
   const { setDrawerStatus, drawerStatus } = home;
-
   const styles = useStyles();
 
   const handleClick = (type)=>()=>{
-
     if(type === "watchhistory"){
       jumpUtil.jumpToWatchHistory();
       setDrawerStatus(false);
     }
-
   };
+
+  const toggoleTheme = ()=>{
+    if(themeHelper.theme === themeObj.ThemeArr.dark){
+      themeHelper.toggoleTheme("light");
+    }else{
+      themeHelper.toggoleTheme("dark");
+    }
+  };
+
 
   return (
     <Drawer open={drawerStatus} anchor={'left'} onClose={() => setDrawerStatus(false)}>
@@ -69,6 +79,12 @@ const MyDrawer = props => {
             <HistoryIcon />
           </ListItemIcon>
           <ListItemText secondary="观看记录" />
+        </ListItem>
+        <ListItem button onClick={toggoleTheme}>
+          <ListItemIcon>
+            {themeHelper.theme ===  themeObj.ThemeArr.dark ? <DarkIcon/> : <LightIcon />}
+          </ListItemIcon>
+          <ListItemText secondary={themeHelper.theme ===  themeObj.ThemeArr.dark ?"夜间模式":"日间模式"} />
         </ListItem>
         <ListItem button>
           <ListItemIcon>

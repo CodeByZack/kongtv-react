@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   chipListTitle: {
     flexShrink: 0,
     fontWeight: 'bold',
-    color: theme.palette.primary.main,
+    color: theme.palette.text.primary,
   },
   chipItem: {
     marginRight: theme.spacing(),
