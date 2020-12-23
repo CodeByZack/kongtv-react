@@ -49,6 +49,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     display: '-webkit-box',
+    wordBreak: 'break-all'
   },
   infoText1: {
     lineClamp: 1,
@@ -56,6 +57,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     display: '-webkit-box',
+    wordBreak: 'break-all'
   },
   movieDesc: {
     margin: theme.spacing(0, 2),
@@ -128,20 +130,20 @@ const MovieDetail = () => {
           />
         </Card>
         <div className={styles.movieInfo}>
-          <Typography component="p" gutterBottom className={styles.infoText1}>
+          <Typography color="textPrimary" component="p" gutterBottom className={styles.infoText1}>
             导演:
             <span className={styles.greyText}>{nowMovie.vod_director}</span>
           </Typography>
-          <Typography component="p" gutterBottom className={styles.infoText3}>
+          <Typography color="textPrimary" component="p" gutterBottom className={styles.infoText3}>
             主演:<span className={styles.greyText}>{nowMovie.vod_actor}</span>
           </Typography>
-          <Typography component="p" gutterBottom>
+          <Typography color="textPrimary" component="p" gutterBottom>
             类型:<span className={styles.greyText}>{nowMovie.vod_class}</span>
           </Typography>
-          <Typography component="p" gutterBottom>
+          <Typography color="textPrimary" component="p" gutterBottom>
             地区:<span className={styles.greyText}>{nowMovie.vod_area}</span>
           </Typography>
-          <Typography component="p" gutterBottom>
+          <Typography color="textPrimary" component="p" gutterBottom>
             语言:<span className={styles.greyText}>{nowMovie.vod_remarks}</span>
           </Typography>
         </div>
@@ -173,6 +175,7 @@ const MovieDetail = () => {
                   return (
                     <Grid item xs={3}>
                       <Button
+                        className={styles.greyText}
                         size="small"
                         variant="outlined"
                         color="secondary"
