@@ -8,7 +8,10 @@ import store from '@/store';
 import React from 'react';
 
 const useStyle = makeStyles(theme => ({
-  root: {},
+  root: {
+    backgroundColor: theme.palette.background.default,
+    minHeight: 'calc(100vh - 56px)'
+  },
   listAvatar: {
     marginTop: 0,
   },
@@ -20,6 +23,7 @@ const useStyle = makeStyles(theme => ({
     marginTop: theme.spacing(0.5),
   },
   text: {
+    color: theme.palette.text.primary,
     margin: 0,
     paddingLeft: theme.spacing(2),
   },

@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   homeCategoryRoot: {
     height: 'calc(100vh - 80px)',
     boxSizing: 'border-box',
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.background.default,
     padding: theme.spacing(1),
   },
 }));
