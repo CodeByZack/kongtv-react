@@ -7,13 +7,29 @@
 
 如果喜欢APP，可以试试[安卓版本](https://github.com/CodeByZack/kongtv-android)，暂时没有IOS。
 
-## 开发中
+## 使用
 
-[线上地址](http://movie.zackdk.top/)勉强观看，存在很多细节问题。
+[线上地址](https://movie.zackdk.top/)
 
-还在开发中....
+IOS手机，请添加到主屏幕使用，体验更好！！！
 
-技术栈: react react-hook unstate-next react-router
+基本功能已开发完。
+
+支持电视剧、电影、动漫、综艺四个大类节目。
+
+可根据年份、地区进行详细筛选。
+
+支持关键字模糊搜索，以及搜索历史。
+
+首页推荐每天自动爬取爱奇艺电视剧、电影、动漫、综艺排行前六。
+
+支持日间/夜间模式切换。
+
+支持观看历史记录。
+
+支持PWA，可添加到桌面使用。
+
+技术栈: react、react-hook、 unstate-next、 react-router、 material-ui 
 
 
 ## 运行项目
@@ -35,11 +51,10 @@ npm run start
 请使用`npm run build-dev`。
 
 
-
 ## 问题记录
 开发过程中，一些配置问题的[记录（待整理）](https://www.yuque.com/zackdk/web/an8i5p)。
 
-## todo
+## ~~todo~~
 
 ~~删除redux相关，使用unstated-next~~
 
@@ -49,18 +64,18 @@ npm run start
 
 ~~添加PWA支持（IOS需要手动添加到主屏幕）~~
 
-增加本地观看记录
+~~增加本地观看记录~~
 
-增加分类
+~~增加分类~~
 
-优化体验
+~~优化体验,增加夜间模式~~
 
 ## gif预览
 
 ![gif预览](https://apks-1252514056.cos.ap-chengdu.myqcloud.com/demo.gif)
 
 
-## 截图预览
+## 截图预览（old）
 
 ![首页](https://apks-1252514056.cos.ap-chengdu.myqcloud.com/%E9%A6%96%E9%A1%B5web.png)
 
