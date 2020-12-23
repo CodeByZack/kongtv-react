@@ -17,7 +17,7 @@ import HistoryIcon from '@material-ui/icons/History';
 import InfoIcon from '@material-ui/icons/Info';
 import DarkIcon from '@material-ui/icons/Brightness4';
 import LightIcon from '@material-ui/icons/Brightness7';
-import themeArr from '@/utils/theme';
+import themeObj from '@/utils/theme';
 
 
 const useStyles = makeStyles(theme => ({
@@ -57,7 +57,7 @@ const MyDrawer = props => {
   };
 
   const toggoleTheme = ()=>{
-    if(themeHelper.theme === themeArr.themeDark){
+    if(themeHelper.theme === themeObj.ThemeArr.dark){
       themeHelper.toggoleTheme("light");
     }else{
       themeHelper.toggoleTheme("dark");
@@ -82,9 +82,9 @@ const MyDrawer = props => {
         </ListItem>
         <ListItem button onClick={toggoleTheme}>
           <ListItemIcon>
-            {themeHelper.theme === themeArr.themeDark ? <DarkIcon/> : <LightIcon />}
+            {themeHelper.theme ===  themeObj.ThemeArr.dark ? <DarkIcon/> : <LightIcon />}
           </ListItemIcon>
-          <ListItemText secondary={themeHelper.theme === themeArr.themeDark ?"夜间模式":"日间模式"} />
+          <ListItemText secondary={themeHelper.theme ===  themeObj.ThemeArr.dark ?"夜间模式":"日间模式"} />
         </ListItem>
         <ListItem button>
           <ListItemIcon>

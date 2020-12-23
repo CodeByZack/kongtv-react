@@ -6,7 +6,7 @@ import ScrollToTop from '@/components/scrollToTop';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { checkBrowser } from './utils';
 import { Loading } from './components';
-import themeArr from '@/utils/theme';
+import themeObj from '@/utils/theme';
 
 const Home = lazy(() => import(/* webpackChunkName: "home" */ '@/page/home'));
 const PlayMovie = lazy(() => import(/* webpackChunkName: "playmovie" */ '@/page/play'));
@@ -64,12 +64,14 @@ const renderWithTransition = (path, Component) => {
 
 
 const App = () => {
-  const [theme,setTheme] = useState(themeArr.themeNormal);
+  const [theme,setTheme] = useState(themeObj.defaultTheme);
   const toggoleTheme = (type)=>{
     if(type === "dark"){
-      setTheme(themeArr.themeDark);
+      setTheme(themeObj.ThemeArr.dark);
+      themeObj.setThemeLocal("dark");
     }else{
-      setTheme(themeArr.themeNormal);
+      themeObj.setThemeLocal("light");
+      setTheme(themeObj.ThemeArr.light);
     }
   };
   return (
