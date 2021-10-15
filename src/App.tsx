@@ -1,16 +1,8 @@
-import { useState } from 'react'
-import './index.less';
 
-function App() {
-  const [count, setCount] = useState(0)
+import Button from '@material-ui/core/Button';
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hello Vite + React!</p>
-      </header>
-    </div>
-  )
+const  App = () => {
+  return <Button variant="contained">你好，世界</Button>;
 }
 
-export default App
+export default App;
