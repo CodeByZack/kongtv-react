@@ -1,8 +1,25 @@
+import { Router } from '@reach/router';
+import Home from './pages/Home';
+import Play from './pages/Play';
 
-import Button from '@material-ui/core/Button';
+// const routes = [
+//   { path: '/play', Component: PlayMovie },
+//   { path: '/detail', Component: MovieDetail },
+//   { path: '/search/:query', Component: MovieSearch },
+//   { path: '/search', Component: MovieSearch },
+//   { path: '/watchhistory', Component: WatchHistory },
+//   { path: '/', Component: Home },
+// ];
 
-const  App = () => {
-  return <Button variant="contained">你好，世界</Button>;
-}
+const App = () => {
+  return (
+    <div>
+      <Router>
+        <Home path="/" />
+        <Play path="/play" />
+      </Router>
+    </div>
+  );
+};
 
 export default App;
