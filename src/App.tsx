@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './index.less';
 
 function App() {
   const [count, setCount] = useState(0)
