@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RatioImage from '../ratioImage';
 import './style.css';
-
+import { swiperStyle,setSwipeType } from '../../types/swiper'
 const defaultStyle = { visibility: 'hidden', width: 0, height: 0 };
 const styles = [
   {
@@ -26,89 +26,55 @@ const styles = [
   },
 ];
 
-const calculatingStyle = (index:number, length:number):any[] => {
-  let resStyle = [];
-  if (index === 0) {
-    for (let i = 0; i < length; i++) {
-      let _index = i - index;
-      const style = styles[_index] ? styles[_index] : defaultStyle;
-      resStyle.push(style);
-    }
-  } else if (index > 0) {
-    for (let i = 0; i < length; i++) {
-      let _index = i - index >= 0 ? i - index : i - index + length;
-      const style = styles[_index] ? styles[_index] : defaultStyle;
-      resStyle.push(style);
-    }
-  } else if (index < 0) {
-    for (let i = 0; i < length; i++) {
-      let _index = i - index > 4 ? i - index - length : i - index;
-      const style = styles[_index] ? styles[_index] : defaultStyle;
-      resStyle.push(style);
-    }
+const calculatingStyle = (index:number, length:number):swiperStyle[] => {
+  let resStyle:swiperStyle[] = [];
+  for (let i = 0; i < length; i++) {
+    let _index = !index ? i - index : index > 0 ? 
+    ( i - index >= 0 ? i - index : i - index + length ) :
+    ( i - index > 4 ? i - index - length : i - index );
+    const style = styles[_index] ?? defaultStyle;
+    resStyle.push(style);
   }
-  // console.log( index );
-  // console.log( resStyle );
+  // console.log( index,'index' );
+  // console.log( resStyle,'resStyle' );
   return resStyle;
 };
 
-const Swiper = (props:any) => {
-  const { imgArr = [], autoPlay = true } = props;
-  const { onSwiperItemClick = () => {} } = props;
-
+const Swiper = (props:any):any => {
+  const { imgArr = [], autoPlay = true, onSwiperItemClick = () => {} } = props;
   const [index, setIndex] = useState(0);
   const [_styles, setStyle]:[any,any] = useState([]);
   let xStart:number;
-  const startHandle = (e:any) => {
+  const startHandle = (e:any):void => {
     e.stopPropagation();
     xStart = e.touches[0].pageX;
   };
-  const moveHandle = (e:any) => {
+  const moveHandle = (e:any):void => {
     e.stopPropagation();
     let touch = e.touches[0];
-    let x = touch.pageX,
-      offsetX = xStart - x;
-    if (offsetX <= -50) {
-      // 向右
-      // console.log('->');
-      swipeRight();
-    } else if (offsetX >= 50) {
-      // 向左
-      // console.log('<-');
-      swipeLeft();
-    }
+    ( xStart - touch.pageX ) <= -50 && swiperFn(index,'right');
+    ( xStart - touch.pageX ) >= 50 && swiperFn(index,'left');
   };
-  const swipeRight = () => {
-    if (index - 1 === -imgArr.length) {
-      setIndex(0);
-      setStyle(calculatingStyle(0, imgArr.length));
-    } else {
-      setIndex(index - 1);
-      setStyle(calculatingStyle(index - 1, imgArr.length));
-    }
-  };
-  const swipeLeft = () => {
-    if (index + 1 === imgArr.length) {
-      setIndex(0);
-      setStyle(calculatingStyle(0, imgArr.length));
-    } else {
-      setIndex(index + 1);
-      setStyle(calculatingStyle(index + 1, imgArr.length));
-    }
-  };
-
+  
+  const setIndexFn:setSwipeType = (index:number,direction:string):number => {
+    let _index = direction === 'left' ? 
+    (index - 1 === -imgArr.length  ? 0 : index - 1) : 
+    (index + 1 === imgArr.length ? 0 : index + 1);
+    return _index
+  }
+  const swiperFn:setSwipeType = (index:number,direction:string):void => {
+    let _index = setIndexFn(index,direction)
+    setIndex(_index);
+    setStyle(calculatingStyle(_index, imgArr.length));
+  }
   useEffect(() => {
     if (!imgArr.length) return;
-    const timer = setTimeout(() => {
-      swipeRight();
-    }, 2000);
+    const timer = setTimeout(() => swiperFn(index,'right') , 2000);
     return () => clearTimeout(timer);
     //eslint-disable-next-line
   }, [imgArr, autoPlay, index]);
   useEffect(() => {
-    if (imgArr.length !== 0) {
-      setStyle(calculatingStyle(0, imgArr.length));
-    }
+    imgArr.length && setStyle(calculatingStyle(0, imgArr.length));
   }, [imgArr]);
 
   return (
