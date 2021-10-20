@@ -7,7 +7,7 @@ import store from '../../store';
 import { Box } from '@material-ui/system';
 import HomeCategory from './homeCategory';
 import { MovieType } from '../../types';
-import HomeMain from './HomeMain'
+import HomeMain from './HomeMain';
 
 interface IProps extends RouteComponentProps {}
 
@@ -15,7 +15,7 @@ const swStyle = { height: '100%' };
 
 const Home = (props: IProps) => {
   const { home } = store.useContainer();
-  const { drawerStatus, setDrawerStatus, tabIndex, setTabIndex,adviceMovieList } = home;
+  const { drawerStatus, setDrawerStatus, tabIndex, setTabIndex, adviceMovieList } = home;
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue);
@@ -54,7 +54,6 @@ const Home = (props: IProps) => {
       <MyDrawer open={drawerStatus} onClose={() => setDrawerStatus(false)} />
       <Toolbar />
       <Toolbar />
-      <HomeMain data={adviceMovieList}/>
       <Box
         sx={{
           flex: 1,
@@ -68,6 +67,7 @@ const Home = (props: IProps) => {
           index={tabIndex}
           onChangeIndex={handleChangeIndex}
         >
+          <HomeMain data={adviceMovieList} />
           <HomeCategory type={MovieType.dy} />
           <HomeCategory type={MovieType.dsj} />
           <HomeCategory type={MovieType.dm} />
