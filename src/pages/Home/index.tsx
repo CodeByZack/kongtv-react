@@ -7,7 +7,7 @@ import store from '../../store';
 import { Box } from '@material-ui/system';
 import HomeCategory from './homeCategory';
 import { MovieType } from '../../types';
-import HomeMain from './HomeMain';
+import HomeMain from './homeMain';
 
 interface IProps extends RouteComponentProps {}
 

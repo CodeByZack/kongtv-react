@@ -4,7 +4,7 @@ interface IProps extends RouteComponentProps {};
 
 const Play = (props : IProps)=>{
     return (
-        <div>Play</div>
+        <div>Play </div>
     );
 }
 export default Play;

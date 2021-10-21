@@ -68,9 +68,9 @@ const useCategory = (type: MovieType) => {
   const [page, setPage] = useState(0);
   const [list, setList] = useState<IMovieItem[]>([]);
   const [isFetching, setIsFetching] = useState(false);
-  const [filterOption, setFilterOption] = useState({});
+  const [filterOption, setFilterOption] = useState<{ [x: string]: any }>({});
 
-  const getData = async (resetPage: boolean) => {
+  const getData = async (resetPage?: boolean) => {
     if (resetPage) {
       setIsFetching(true);
       const data = await getCategory(type, { page: 1, pagesize: 9, ...filterOption });

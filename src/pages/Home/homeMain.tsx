@@ -10,18 +10,27 @@ interface IProps {
   data: IMovieItem[];
 }
 
-interface IHomeItemProps{
-    title : string;
-    movies : IMovieItem[];
+interface IHomeItemProps {
+  title: string;
+  movies: IMovieItem[];
 }
 
-const HomeItem = (props : IHomeItemProps) => {
+const HomeItem = (props: IHomeItemProps) => {
   const { title, movies } = props;
   return (
-    <Box>
-      <Box>
+    <Box sx={{
+      padding : 2
+    }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems : 'center',
+          mb : 1,
+        }}
+      >
         <LocalMoviesIcon />
-        <Typography>{title}</Typography>
+        <Typography component="span">{title}</Typography>
+        <Box sx={{ flex: 1 }} />
         <KeyboardArrowRightIcon />
       </Box>
       <MovieList movies={movies} />
@@ -53,7 +62,7 @@ const HomeMain = (props: IProps) => {
       <HomeItem title={'热播影视'} movies={dsj} />
       <HomeItem title={'热播电影'} movies={dy} />
       <HomeItem title={'热播综艺'} movies={zy} />
-      <HomeItem title={'热播动漫'} movies={dm} /> 
+      <HomeItem title={'热播动漫'} movies={dm} />
     </div>
   );
 };
