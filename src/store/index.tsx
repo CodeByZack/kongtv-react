@@ -44,12 +44,15 @@ const useJumpUtil = () => {
 
 const useHome = () => {
   const [tabIndex, setTabIndex] = useState(0);
+  const [isFetching, setIsFetching] = useState(false);
   const [drawerStatus, setDrawerStatus] = useState(false);
   const [adviceMovieList, setAdviceMovieList] = useState<IMovieItem[]>([]);
 
   const getAdviceData = async () => {
+    setIsFetching(true);
     const data = await getIndex();
     setAdviceMovieList(data);
+    setIsFetching(false);
   };
 
   useEffect(() => {
@@ -57,6 +60,7 @@ const useHome = () => {
   }, []);
 
   return {
+    isFetching,
     tabIndex,
     setTabIndex,
     adviceMovieList,

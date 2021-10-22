@@ -1,6 +1,6 @@
 import { Grid } from '@material-ui/core';
 import { IMovieItem } from '../../types';
-import MovieItem from '../MovieItem';
+import MovieItem, { MovieItemSkeleton } from '../MovieItem';
 
 interface IProps {
   movies: IMovieItem[];
@@ -21,6 +21,18 @@ const MovieList = (props: IProps) => {
         ))}
       </Grid>
     </div>
+  );
+};
+
+export const MovieListSkeleton = () => {
+  return (
+    <Grid container spacing={1}>
+      {[1, 2, 3, 4, 5, 6].map((tile) => (
+        <Grid item xs={4}>
+          <MovieItemSkeleton />
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
+import { Card, CardMedia, CardContent, Typography, Skeleton } from '@material-ui/core';
 import defaultImg from '../../assets/placeholder.png';
 import store from '../../store';
 import { IMovieItem } from '../../types';
@@ -36,15 +36,17 @@ const MovieItem = (props: IProps) => {
     <Card onClick={onMovieClick}>
       <CardMedia
         sx={{
-            paddingTop: '133.33%'
+          paddingTop: '133.33%',
         }}
         style={{ backgroundImage: bkUrl }}
         // image={tile.vod_pic}
         title={data.vod_name}
       />
-      <CardContent sx={{
+      <CardContent
+        sx={{
           padding: '5px 10px!important',
-      }}>
+        }}
+      >
         <Typography align="center" noWrap variant="body2" color="textSecondary" component="p">
           {data.vod_name}
         </Typography>
@@ -52,4 +54,30 @@ const MovieItem = (props: IProps) => {
     </Card>
   );
 };
+
+export const MovieItemSkeleton = () => {
+  return (
+    <Card>
+      <Skeleton>
+        <CardMedia
+          sx={{
+            paddingTop: '133.33%',
+          }}
+        />
+      </Skeleton>
+      <Skeleton>
+        <CardContent
+          sx={{
+            padding: '5px 10px!important',
+          }}
+        >
+          <Typography align="center" noWrap variant="body2" color="textSecondary" component="p">
+            .
+          </Typography>
+        </CardContent>
+      </Skeleton>
+    </Card>
+  );
+};
+
 export default MovieItem;

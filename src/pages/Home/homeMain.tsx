@@ -3,8 +3,8 @@ import store from '../../store';
 import { IMovieItem } from '../../types';
 import LocalMoviesIcon from '@material-ui/icons/LocalMovies';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import { Box, Typography } from '@material-ui/core';
-import MovieList from '../../components/MovieList';
+import { Box, Skeleton, Typography } from '@material-ui/core';
+import MovieList, { MovieListSkeleton } from '../../components/MovieList';
 
 interface IProps {
   data: IMovieItem[];
@@ -38,6 +38,28 @@ const HomeItem = (props: IHomeItemProps) => {
   );
 };
 
+const HomeItemSkeleton = (props : Pick<IHomeItemProps,'title'>)=>{
+  return (
+    <Box sx={{
+      padding : 2
+    }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems : 'center',
+          mb : 1,
+        }}
+      >
+        <LocalMoviesIcon />
+        <Typography component="span">{props.title}</Typography>
+        <Box sx={{ flex: 1 }} />
+        <KeyboardArrowRightIcon />
+      </Box>
+      <MovieListSkeleton />
+    </Box>
+  );
+};
+
 const HomeMain = (props: IProps) => {
   const { data } = props;
 
@@ -66,4 +88,17 @@ const HomeMain = (props: IProps) => {
     </div>
   );
 };
+
+export const HomeMainSkeleton = ()=>{
+  return (
+    <div className="home_main_page">
+      <Skeleton height={198}/>
+      <HomeItemSkeleton title={'热播影视'} />
+      <HomeItemSkeleton title={'热播电影'} />
+      <HomeItemSkeleton title={'热播综艺'} />
+      <HomeItemSkeleton title={'热播动漫'} />
+    </div>
+  );
+};
+
 export default HomeMain;
