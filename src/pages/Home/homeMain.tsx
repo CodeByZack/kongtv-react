@@ -9,7 +9,6 @@ import MovieList, { MovieListSkeleton } from '../../components/MovieList';
 interface IProps {
   data: IMovieItem[];
 }
-
 interface IHomeItemProps {
   title: string;
   movies: IMovieItem[];
@@ -18,14 +17,16 @@ interface IHomeItemProps {
 const HomeItem = (props: IHomeItemProps) => {
   const { title, movies } = props;
   return (
-    <Box sx={{
-      padding : 2
-    }}>
+    <Box
+      sx={{
+        padding: 2,
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
-          alignItems : 'center',
-          mb : 1,
+          alignItems: 'center',
+          mb: 1,
         }}
       >
         <LocalMoviesIcon />
@@ -38,16 +39,18 @@ const HomeItem = (props: IHomeItemProps) => {
   );
 };
 
-const HomeItemSkeleton = (props : Pick<IHomeItemProps,'title'>)=>{
+const HomeItemSkeleton = (props: Pick<IHomeItemProps, 'title'>) => {
   return (
-    <Box sx={{
-      padding : 2
-    }}>
+    <Box
+      sx={{
+        padding: 2,
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
-          alignItems : 'center',
-          mb : 1,
+          alignItems: 'center',
+          mb: 1,
         }}
       >
         <LocalMoviesIcon />
@@ -59,9 +62,21 @@ const HomeItemSkeleton = (props : Pick<IHomeItemProps,'title'>)=>{
     </Box>
   );
 };
+const HomeMainSkeleton = () => {
+  return (
+    <div className="home_main_page" style={{ height: '100%', overflow: 'auto' }}>
+      <Skeleton animation="wave" sx={{ m: 2 }} variant="rectangular" height={198} />
+      <HomeItemSkeleton title={'热播影视'} />
+      <HomeItemSkeleton title={'热播电影'} />
+      <HomeItemSkeleton title={'热播综艺'} />
+      <HomeItemSkeleton title={'热播动漫'} />
+    </div>
+  );
+};
 
-const HomeMain = (props: IProps) => {
-  const { data } = props;
+const HomeMain = () => {
+  const { home } = store.useContainer();
+  const { adviceMovieList: data, isFetching } = home;
 
   const dy = data.filter((movie) => movie.type_id_1 === 1);
   const dsj = data.filter((movie) => movie.type_id_1 === 2);
@@ -78,6 +93,10 @@ const HomeMain = (props: IProps) => {
     jumpToDetail();
   };
 
+  if (isFetching) {
+    return <HomeMainSkeleton />;
+  }
+
   return (
     <div className="home_main_page">
       <Swiper imgArr={swipers} onSwiperItemClick={onSwiperItemClick}></Swiper>
@@ -85,18 +104,6 @@ const HomeMain = (props: IProps) => {
       <HomeItem title={'热播电影'} movies={dy} />
       <HomeItem title={'热播综艺'} movies={zy} />
       <HomeItem title={'热播动漫'} movies={dm} />
-    </div>
-  );
-};
-
-export const HomeMainSkeleton = ()=>{
-  return (
-    <div className="home_main_page">
-      <Skeleton height={198}/>
-      <HomeItemSkeleton title={'热播影视'} />
-      <HomeItemSkeleton title={'热播电影'} />
-      <HomeItemSkeleton title={'热播综艺'} />
-      <HomeItemSkeleton title={'热播动漫'} />
     </div>
   );
 };

@@ -7,7 +7,7 @@ import store from '../../store';
 import { Box } from '@material-ui/system';
 import HomeCategory from './homeCategory';
 import { MovieType } from '../../types';
-import HomeMain, { HomeMainSkeleton } from './homeMain';
+import HomeMain from './homeMain';
 
 interface IProps extends RouteComponentProps {}
 
@@ -15,8 +15,7 @@ const swStyle = { height: '100%' };
 
 const Home = (props: IProps) => {
   const { home } = store.useContainer();
-  const { drawerStatus, setDrawerStatus, tabIndex, setTabIndex, adviceMovieList, isFetching } =
-    home;
+  const { drawerStatus, setDrawerStatus, tabIndex, setTabIndex } = home;
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue);
@@ -62,23 +61,19 @@ const Home = (props: IProps) => {
           overflow: 'hidden',
         }}
       >
-        {isFetching ? (
-          <HomeMainSkeleton />
-        ) : (
-          <SwipeableViews
-            style={swStyle}
-            slideStyle={swStyle}
-            containerStyle={swStyle}
-            index={tabIndex}
-            onChangeIndex={handleChangeIndex}
-          >
-            <HomeMain data={adviceMovieList} />
-            <HomeCategory type={MovieType.dsj} />
-            <HomeCategory type={MovieType.dm} />
-            <HomeCategory type={MovieType.dy} />
-            <HomeCategory type={MovieType.zy} />
-          </SwipeableViews>
-        )}
+        <SwipeableViews
+          style={swStyle}
+          slideStyle={swStyle}
+          containerStyle={swStyle}
+          index={tabIndex}
+          onChangeIndex={handleChangeIndex}
+        >
+          <HomeMain />
+          <HomeCategory type={MovieType.dsj} />
+          <HomeCategory type={MovieType.dm} />
+          <HomeCategory type={MovieType.dy} />
+          <HomeCategory type={MovieType.zy} />
+        </SwipeableViews>
       </Box>
     </Box>
   );
