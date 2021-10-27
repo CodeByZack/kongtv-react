@@ -2,7 +2,8 @@ import { createContainer } from './unstate-next';
 import { useState, useEffect } from 'react';
 import { getCategory, getIndex, searchMovie } from '../http';
 import React from 'react';
-import { IMovieItem, MovieType } from '../types';
+import { useNavigate } from "@reach/router";
+import { IMovieItem, IPlayInfo, MovieType } from '../types';
 
 const useStore = () => {
   const home = useHome();
@@ -27,17 +28,26 @@ const useStore = () => {
 };
 
 const useJumpUtil = () => {
-  const jumpToDetail = () => {};
+  const navigate = useNavigate();
+
+  const jumpToDetail = (data : IMovieItem) => {
+    navigate('/detail', { replace: true });
+  };
 
   const jumpToSearch = () => {};
 
   const jumpToWatchHistory = () => {};
 
-  const jumpToPlay = () => {};
+  const jumpToPlay = (playInfo : IPlayInfo) => {
+    const url = `/play?name=${playInfo.title}-${playInfo.text}&url=${playInfo.link}`;
+    navigate(url, { replace: true });
+  };
 
   const jumpToHome = () => {};
 
-  const jumpBack = () => {};
+  const jumpBack = () => {
+    navigate('../');
+  };
 
   return { jumpToDetail, jumpToWatchHistory, jumpToSearch, jumpToPlay, jumpBack, jumpToHome };
 };

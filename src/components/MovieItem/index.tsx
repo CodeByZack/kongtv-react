@@ -2,19 +2,6 @@ import { Card, CardMedia, CardContent, Typography, Skeleton } from '@material-ui
 import defaultImg from '../../assets/placeholder.png';
 import store from '../../store';
 import { IMovieItem } from '../../types';
-
-// const useStyles = makeStyles((theme) => ({
-//   movieRoot: {
-//     width: '100%',
-//   },
-//   movieImage: {
-//     paddingTop: '133.33%',
-//   },
-//   movieTitle: {
-//     padding: '5px 10px!important',
-//   },
-// }));
-
 interface IProps {
   data: IMovieItem;
 }
@@ -27,7 +14,7 @@ const MovieItem = (props: IProps) => {
   const { jumpToDetail } = jumpUtil;
   const onMovieClick = () => {
     detail.setNowMovie(data);
-    jumpToDetail();
+    jumpToDetail(data);
   };
 
   const bkUrl = `url(${data.vod_pic}),url(${defaultImg})`;

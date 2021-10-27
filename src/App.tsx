@@ -1,7 +1,8 @@
 import { Router } from '@reach/router';
+import Detail from './pages/Detail';
 import Home from './pages/Home';
 import Play from './pages/Play';
-import { injectStore } from './store';
+import store, { injectStore } from './store';
 
 // const routes = [
 //   { path: '/play', Component: PlayMovie },
@@ -14,13 +15,14 @@ import { injectStore } from './store';
 
 const App = () => {
   return (
-    <div>
-      <Router>
+    <Router>
+      <store.Provider path="/">
         <Home path="/" />
+        <Detail path="/detail" />
         <Play path="/play" />
-      </Router>
-    </div>
+      </store.Provider>
+    </Router>
   );
 };
 
-export default injectStore(App);
+export default App;

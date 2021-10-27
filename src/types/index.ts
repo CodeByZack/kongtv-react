@@ -31,3 +31,11 @@ export enum MovieType {
   zy = 'zy',
   dm = 'dm',
 }
+
+export interface IJuJi {
+  text: string;
+  link: string;
+}
+export interface IPlayInfo extends IJuJi{
+  title: string;
+}
