@@ -16,6 +16,7 @@ import store from '../../store';
 import { NavBar } from '../../components/MyAppBar';
 import { IJuJi, IPlayInfo } from '../../types';
 import { RouteComponentProps } from '@reach/router';
+import storeUtils from '../../utils/storeUtils';
 
 interface IProps extends RouteComponentProps {}
 
@@ -41,7 +42,7 @@ const MovieDetail = (props: IProps) => {
   if (!nowMovie) return null;
 
   const onPlayClick = (item: IJuJi) => () => {
-    // storeUtils.addWatchHistory(nowMovie,item);
+    storeUtils.addWatchHistory(nowMovie,item);
     const palyObj: IPlayInfo = {
       title: nowMovie.vod_name,
       ...item,

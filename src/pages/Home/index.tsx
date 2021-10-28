@@ -1,4 +1,4 @@
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps, useNavigate } from '@reach/router';
 import { CssBaseline, Skeleton, Tab, Tabs, Toolbar } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
 import MyDrawer from '../../components/MyDrawer';
@@ -8,14 +8,30 @@ import { Box } from '@material-ui/system';
 import HomeCategory from './homeCategory';
 import { MovieType } from '../../types';
 import HomeMain from './homeMain';
+import HistoryIcon from '@material-ui/icons/History';
+import InfoIcon from '@material-ui/icons/Info';
+import DarkIcon from '@material-ui/icons/Brightness4';
+import LightIcon from '@material-ui/icons/Brightness7';
 
 interface IProps extends RouteComponentProps {}
 
 const swStyle = { height: '100%' };
 
+const useInitMenus = () => {
+  const navigate = useNavigate();
+  const menus = [
+    { txt: '观看记录', icon: <HistoryIcon />, onClick: () => navigate('/watchhistory') },
+    { txt: '夜间模式', icon: <LightIcon /> },
+    { txt: '关于', icon: <InfoIcon /> },
+  ];
+  return menus;
+};
+
 const Home = (props: IProps) => {
-  const { home } = store.useContainer();
+  const { home, jumpUtil } = store.useContainer();
   const { drawerStatus, setDrawerStatus, tabIndex, setTabIndex } = home;
+
+  const menus = useInitMenus();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue);
@@ -36,7 +52,7 @@ const Home = (props: IProps) => {
       }}
     >
       <CssBaseline />
-      <MyAppBar title="风影院" toggoleDrawer={() => setDrawerStatus(true)}>
+      <MyAppBar title="风影院" onSearch={()=>jumpUtil.jumpToSearch() } toggoleDrawer={() => setDrawerStatus(true)}>
         <Tabs
           variant="fullWidth"
           indicatorColor="secondary"
@@ -51,7 +67,7 @@ const Home = (props: IProps) => {
           <Tab label="综艺" />
         </Tabs>
       </MyAppBar>
-      <MyDrawer open={drawerStatus} onClose={() => setDrawerStatus(false)} />
+      <MyDrawer menus={menus} open={drawerStatus} onClose={() => setDrawerStatus(false)} />
       <Toolbar />
       <Toolbar />
 

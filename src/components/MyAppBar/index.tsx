@@ -9,6 +9,7 @@ import { noop } from '../../types/constant';
 interface IProps {
   title: string;
   toggoleDrawer?: () => void;
+  onSearch?: () => void;
 }
 
 interface INavBarProps {
@@ -17,19 +18,19 @@ interface INavBarProps {
 }
 
 const MyAppBar = (props: PropsWithChildren<IProps>) => {
-  const { title, toggoleDrawer, ...restProps } = props;
+  const { title, toggoleDrawer, onSearch = noop, ...restProps } = props;
 
   return (
     <HideOnScroll {...restProps}>
       <AppBar {...restProps}>
         <Toolbar>
-          <IconButton onClick={toggoleDrawer} edge="start" color="inherit" aria-label="open drawer">
+          <IconButton onClick={toggoleDrawer} edge="start" color="inherit" >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }} noWrap>
             {title}
           </Typography>
-          <IconButton edge="end" color="inherit" aria-label="enter search">
+          <IconButton edge="end" color="inherit" onClick={onSearch}>
             <SearchIcon />
           </IconButton>
         </Toolbar>

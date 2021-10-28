@@ -2,8 +2,9 @@ import { createContainer } from './unstate-next';
 import { useState, useEffect } from 'react';
 import { getCategory, getIndex, searchMovie } from '../http';
 import React from 'react';
-import { useNavigate } from "@reach/router";
+import { useNavigate } from '@reach/router';
 import { IMovieItem, IPlayInfo, MovieType } from '../types';
+import storeUtils from '../utils/storeUtils';
 
 const useStore = () => {
   const home = useHome();
@@ -30,15 +31,17 @@ const useStore = () => {
 const useJumpUtil = () => {
   const navigate = useNavigate();
 
-  const jumpToDetail = (data : IMovieItem) => {
+  const jumpToDetail = (data: IMovieItem) => {
     navigate('/detail', { replace: true });
   };
 
-  const jumpToSearch = () => {};
+  const jumpToSearch = () => {
+    navigate('/search');
+  };
 
   const jumpToWatchHistory = () => {};
 
-  const jumpToPlay = (playInfo : IPlayInfo) => {
+  const jumpToPlay = (playInfo: IPlayInfo) => {
     const url = `/play?name=${playInfo.title}-${playInfo.text}&url=${playInfo.link}`;
     navigate(url, { replace: true });
   };
@@ -133,7 +136,7 @@ const useSearch = () => {
   const search = async (text: string) => {
     // Toast.loading('正在加载数据', 0);
     // setSearchText(searchText);
-    // storeUtils.addSearchHistory(text);
+    storeUtils.addSearchHistory(text);
     const data = await searchMovie(text);
     if (data.length === 0) {
       //   Toast.hide();
