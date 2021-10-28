@@ -43,7 +43,7 @@ const useJumpUtil = () => {
 
   const jumpToPlay = (playInfo: IPlayInfo) => {
     const url = `/play?name=${playInfo.title}-${playInfo.text}&url=${playInfo.link}`;
-    navigate(url, { replace: true });
+    navigate(url);
   };
 
   const jumpToHome = () => {};

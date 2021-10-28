@@ -16,13 +16,13 @@ const HomeCategory = (props: IProps) => {
   const { filterOption, setFilterOption, getData, isFetching, list } = categoryObj;
   const boxRef = useRef<HTMLDivElement>();
 
-  const handleFilterChange = (key : string) => (item : string) => {
+  const handleFilterChange = (key: string) => (item: string) => {
     const option = { ...filterOption, [key]: item };
     setFilterOption(option);
   };
 
   useEffect(() => {
-    if(!boxRef.current)return;
+    if (!boxRef.current) return;
     let ticking = false;
     const doSomething = () => {
       if (isFetching) return;
@@ -33,7 +33,7 @@ const HomeCategory = (props: IProps) => {
     };
     const handleScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(function() {
+        window.requestAnimationFrame(function () {
           doSomething();
           ticking = false;
         });
@@ -45,7 +45,7 @@ const HomeCategory = (props: IProps) => {
     return () => {
       boxRef.current?.removeEventListener('scroll', handleScroll);
     };
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [isFetching]);
 
   return (
@@ -59,8 +59,12 @@ const HomeCategory = (props: IProps) => {
     >
       <YearChipList nowShow={filterOption.year} onChange={handleFilterChange('year')} />
       <AreaChipList nowShow={filterOption.area} onChange={handleFilterChange('area')} />
-      <MovieList movies={list} /> 
-      {isFetching && <CircularProgress />}
+      <MovieList movies={list} />
+      {isFetching && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', p: 1 }}>
+          <CircularProgress size={20} />
+        </Box>
+      )}
     </Box>
   );
 };

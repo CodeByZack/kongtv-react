@@ -20,6 +20,12 @@ import storeUtils from '../../utils/storeUtils';
 
 interface IProps extends RouteComponentProps {}
 
+interface IDescLine {
+  title: string;
+  desc: string;
+  lines?: number;
+}
+
 const decodeJuJi = (playUrls: string) => {
   return playUrls
     .split('$$$')
@@ -33,6 +39,31 @@ const decodeJuJi = (playUrls: string) => {
     .filter((arr) => arr[0].link.endsWith('.m3u8'));
 };
 
+const DescLine = (props: IDescLine) => {
+  const { title, desc, lines = 1 } = props;
+
+  return (
+    <Typography
+      sx={{
+        lineClamp: lines,
+        boxOrient: 'vertical',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        display: '-webkit-box',
+        wordBreak: 'break-all',
+      }}
+      color="textPrimary"
+      component="p"
+      gutterBottom
+    >
+      {title}
+      <Box component="span" sx={{ color: 'text.secondary' }}>
+        {desc}
+      </Box>
+    </Typography>
+  );
+};
+
 const MovieDetail = (props: IProps) => {
   const { detail, jumpUtil } = store.useContainer();
   const { jumpToPlay, jumpBack } = jumpUtil;
@@ -42,7 +73,7 @@ const MovieDetail = (props: IProps) => {
   if (!nowMovie) return null;
 
   const onPlayClick = (item: IJuJi) => () => {
-    storeUtils.addWatchHistory(nowMovie,item);
+    storeUtils.addWatchHistory(nowMovie, item);
     const palyObj: IPlayInfo = {
       title: nowMovie.vod_name,
       ...item,
@@ -63,63 +94,28 @@ const MovieDetail = (props: IProps) => {
       <NavBar title={nowMovie.vod_name} onBack={() => onBackClick()} />
       <Box sx={{ display: 'flex', m: 2 }}>
         <Card sx={{ width: '40%', flexShrink: 0 }}>
-          <CardMedia sx={{ pt: '133%' }} title={nowMovie.vod_name} image={nowMovie.vod_pic} />
+          <CardMedia sx={{ pt: '150%' }} title={nowMovie.vod_name} image={nowMovie.vod_pic} />
         </Card>
         <Box sx={{ flex: 1, pl: 1 }}>
-          <Typography
-            color="textPrimary"
-            component="p"
-            gutterBottom
-            sx={{ textOverflow: 'ellipsis' }}
-          >
-            导演:
-            <Box component="span" sx={{ color: 'text.secondry' }}>
-              {nowMovie.vod_director}
-            </Box>
-          </Typography>
-          <Typography
-            color="textPrimary"
-            component="p"
-            gutterBottom
-            sx={{ textOverflow: 'ellipsis' }}
-          >
-            主演:
-            <Box component="span" sx={{ color: 'text.secondry' }}>
-              {nowMovie.vod_actor}
-            </Box>
-          </Typography>
-          <Typography color="textPrimary" component="p" gutterBottom>
-            类型:
-            <Box component="span" sx={{ color: 'text.secondry' }}>
-              {nowMovie.vod_class}
-            </Box>
-          </Typography>
-          <Typography color="textPrimary" component="p" gutterBottom>
-            地区:
-            <Box component="span" sx={{ color: 'text.secondry' }}>
-              {nowMovie.vod_area}
-            </Box>
-          </Typography>
-          <Typography color="textPrimary" component="p" gutterBottom>
-            语言:
-            <Box component="span" sx={{ color: 'text.secondry' }}>
-              {nowMovie.vod_remarks}
-            </Box>
-          </Typography>
+          <DescLine title="导演:" desc={nowMovie.vod_director} />
+          <DescLine title="主演:" desc={nowMovie.vod_actor} lines={2} />
+          <DescLine title="类型:" desc={nowMovie.vod_class} lines={2} />
+          <DescLine title="地区:" desc={nowMovie.vod_area} />
+          <DescLine title="语言:" desc={nowMovie.vod_remarks} />
         </Box>
       </Box>
 
       <Paper sx={{ m: 2, p: 1 }}>
-        <Typography gutterBottom component="h3">
+        <Typography fontWeight="bold" gutterBottom component="h3">
           简介：
         </Typography>
         <Typography sx={{ color: 'text.secondry' }} component="p">
-          {nowMovie.vod_content}
+          {nowMovie.vod_blurb}
         </Typography>
       </Paper>
 
       <Paper sx={{ mx: 2, p: 1 }}>
-        <Typography gutterBottom component="h3">
+        <Typography fontWeight="bold" gutterBottom component="h3">
           剧集列表：
         </Typography>
         <Tabs value={tabValue} onChange={(_, v) => setTabValue(v)}>
@@ -130,7 +126,7 @@ const MovieDetail = (props: IProps) => {
         {playSources.map((playSource, index) => {
           return (
             <Fade unmountOnExit in={tabValue === index}>
-              <Grid container spacing={1} sx={{ textAlign: 'center' }}>
+              <Grid container spacing={1} sx={{ textAlign: 'center', py : 2 }}>
                 {playSource.map((juji) => {
                   return (
                     <Grid item xs={3}>
