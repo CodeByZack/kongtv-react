@@ -61,7 +61,7 @@ const DescLine = (props: IDescLine) => {
   );
 };
 
-const MovieDetail = ( ) => {
+const MovieDetail = () => {
   const { detail, jumpUtil } = store.useContainer();
   const { jumpToPlay, jumpBack } = jumpUtil;
   const { nowMovie, clear } = detail;

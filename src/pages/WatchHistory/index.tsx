@@ -13,7 +13,6 @@ import storeUtils from '../../utils/storeUtils';
 import { IMovieItem } from '../../types';
 import { NavBar } from '../../components/MyAppBar';
 
-
 const WatchHistory = () => {
   const [history, setHistory] = useState<
     (IMovieItem & {
