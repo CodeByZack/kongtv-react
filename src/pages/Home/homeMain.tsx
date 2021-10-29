@@ -87,7 +87,7 @@ const HomeMain = () => {
 
   const onSwiperItemClick = (movie: IMovieItem) => {
     detail.setNowMovie(movie);
-    jumpToDetail();
+    jumpToDetail(movie);
   };
 
   if (isFetching) {

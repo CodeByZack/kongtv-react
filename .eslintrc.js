@@ -16,6 +16,7 @@ module.exports = {
   rules: {
     'react/prop-types': 0,
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
   },
   settings: {
     react: {

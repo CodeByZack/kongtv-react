@@ -1,4 +1,5 @@
 import { Box, Chip, Typography } from '@mui/material';
+import { noop } from '../../types/constant';
 
 const year = ['全部', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013'];
 const area = [
@@ -19,10 +20,6 @@ const area = [
   '加拿大',
   '其他',
 ];
-const noop = () => {
-  // any clear comments.
-};
-
 interface IChipListProp {
   data: string[];
   title: string;
