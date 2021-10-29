@@ -6,9 +6,6 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Box, Skeleton, Typography } from '@mui/material';
 import MovieList, { MovieListSkeleton } from '../../components/MovieList';
 
-interface IProps {
-  data: IMovieItem[];
-}
 interface IHomeItemProps {
   title: string;
   movies: IMovieItem[];

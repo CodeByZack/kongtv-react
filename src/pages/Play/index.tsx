@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Box, CssBaseline } from '@mui/material';
-import { RouteComponentProps, useLocation } from '@reach/router';
 import { NavBar } from '../../components/MyAppBar';
 import store from '../../store';
 import { getQuery } from '../../utils';
-
-interface IProps extends RouteComponentProps {}
+import { useLocation } from 'react-router-dom';
 
 const VIDEO_ID = 'VIDEO_ID';
 
@@ -22,15 +20,15 @@ const PLAYER_CONFIG = (url: string) => ({
   fluid: true,
 });
 
-const PlayMovie = (props: IProps) => {
+const PlayMovie = () => {
   const { jumpUtil } = store.useContainer();
   const { jumpBack } = jumpUtil;
   const location = useLocation();
-  const nowPlay = getQuery(location.href);
+  const nowPlay = getQuery(location.search);
 
   useEffect(() => {
     if (!nowPlay.url) return;
-    let playerXG = new window.HlsJsPlayer(PLAYER_CONFIG(nowPlay.url));
+    const playerXG = new window.HlsJsPlayer(PLAYER_CONFIG(nowPlay.url));
     return () => playerXG.destroy();
   }, [nowPlay.url]);
 

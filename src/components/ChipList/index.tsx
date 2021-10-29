@@ -19,7 +19,9 @@ const area = [
   '加拿大',
   '其他',
 ];
-const noop = () => {};
+const noop = () => {
+  // any clear comments.
+};
 
 interface IChipListProp {
   data: string[];

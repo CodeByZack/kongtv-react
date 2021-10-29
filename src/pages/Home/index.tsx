@@ -1,5 +1,4 @@
-import { RouteComponentProps, useNavigate } from '@reach/router';
-import { CssBaseline, Skeleton, Tab, Tabs, Toolbar, Box } from '@mui/material';
+import { CssBaseline, Tab, Tabs, Toolbar, Box } from '@mui/material';
 import SwipeableViews from 'react-swipeable-views';
 import MyDrawer from '../../components/MyDrawer';
 import MyAppBar from '../../components/MyAppBar';
@@ -9,28 +8,25 @@ import { MovieType } from '../../types';
 import HomeMain from './homeMain';
 import HistoryIcon from '@mui/icons-material/History';
 import InfoIcon from '@mui/icons-material/Info';
-import DarkIcon from '@mui/icons-material/Brightness4';
+// import DarkIcon from '@mui/icons-material/Brightness4';
 import LightIcon from '@mui/icons-material/Brightness7';
-
-interface IProps extends RouteComponentProps {}
 
 const swStyle = { height: '100%' };
 
-const useInitMenus = () => {
-  const navigate = useNavigate();
+const useInitMenus = (jumpToWatchHistory: () => void) => {
   const menus = [
-    { txt: '观看记录', icon: <HistoryIcon />, onClick: () => navigate('/watchhistory') },
+    { txt: '观看记录', icon: <HistoryIcon />, onClick: jumpToWatchHistory },
     { txt: '夜间模式', icon: <LightIcon /> },
     { txt: '关于', icon: <InfoIcon /> },
   ];
   return menus;
 };
 
-const Home = (props: IProps) => {
+const Home = () => {
   const { home, jumpUtil } = store.useContainer();
   const { drawerStatus, setDrawerStatus, tabIndex, setTabIndex } = home;
 
-  const menus = useInitMenus();
+  const menus = useInitMenus(jumpUtil.jumpToWatchHistory);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue);

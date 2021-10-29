@@ -3,9 +3,9 @@ import { createContainer } from './unstate-next';
 import { useState, useEffect } from 'react';
 import { getCategory, getIndex, searchMovie } from '../http';
 import React from 'react';
-import { useNavigate } from '@reach/router';
 import { IMovieItem, IPlayInfo, MovieType } from '../types';
 import storeUtils from '../utils/storeUtils';
+import { useHistory } from 'react-router-dom';
 
 const useStore = () => {
   const home = useHome();
@@ -30,29 +30,32 @@ const useStore = () => {
 };
 
 const useJumpUtil = () => {
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const jumpToDetail = (data: IMovieItem) => {
-    console.log(data);
-    navigate('/detail', { replace: true });
+    history.push({ pathname: '/detail', state: data });
   };
 
   const jumpToSearch = () => {
-    navigate('/search');
+    history.push({ pathname: '/search' });
   };
 
-  const jumpToWatchHistory = () => {};
+  const jumpToWatchHistory = () => {
+    history.push({ pathname: '/watchhistory' });
+  };
 
   const jumpToPlay = (playInfo: IPlayInfo) => {
     const url = `/play?name=${playInfo.title}-${playInfo.text}&url=${playInfo.link}`;
-    navigate(url);
+    history.push(url);
   };
 
-  const jumpToHome = () => {};
-
-  const jumpBack = () => {
-    navigate('../');
+  const jumpToHome = (msg?: string) => {
+    // eslint-disable-next-line no-console
+    console.log(msg);
+    history.push({ pathname: '/' });
   };
+
+  const jumpBack = () => history.goBack();
 
   return { jumpToDetail, jumpToWatchHistory, jumpToSearch, jumpToPlay, jumpBack, jumpToHome };
 };

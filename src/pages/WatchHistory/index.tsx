@@ -12,11 +12,9 @@ import store from '../../store';
 import storeUtils from '../../utils/storeUtils';
 import { IMovieItem } from '../../types';
 import { NavBar } from '../../components/MyAppBar';
-import { RouteComponentProps } from '@reach/router';
 
-interface IProps extends RouteComponentProps {}
 
-const WatchHistory = (props: IProps) => {
+const WatchHistory = () => {
   const [history, setHistory] = useState<
     (IMovieItem & {
       watch_history?: string | undefined;

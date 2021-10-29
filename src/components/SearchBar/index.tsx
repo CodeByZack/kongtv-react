@@ -51,7 +51,8 @@ const SearchBar = (props: IProps) => {
           <IconButton
             sx={{ p: '10px', color: 'common.white' }}
             onClick={() => onSearch(searchText)}
-            size="large">
+            size="large"
+          >
             <SearchIcon />
           </IconButton>
         </Box>

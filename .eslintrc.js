@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'plugin:react/jsx-runtime'],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react/jsx-runtime', "plugin:@typescript-eslint/recommended" ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -15,6 +15,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   rules: {
     'react/prop-types': 0,
+    '@typescript-eslint/no-explicit-any': 'off',
   },
   settings: {
     react: {

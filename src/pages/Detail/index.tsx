@@ -15,10 +15,7 @@ import {
 import store from '../../store';
 import { NavBar } from '../../components/MyAppBar';
 import { IJuJi, IPlayInfo } from '../../types';
-import { RouteComponentProps } from '@reach/router';
 import storeUtils from '../../utils/storeUtils';
-
-interface IProps extends RouteComponentProps {}
 
 interface IDescLine {
   title: string;
@@ -45,8 +42,8 @@ const DescLine = (props: IDescLine) => {
   return (
     <Typography
       sx={{
-        lineClamp: lines,
-        boxOrient: 'vertical',
+        WebkitLineClamp: lines,
+        WebkitBoxOrient: 'vertical',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         display: '-webkit-box',
@@ -64,7 +61,7 @@ const DescLine = (props: IDescLine) => {
   );
 };
 
-const MovieDetail = (props: IProps) => {
+const MovieDetail = ( ) => {
   const { detail, jumpUtil } = store.useContainer();
   const { jumpToPlay, jumpBack } = jumpUtil;
   const { nowMovie, clear } = detail;
@@ -127,7 +124,7 @@ const MovieDetail = (props: IProps) => {
           return (
             <Fade key={index} unmountOnExit in={tabValue === index}>
               <Grid container spacing={1} sx={{ textAlign: 'center', py: 2 }}>
-                {playSource.map((juji,i) => {
+                {playSource.map((juji, i) => {
                   return (
                     <Grid key={i} item xs={3}>
                       <Button

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import RatioImage from '../ratioImage';
 import './style.css';
 import { swiperStyle, setSwipeType } from '../../types/swiper';
+import { noop } from '../../types/constant';
 const defaultStyle = { visibility: 'hidden', width: 0, height: 0 };
 const styles = [
   {
@@ -27,9 +28,9 @@ const styles = [
 ];
 
 const calculatingStyle = (index: number, length: number): swiperStyle[] => {
-  let resStyle: swiperStyle[] = [];
+  const resStyle: swiperStyle[] = [];
   for (let i = 0; i < length; i++) {
-    let _index = !index
+    const _index = !index
       ? i - index
       : index > 0
       ? i - index >= 0
@@ -47,7 +48,7 @@ const calculatingStyle = (index: number, length: number): swiperStyle[] => {
 };
 
 const Swiper = (props: any): any => {
-  const { imgArr = [], autoPlay = true, onSwiperItemClick = () => {} } = props;
+  const { imgArr = [], autoPlay = true, onSwiperItemClick = noop } = props;
   const [index, setIndex] = useState(0);
   const [_styles, setStyle]: [any, any] = useState([]);
   let xStart: number;
@@ -57,13 +58,13 @@ const Swiper = (props: any): any => {
   };
   const moveHandle = (e: any): void => {
     e.stopPropagation();
-    let touch = e.touches[0];
+    const touch = e.touches[0];
     xStart - touch.pageX <= -50 && swiperFn(index, 'right');
     xStart - touch.pageX >= 50 && swiperFn(index, 'left');
   };
 
   const setIndexFn: setSwipeType = (index: number, direction: string): number => {
-    let _index =
+    const _index =
       direction === 'left'
         ? index - 1 === -imgArr.length
           ? 0
@@ -74,7 +75,7 @@ const Swiper = (props: any): any => {
     return _index;
   };
   const swiperFn: setSwipeType = (index: number, direction: string): void => {
-    let _index = setIndexFn(index, direction);
+    const _index = setIndexFn(index, direction);
     setIndex(_index);
     setStyle(calculatingStyle(_index, imgArr.length));
   };

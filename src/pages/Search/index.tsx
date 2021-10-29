@@ -1,11 +1,9 @@
-import { Box, CssBaseline, Toolbar, Tooltip } from '@mui/material';
-import { RouteComponentProps } from '@reach/router';
+import { Box, CssBaseline, Toolbar } from '@mui/material';
 import MovieList from '../../components/MovieList';
 import SearchBar from '../../components/SearchBar';
 import store from '../../store';
 
-interface IProps extends RouteComponentProps {}
-const MovieSearch = (props: IProps) => {
+const MovieSearch = () => {
   const { searchState, jumpUtil } = store.useContainer();
   const { jumpBack } = jumpUtil;
   const { searchRes, search } = searchState;
