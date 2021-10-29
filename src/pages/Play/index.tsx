@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, CssBaseline } from '@material-ui/core';
+import { Box, CssBaseline } from '@mui/material';
 import { RouteComponentProps, useLocation } from '@reach/router';
 import { NavBar } from '../../components/MyAppBar';
 import store from '../../store';

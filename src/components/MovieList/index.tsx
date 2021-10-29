@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { IMovieItem } from '../../types';
 import MovieItem, { MovieItemSkeleton } from '../MovieItem';
 

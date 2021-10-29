@@ -1,4 +1,4 @@
-import { Box, CssBaseline, Toolbar, Tooltip } from '@material-ui/core';
+import { Box, CssBaseline, Toolbar, Tooltip } from '@mui/material';
 import { RouteComponentProps } from '@reach/router';
 import MovieList from '../../components/MovieList';
 import SearchBar from '../../components/SearchBar';

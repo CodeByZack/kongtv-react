@@ -1,4 +1,4 @@
-import { Fade, useScrollTrigger } from '@material-ui/core';
+import { Fade, useScrollTrigger } from '@mui/material';
 import { PropsWithChildren } from 'react';
 
 const HideOnScroll = (props: PropsWithChildren<any>) => {

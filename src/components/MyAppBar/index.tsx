@@ -1,8 +1,8 @@
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 import HideOnScroll from '../HideOnScroll';
-import MenuIcon from '@material-ui/icons/Menu';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import SearchIcon from '@material-ui/icons/Search';
+import MenuIcon from '@mui/icons-material/Menu';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SearchIcon from '@mui/icons-material/Search';
 import { PropsWithChildren } from 'react';
 import { noop } from '../../types/constant';
 
@@ -24,13 +24,13 @@ const MyAppBar = (props: PropsWithChildren<IProps>) => {
     <HideOnScroll {...restProps}>
       <AppBar {...restProps}>
         <Toolbar>
-          <IconButton onClick={toggoleDrawer} edge="start" color="inherit">
+          <IconButton onClick={toggoleDrawer} edge="start" color="inherit" size="large">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }} noWrap>
             {title}
           </Typography>
-          <IconButton edge="end" color="inherit" onClick={onSearch}>
+          <IconButton edge="end" color="inherit" onClick={onSearch} size="large">
             <SearchIcon />
           </IconButton>
         </Toolbar>
@@ -46,7 +46,7 @@ export const NavBar = (props: INavBarProps) => {
   return (
     <AppBar position="sticky">
       <Toolbar>
-        <IconButton onClick={onBack} edge="start" sx={{ mr: 2 }} color="inherit">
+        <IconButton onClick={onBack} edge="start" sx={{ mr: 2 }} color="inherit" size="large">
           <ArrowBackIcon />
         </IconButton>
         <Typography flexGrow={1} variant="h6" noWrap>

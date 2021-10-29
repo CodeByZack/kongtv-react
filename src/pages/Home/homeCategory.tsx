@@ -1,5 +1,4 @@
-import { CircularProgress } from '@material-ui/core';
-import { Box } from '@material-ui/system';
+import { CircularProgress, Box } from '@mui/material';
 import { useEffect, useRef } from 'react';
 import { YearChipList, AreaChipList } from '../../components/ChipList';
 import MovieList from '../../components/MovieList';

@@ -1,6 +1,6 @@
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import SearchIcon from '@material-ui/icons/Search';
-import { AppBar, Box, Chip, ClickAwayListener, IconButton, InputBase } from '@material-ui/core';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SearchIcon from '@mui/icons-material/Search';
+import { AppBar, Box, Chip, ClickAwayListener, IconButton, InputBase } from '@mui/material';
 import { useState } from 'react';
 import storeUtils from '../../utils/storeUtils';
 
@@ -37,7 +37,7 @@ const SearchBar = (props: IProps) => {
             p: '2px 4px',
           }}
         >
-          <IconButton onClick={onBack} sx={{ p: '10px', color: 'common.white' }}>
+          <IconButton onClick={onBack} sx={{ p: '10px', color: 'common.white' }} size="large">
             <ArrowBackIcon />
           </IconButton>
           <InputBase
@@ -51,7 +51,7 @@ const SearchBar = (props: IProps) => {
           <IconButton
             sx={{ p: '10px', color: 'common.white' }}
             onClick={() => onSearch(searchText)}
-          >
+            size="large">
             <SearchIcon />
           </IconButton>
         </Box>

@@ -7,7 +7,7 @@ import {
   Avatar,
   Box,
   CssBaseline,
-} from '@material-ui/core';
+} from '@mui/material';
 import store from '../../store';
 import storeUtils from '../../utils/storeUtils';
 import { IMovieItem } from '../../types';

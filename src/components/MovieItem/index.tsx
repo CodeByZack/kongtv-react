@@ -1,4 +1,4 @@
-import { Card, CardMedia, CardContent, Typography, Skeleton } from '@material-ui/core';
+import { Card, CardMedia, CardContent, Typography, Skeleton } from '@mui/material';
 import defaultImg from '../../assets/placeholder.png';
 import store from '../../store';
 import { IMovieItem } from '../../types';

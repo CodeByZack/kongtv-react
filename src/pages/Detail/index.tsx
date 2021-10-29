@@ -11,7 +11,7 @@ import {
   Fade,
   Box,
   CssBaseline,
-} from '@material-ui/core';
+} from '@mui/material';
 import store from '../../store';
 import { NavBar } from '../../components/MyAppBar';
 import { IJuJi, IPlayInfo } from '../../types';
@@ -127,7 +127,7 @@ const MovieDetail = (props: IProps) => {
           return (
             <Fade key={index} unmountOnExit in={tabValue === index}>
               <Grid container spacing={1} sx={{ textAlign: 'center', py: 2 }}>
-                {playSource.map((juji) => {
+                {playSource.map((juji,i) => {
                   return (
                     <Grid key={i} item xs={3}>
                       <Button

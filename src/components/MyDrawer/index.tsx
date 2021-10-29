@@ -7,7 +7,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from '@material-ui/core';
+} from '@mui/material';
 import { noop } from '../../types/constant';
 import drawerImg from '../../assets/sun_main.png';
 import logoImg from '../../assets/logo192.png';
@@ -29,7 +29,7 @@ const MyDrawer = (props: IProps) => {
           subtitle="version1.0"
           actionPosition="left"
           actionIcon={
-            <IconButton sx={{ pr: 1 }}>
+            <IconButton sx={{ pr: 1 }} size="large">
               <img width="40" height="40" src={logoImg} />
             </IconButton>
           }

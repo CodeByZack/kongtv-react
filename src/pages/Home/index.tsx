@@ -1,17 +1,16 @@
 import { RouteComponentProps, useNavigate } from '@reach/router';
-import { CssBaseline, Skeleton, Tab, Tabs, Toolbar } from '@material-ui/core';
+import { CssBaseline, Skeleton, Tab, Tabs, Toolbar, Box } from '@mui/material';
 import SwipeableViews from 'react-swipeable-views';
 import MyDrawer from '../../components/MyDrawer';
 import MyAppBar from '../../components/MyAppBar';
 import store from '../../store';
-import { Box } from '@material-ui/system';
 import HomeCategory from './homeCategory';
 import { MovieType } from '../../types';
 import HomeMain from './homeMain';
-import HistoryIcon from '@material-ui/icons/History';
-import InfoIcon from '@material-ui/icons/Info';
-import DarkIcon from '@material-ui/icons/Brightness4';
-import LightIcon from '@material-ui/icons/Brightness7';
+import HistoryIcon from '@mui/icons-material/History';
+import InfoIcon from '@mui/icons-material/Info';
+import DarkIcon from '@mui/icons-material/Brightness4';
+import LightIcon from '@mui/icons-material/Brightness7';
 
 interface IProps extends RouteComponentProps {}
 

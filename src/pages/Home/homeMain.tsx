@@ -1,9 +1,9 @@
 import Swiper from '../../components/swiper';
 import store from '../../store';
 import { IMovieItem } from '../../types';
-import LocalMoviesIcon from '@material-ui/icons/LocalMovies';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import { Box, Skeleton, Typography } from '@material-ui/core';
+import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Box, Skeleton, Typography } from '@mui/material';
 import MovieList, { MovieListSkeleton } from '../../components/MovieList';
 
 interface IProps {
