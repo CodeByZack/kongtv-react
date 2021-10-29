@@ -28,7 +28,7 @@ export const MovieListSkeleton = () => {
   return (
     <Grid container spacing={1}>
       {[1, 2, 3, 4, 5, 6].map((tile) => (
-        <Grid  key={tile} item xs={4}>
+        <Grid key={tile} item xs={4}>
           <MovieItemSkeleton />
         </Grid>
       ))}

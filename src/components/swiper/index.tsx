@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RatioImage from '../ratioImage';
 import './style.css';
-import { swiperStyle,setSwipeType } from '../../types/swiper'
+import { swiperStyle, setSwipeType } from '../../types/swiper';
 const defaultStyle = { visibility: 'hidden', width: 0, height: 0 };
 const styles = [
   {
@@ -26,12 +26,18 @@ const styles = [
   },
 ];
 
-const calculatingStyle = (index:number, length:number):swiperStyle[] => {
-  let resStyle:swiperStyle[] = [];
+const calculatingStyle = (index: number, length: number): swiperStyle[] => {
+  let resStyle: swiperStyle[] = [];
   for (let i = 0; i < length; i++) {
-    let _index = !index ? i - index : index > 0 ? 
-    ( i - index >= 0 ? i - index : i - index + length ) :
-    ( i - index > 4 ? i - index - length : i - index );
+    let _index = !index
+      ? i - index
+      : index > 0
+      ? i - index >= 0
+        ? i - index
+        : i - index + length
+      : i - index > 4
+      ? i - index - length
+      : i - index;
     const style = styles[_index] ?? defaultStyle;
     resStyle.push(style);
   }
@@ -40,36 +46,41 @@ const calculatingStyle = (index:number, length:number):swiperStyle[] => {
   return resStyle;
 };
 
-const Swiper = (props:any):any => {
+const Swiper = (props: any): any => {
   const { imgArr = [], autoPlay = true, onSwiperItemClick = () => {} } = props;
   const [index, setIndex] = useState(0);
-  const [_styles, setStyle]:[any,any] = useState([]);
-  let xStart:number;
-  const startHandle = (e:any):void => {
+  const [_styles, setStyle]: [any, any] = useState([]);
+  let xStart: number;
+  const startHandle = (e: any): void => {
     e.stopPropagation();
     xStart = e.touches[0].pageX;
   };
-  const moveHandle = (e:any):void => {
+  const moveHandle = (e: any): void => {
     e.stopPropagation();
     let touch = e.touches[0];
-    ( xStart - touch.pageX ) <= -50 && swiperFn(index,'right');
-    ( xStart - touch.pageX ) >= 50 && swiperFn(index,'left');
+    xStart - touch.pageX <= -50 && swiperFn(index, 'right');
+    xStart - touch.pageX >= 50 && swiperFn(index, 'left');
   };
-  
-  const setIndexFn:setSwipeType = (index:number,direction:string):number => {
-    let _index = direction === 'left' ? 
-    (index - 1 === -imgArr.length  ? 0 : index - 1) : 
-    (index + 1 === imgArr.length ? 0 : index + 1);
-    return _index
-  }
-  const swiperFn:setSwipeType = (index:number,direction:string):void => {
-    let _index = setIndexFn(index,direction)
+
+  const setIndexFn: setSwipeType = (index: number, direction: string): number => {
+    let _index =
+      direction === 'left'
+        ? index - 1 === -imgArr.length
+          ? 0
+          : index - 1
+        : index + 1 === imgArr.length
+        ? 0
+        : index + 1;
+    return _index;
+  };
+  const swiperFn: setSwipeType = (index: number, direction: string): void => {
+    let _index = setIndexFn(index, direction);
     setIndex(_index);
     setStyle(calculatingStyle(_index, imgArr.length));
-  }
+  };
   useEffect(() => {
     if (!imgArr.length) return;
-    const timer = setTimeout(() => swiperFn(index,'right') , 2000);
+    const timer = setTimeout(() => swiperFn(index, 'right'), 2000);
     return () => clearTimeout(timer);
     //eslint-disable-next-line
   }, [imgArr, autoPlay, index]);
@@ -79,7 +90,7 @@ const Swiper = (props:any):any => {
 
   return (
     <div className="ks-swiper" onTouchStart={startHandle} onTouchMove={moveHandle}>
-      {imgArr.map((d:any, i:any) => {
+      {imgArr.map((d: any, i: any) => {
         return (
           <div
             key={d.vod_id}

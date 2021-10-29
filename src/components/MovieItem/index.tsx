@@ -45,14 +45,14 @@ const MovieItem = (props: IProps) => {
 export const MovieItemSkeleton = () => {
   return (
     <Card>
-      <Skeleton animation="wave" variant="rectangular" width='100%'>
+      <Skeleton animation="wave" variant="rectangular" width="100%">
         <CardMedia
           sx={{
             paddingTop: '133.33%',
           }}
         />
       </Skeleton>
-      <Skeleton animation="wave" variant="rectangular" width='100%'>
+      <Skeleton animation="wave" variant="rectangular" width="100%">
         <CardContent
           sx={{
             padding: '5px 10px!important',

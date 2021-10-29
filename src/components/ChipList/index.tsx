@@ -47,7 +47,9 @@ const ChipList = (props: IChipListProp) => {
         mb: 2,
       }}
     >
-      <Typography sx={{ flexShrink : 0 }} component="span">{title}：</Typography>
+      <Typography sx={{ flexShrink: 0 }} component="span">
+        {title}：
+      </Typography>
       {data.map((i) => (
         <Chip
           key={i}

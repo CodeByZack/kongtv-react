@@ -52,7 +52,11 @@ const Home = (props: IProps) => {
       }}
     >
       <CssBaseline />
-      <MyAppBar title="风影院" onSearch={()=>jumpUtil.jumpToSearch() } toggoleDrawer={() => setDrawerStatus(true)}>
+      <MyAppBar
+        title="风影院"
+        onSearch={() => jumpUtil.jumpToSearch()}
+        toggoleDrawer={() => setDrawerStatus(true)}
+      >
         <Tabs
           variant="fullWidth"
           indicatorColor="secondary"

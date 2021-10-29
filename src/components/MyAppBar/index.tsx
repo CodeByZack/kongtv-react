@@ -24,7 +24,7 @@ const MyAppBar = (props: PropsWithChildren<IProps>) => {
     <HideOnScroll {...restProps}>
       <AppBar {...restProps}>
         <Toolbar>
-          <IconButton onClick={toggoleDrawer} edge="start" color="inherit" >
+          <IconButton onClick={toggoleDrawer} edge="start" color="inherit">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }} noWrap>

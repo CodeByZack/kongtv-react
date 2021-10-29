@@ -1,12 +1,20 @@
 import { useState, useEffect } from 'react';
-import { List, ListItem, ListItemAvatar, ListItemText, Avatar, Box, CssBaseline } from '@material-ui/core';
+import {
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Avatar,
+  Box,
+  CssBaseline,
+} from '@material-ui/core';
 import store from '../../store';
 import storeUtils from '../../utils/storeUtils';
 import { IMovieItem } from '../../types';
 import { NavBar } from '../../components/MyAppBar';
 import { RouteComponentProps } from '@reach/router';
 
-interface IProps extends RouteComponentProps {};
+interface IProps extends RouteComponentProps {}
 
 const WatchHistory = (props: IProps) => {
   const [history, setHistory] = useState<
@@ -31,14 +39,14 @@ const WatchHistory = (props: IProps) => {
   return (
     <>
       <NavBar title="观看记录" onBack={jumpBack} />
-      <CssBaseline/>
+      <CssBaseline />
       {history.length > 0 ? (
         <List sx={{ bgcolor: 'background.default', minHeight: 'calc(100vh - 56px)' }}>
           {history.map((item) => {
             const textInfo = (
               <>
                 <Box
-                  sx={{ mt: 0.5, textOverflow : 'ellipsis' }}
+                  sx={{ mt: 0.5, textOverflow: 'ellipsis' }}
                   component="p"
                 >{`${item.vod_area}-${item.vod_class}-${item.vod_director}`}</Box>
                 <Box sx={{ mt: 0.5 }} component="p">{`观看至${item.watch_history}`}</Box>

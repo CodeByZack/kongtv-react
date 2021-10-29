@@ -5,7 +5,7 @@ import SearchBar from '../../components/SearchBar';
 import store from '../../store';
 
 interface IProps extends RouteComponentProps {}
-const MovieSearch = (props : IProps) => {
+const MovieSearch = (props: IProps) => {
   const { searchState, jumpUtil } = store.useContainer();
   const { jumpBack } = jumpUtil;
   const { searchRes, search } = searchState;
@@ -20,9 +20,9 @@ const MovieSearch = (props : IProps) => {
 
   return (
     <div className="movie-search-page">
-      <CssBaseline/>
+      <CssBaseline />
       <SearchBar onBack={jumpBack} onSearch={onSearch} placeholder="输入你要搜索的名字" />
-      <Toolbar/>
+      <Toolbar />
       <Box sx={{ bgcolor: 'background.default', p: 1, minHeight: 'calc(100vh - 56px)' }}>
         <MovieList movies={searchRes} />
       </Box>
