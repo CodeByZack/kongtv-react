@@ -15,7 +15,7 @@ const MovieList = (props: IProps) => {
     <div>
       <Grid container spacing={1}>
         {movies.map((tile, index) => (
-          <Grid item xs={4}>
+          <Grid key={index} item xs={4}>
             <MovieItem data={tile} />
           </Grid>
         ))}
@@ -28,7 +28,7 @@ export const MovieListSkeleton = () => {
   return (
     <Grid container spacing={1}>
       {[1, 2, 3, 4, 5, 6].map((tile) => (
-        <Grid item xs={4}>
+        <Grid  key={tile} item xs={4}>
           <MovieItemSkeleton />
         </Grid>
       ))}

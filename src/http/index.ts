@@ -27,10 +27,10 @@ axios.interceptors.response.use(
   }
 );
 
-const getIndex = () => axios.get<IMovieItem[],IMovieItem[]>('/index');
+const getIndex = () => axios.get<IMovieItem[], IMovieItem[]>('/index');
 
 const getCategory = (type: MovieType, params: ICommonRequestParams) =>
-  axios.get<IMovieItem[],IMovieItem[]>(`/${type}`, { params });
+  axios.get<IMovieItem[], IMovieItem[]>(`/${type}`, { params });
 
 const searchMovie = (searchText: string) => {
   const params = {
@@ -38,7 +38,7 @@ const searchMovie = (searchText: string) => {
     word: searchText,
     pagesize: 100,
   };
-  return axios.get<IMovieItem[],IMovieItem[]>('/search', { params });
+  return axios.get<IMovieItem[], IMovieItem[]>('/search', { params });
 };
 
 export { getIndex, getCategory, searchMovie };

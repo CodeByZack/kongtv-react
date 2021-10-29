@@ -59,6 +59,7 @@ const SearchBar = (props: IProps) => {
           <Box sx={{ p: '4px' }}>
             {storeUtils.getSearchHistory()?.map((t) => (
               <Chip
+                key={t}
                 sx={{ color: 'primary.contrastText', px: 1 }}
                 onClick={handleHistoryClick(t)}
                 color="primary"

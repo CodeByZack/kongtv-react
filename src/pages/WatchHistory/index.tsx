@@ -47,6 +47,7 @@ const WatchHistory = (props: IProps) => {
 
             return (
               <ListItem
+                key={item.vod_name}
                 alignItems="flex-start"
                 onClick={() => {
                   jump(item);

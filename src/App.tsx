@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Play from './pages/Play';
 import Search from './pages/Search';
 import WatchHistory from './pages/WatchHistory';
-import store, { injectStore } from './store';
+import store from './store';
 
 const App = () => {
   return (

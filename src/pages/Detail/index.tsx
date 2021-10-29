@@ -120,16 +120,16 @@ const MovieDetail = (props: IProps) => {
         </Typography>
         <Tabs value={tabValue} onChange={(_, v) => setTabValue(v)}>
           {playSources.map((t, i) => (
-            <Tab label={`源${i}`} />
+            <Tab key={i} label={`源${i}`} />
           ))}
         </Tabs>
         {playSources.map((playSource, index) => {
           return (
-            <Fade unmountOnExit in={tabValue === index}>
-              <Grid container spacing={1} sx={{ textAlign: 'center', py : 2 }}>
+            <Fade key={index} unmountOnExit in={tabValue === index}>
+              <Grid container spacing={1} sx={{ textAlign: 'center', py: 2 }}>
                 {playSource.map((juji) => {
                   return (
-                    <Grid item xs={3}>
+                    <Grid key={i} item xs={3}>
                       <Button
                         sx={{ color: 'text.secondry' }}
                         size="small"

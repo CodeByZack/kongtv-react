@@ -36,6 +36,6 @@ export interface IJuJi {
   text: string;
   link: string;
 }
-export interface IPlayInfo extends IJuJi{
+export interface IPlayInfo extends IJuJi {
   title: string;
 }

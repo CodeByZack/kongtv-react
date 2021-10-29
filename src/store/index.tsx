@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { createContainer } from './unstate-next';
 import { useState, useEffect } from 'react';
 import { getCategory, getIndex, searchMovie } from '../http';
@@ -32,6 +33,7 @@ const useJumpUtil = () => {
   const navigate = useNavigate();
 
   const jumpToDetail = (data: IMovieItem) => {
+    console.log(data);
     navigate('/detail', { replace: true });
   };
 

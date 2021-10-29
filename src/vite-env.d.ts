@@ -13,6 +13,6 @@ declare module '*.jpeg'
 declare module '*.gif'
 declare module '*.bmp'
 declare module '*.tiff'
-interface Window {
+declare interface Window {
     HlsJsPlayer: any;
 }

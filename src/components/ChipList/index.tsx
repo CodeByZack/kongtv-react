@@ -1,5 +1,4 @@
 import { Box, Chip, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 
 const year = ['全部', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013'];
 const area = [
@@ -51,6 +50,7 @@ const ChipList = (props: IChipListProp) => {
       <Typography sx={{ flexShrink : 0 }} component="span">{title}：</Typography>
       {data.map((i) => (
         <Chip
+          key={i}
           style={{ marginRight: 8, backgroundColor: 'transparent' }}
           onClick={() => handleClick(i)}
           size="small"
