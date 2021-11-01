@@ -97,8 +97,8 @@ const Home = () => {
         >
           <HomeMain />
           {
-            Object.keys(MovieType).map( item => {
-              return <HomeCategory type={MovieType[item as MovieType]} />
+            Object.keys(MovieType).map( (item,index) => {
+              return <HomeCategory type={MovieType[item as MovieType]} key={index}/>
             })
           }
         </SwipeableViews>

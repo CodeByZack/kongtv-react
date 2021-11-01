@@ -1,11 +1,10 @@
 import Swiper from '../../components/swiper';
 import store from '../../store';
-import { IMovieItem } from '../../types';
+import { IMovieItem,homeType } from '../../types';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Box, Skeleton, Typography } from '@mui/material';
 import MovieList, { MovieListSkeleton } from '../../components/MovieList';
-
 interface IHomeItemProps {
   title: string;
   movies: IMovieItem[];
@@ -63,10 +62,9 @@ const HomeMainSkeleton = () => {
   return (
     <div className="home_main_page" style={{ height: '100%', overflow: 'auto' }}>
       <Skeleton animation="wave" sx={{ m: 2 }} variant="rectangular" height={198} />
-      <HomeItemSkeleton title={'热播影视'} />
-      <HomeItemSkeleton title={'热播电影'} />
-      <HomeItemSkeleton title={'热播综艺'} />
-      <HomeItemSkeleton title={'热播动漫'} />
+      {
+        Object.entries(homeType).map((item,index)=> <HomeItemSkeleton title={item[1]} key={index}/> )
+      }
     </div>
   );
 };
@@ -74,18 +72,18 @@ const HomeMainSkeleton = () => {
 const HomeMain = () => {
   const { home } = store.useContainer();
   const { adviceMovieList: data, isFetching } = home;
-
-  const dy = data.filter((movie) => movie.type_id_1 === 1);
-  const dsj = data.filter((movie) => movie.type_id_1 === 2);
-  const zy = data.filter((movie) => movie.type_id === 3);
-  const dm = data.filter((movie) => movie.type_id === 4);
-
+  const mapListData = ( v:any ):any => {
+    let type:string = ( v == 'dy' || v == 'dsj' ) ? 'type_id_1' : 'type_id'
+    return data.filter((movie) => movie[type] ===( Object.keys(homeType).indexOf(v)+1))
+  }
   const { detail, jumpUtil } = store.useContainer();
   const { jumpToDetail } = jumpUtil;
-
-  const swipers = [dy[0], dsj[0], zy[0], dm[0], dy[1]].filter((i) => i);
-
-  const onSwiperItemClick = (movie: IMovieItem) => {
+  const mapSwipers = ():IMovieItem[]=>{
+    let list:IMovieItem[] = [mapListData('dy')[1]]
+    Object.entries(homeType).forEach( item=>list.push(mapListData(item[0])[0]) )
+    return list.filter((i) => i)
+  }
+  const onSwiperItemClick = (movie: IMovieItem):void => {
     detail.setNowMovie(movie);
     jumpToDetail(movie);
   };
@@ -96,11 +94,10 @@ const HomeMain = () => {
 
   return (
     <div className="home_main_page">
-      <Swiper imgArr={swipers} onSwiperItemClick={onSwiperItemClick}></Swiper>
-      <HomeItem title={'热播影视'} movies={dsj} />
-      <HomeItem title={'热播电影'} movies={dy} />
-      <HomeItem title={'热播综艺'} movies={zy} />
-      <HomeItem title={'热播动漫'} movies={dm} />
+      <Swiper imgArr={[...mapSwipers()]} onSwiperItemClick={onSwiperItemClick}></Swiper>
+      {
+        Object.entries(homeType).map((item,index)=> <HomeItem title={item[1]} movies={mapListData(item[0])} key={index}/> )
+      }
     </div>
   );
 };

@@ -24,7 +24,6 @@ const isSafari = checkBrowser() === 'Safari';
 // const isMobile = checkIsMobile();
 
 const renderWithTransition = (path: string, Component: React.FC) => {
-  const categoryObj = store
   const render = (props: any) => {
   const { match, history } = props;
   
