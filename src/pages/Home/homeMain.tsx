@@ -5,6 +5,7 @@ import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Box, Skeleton, Typography } from '@mui/material';
 import MovieList, { MovieListSkeleton } from '../../components/MovieList';
+
 interface IHomeItemProps {
   title: string;
   movies: IMovieItem[];
@@ -72,7 +73,7 @@ const HomeMainSkeleton = () => {
 const HomeMain = () => {
   const { home } = store.useContainer();
   const { adviceMovieList: data, isFetching } = home;
-  const mapListData = ( v:any ):any => {
+  const mapListData = ( v:string ):IMovieItem[] => {
     let type:string = ( v == 'dy' || v == 'dsj' ) ? 'type_id_1' : 'type_id'
     return data.filter((movie) => movie[type] ===( Object.keys(homeType).indexOf(v)+1))
   }
