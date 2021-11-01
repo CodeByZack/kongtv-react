@@ -21,7 +21,6 @@ specifiers:
   prettier: ^2.4.1
   react: ^17.0.0
   react-dom: ^17.0.0
-  react-router: ^5.2.1
   react-router-dom: ^5.3.0
   react-swipeable-views: ^0.14.0
   typescript: ^4.3.2
@@ -33,11 +32,9 @@ dependencies:
   '@mui/icons-material': 5.0.5_3565a0d376b0012dc08925ef5e505ec5
   '@mui/material': 5.0.6_548ab84a18f5953b71f8bdc6185934b5
   '@mui/styles': 5.0.2_74cdfb704b70bfbe5b519e0c4564d995
-  '@types/react-router-dom': 5.3.2
   axios: 0.23.0
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
-  react-router: 5.2.1_react@17.0.2
   react-router-dom: 5.3.0_react@17.0.2
   react-swipeable-views: 0.14.0_react@17.0.2
 
@@ -45,6 +42,7 @@ devDependencies:
   '@types/reach__router': 1.3.9
   '@types/react': 17.0.33
   '@types/react-dom': 17.0.10
+  '@types/react-router-dom': 5.3.2
   '@types/react-swipeable-views': 0.13.1
   '@typescript-eslint/eslint-plugin': 5.2.0_9a56ca1c5fc1d82b3da3317a5c6f9ab1
   '@typescript-eslint/parser': 5.2.0_eslint@8.1.0+typescript@4.4.4
@@ -735,7 +733,7 @@ packages:
 
   /@types/history/4.7.9:
     resolution: {integrity: sha512-MUc6zSmU3tEVnkQ78q0peeEjKWPUADMlC/t++2bI8WnAG2tvYRPIgHG8lWkXwqc8MsUF6Z2MOf+Mh5sazOmhiQ==}
-    dev: false
+    dev: true
 
   /@types/json-schema/7.0.9:
     resolution: {integrity: sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==}
@@ -772,14 +770,14 @@ packages:
       '@types/history': 4.7.9
       '@types/react': 17.0.33
       '@types/react-router': 5.1.17
-    dev: false
+    dev: true
 
   /@types/react-router/5.1.17:
     resolution: {integrity: sha512-RNSXOyb3VyRs/EOGmjBhhGKTbnN6fHWvy5FNLzWfOWOGjgVUKqJZXfpKzLmgoU8h6Hj8mpALj/mbXQASOb92wQ==}
     dependencies:
       '@types/history': 4.7.9
       '@types/react': 17.0.33
-    dev: false
+    dev: true
 
   /@types/react-swipeable-views/0.13.1:
     resolution: {integrity: sha512-Nuvywkv9CkwcUgItOCBszkc/pc8YSdiKV5E1AzOJ/p32Db50LgwhJFi5b1ANPgyWxB0Q5yn69aMURHyGi3MLyg==}
