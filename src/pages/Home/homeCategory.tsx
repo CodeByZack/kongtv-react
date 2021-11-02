@@ -39,7 +39,6 @@ const HomeCategory = (props: IProps) => {
         ticking = true;
       }
     };
-    console.log(boxRef.current);
     boxRef.current?.addEventListener('scroll', handleScroll);
     return () => {
       boxRef.current?.removeEventListener('scroll', handleScroll);

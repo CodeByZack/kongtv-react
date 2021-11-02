@@ -26,6 +26,7 @@ const MovieItem = (props: IProps) => {
           paddingTop: '133.33%',
         }}
         style={{ backgroundImage: bkUrl }}
+        component='div'
         // image={tile.vod_pic}
         title={data.vod_name}
       />
@@ -50,6 +51,7 @@ export const MovieItemSkeleton = () => {
           sx={{
             paddingTop: '133.33%',
           }}
+          component='div'
         />
       </Skeleton>
       <Skeleton animation="wave" variant="rectangular" width="100%">
