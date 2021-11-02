@@ -7,7 +7,7 @@ import Search from './pages/Search';
 import WatchHistory from './pages/WatchHistory';
 import store from './store';
 import { checkBrowser } from './utils';
-import {  ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import themeObj from './utils/theme';
 const routes = [
@@ -19,14 +19,13 @@ const routes = [
   { path: '/', Component: Home },
 ];
 
-
 const isSafari = checkBrowser() === 'Safari';
 // const isMobile = checkIsMobile();
 
 const renderWithTransition = (path: string, Component: React.FC) => {
   const render = (props: any) => {
-  const { match, history } = props;
-  
+    const { match, history } = props;
+
     if (!isSafari) {
       const direction = history.action === 'POP' ? 'right' : 'left';
       return (
@@ -58,14 +57,14 @@ const renderWithTransition = (path: string, Component: React.FC) => {
 };
 
 const App = () => {
-  const [theme,setTheme] = useState(themeObj.defaultTheme);
-  const toggoleTheme = (type:any):void=>{
+  const [theme, setTheme] = useState(themeObj.defaultTheme);
+  const toggoleTheme = (type: any): void => {
     setTheme(themeObj.ThemeArr[type]);
     themeObj.setThemeLocal(type);
   };
   return (
     <BrowserRouter>
-      <store.Provider initialState={{toggoleTheme,theme}}>
+      <store.Provider initialState={{ toggoleTheme, theme }}>
         <ThemeProvider theme={theme}>
           <Switch>
             {routes.map(({ path, Component }) => renderWithTransition(path, Component))}

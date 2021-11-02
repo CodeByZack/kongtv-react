@@ -25,21 +25,6 @@ export interface ICommonRequestParams {
   area?: string;
 }
 
-export enum tabsType {
-  sy='首页',
-  dsj='热播影视',
-  dm='动漫',
-  zy='综艺',
-  dy='电影'
-}
-
-export enum homeType {
-  dy='热播电影',
-  dsj='电视剧',
-  zy='热播综艺',
-  dm='热播动漫'
-}
-
 export enum MovieType {
   dy = 'dy',
   dsj = 'dsj',

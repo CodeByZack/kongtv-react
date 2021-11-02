@@ -78,7 +78,7 @@ const MovieDetail = () => {
     jumpToPlay(palyObj);
   };
 
-  const onBackClick = ():void => {
+  const onBackClick = (): void => {
     clear();
     jumpBack();
   };

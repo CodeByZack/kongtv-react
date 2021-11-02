@@ -4,25 +4,27 @@ import MyDrawer from '../../components/MyDrawer';
 import MyAppBar from '../../components/MyAppBar';
 import store from '../../store';
 import HomeCategory from './homeCategory';
-import { MovieType,tabsType } from '../../types';
 import HomeMain from './homeMain';
 import HistoryIcon from '@mui/icons-material/History';
 import InfoIcon from '@mui/icons-material/Info';
-// import DarkIcon from '@mui/icons-material/Brightness4';
 import LightIcon from '@mui/icons-material/Brightness7';
 import DarkIcon from '@mui/icons-material/Brightness4';
-import themeObj from '../../utils/theme'; 
-
+import themeObj from '../../utils/theme';
+import { TABS, TABS_NAME } from '../../types/constant';
 
 const swStyle = { height: '100%' };
 
-
-const useInitMenus = (jumpToWatchHistory: () => void,toggoleTheme:()=>void,themeHelper:any) => {
+const useInitMenus = (
+  jumpToWatchHistory: () => void,
+  toggoleTheme: () => void,
+  themeHelper: any
+) => {
   const menus = [
     { txt: '观看记录', icon: <HistoryIcon />, onClick: jumpToWatchHistory },
-    { txt: themeHelper.theme.palette.mode === 'dark' ? '夜间模式' : '白天模式',
+    {
+      txt: themeHelper.theme.palette.mode === 'dark' ? '夜间模式' : '白天模式',
       icon: themeHelper.theme.palette.mode === 'dark' ? <DarkIcon /> : <LightIcon />,
-      onClick: toggoleTheme 
+      onClick: toggoleTheme,
     },
     { txt: '关于', icon: <InfoIcon /> },
   ];
@@ -30,15 +32,15 @@ const useInitMenus = (jumpToWatchHistory: () => void,toggoleTheme:()=>void,theme
 };
 
 const Home = () => {
-  const { home, jumpUtil,themeHelper } = store.useContainer();
+  const { home, jumpUtil, themeHelper } = store.useContainer();
   const { drawerStatus, setDrawerStatus, tabIndex, setTabIndex } = home;
-  const toggoleTheme = ()=>{
-    themeHelper.theme === themeObj.ThemeArr.dark ?
-      themeHelper.toggoleTheme("light") : 
-      themeHelper.toggoleTheme("dark");
+  const toggoleTheme = () => {
+    themeHelper.theme === themeObj.ThemeArr.dark
+      ? themeHelper.toggoleTheme('light')
+      : themeHelper.toggoleTheme('dark');
     setDrawerStatus(false);
-  }
-  const menus = useInitMenus(jumpUtil.jumpToWatchHistory,toggoleTheme,themeHelper);
+  };
+  const menus = useInitMenus(jumpUtil.jumpToWatchHistory, toggoleTheme, themeHelper);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue);
@@ -71,11 +73,10 @@ const Home = () => {
           value={tabIndex}
           onChange={handleChange}
         >
-          {
-            Object.entries(tabsType).map(item=>{
-              return <Tab label={item[1]} key={item[0]} />
-            })
-          }
+          <Tab label="首页" key="home" />
+          {TABS.map((item) => {
+            return <Tab label={TABS_NAME[item]} key={item} />;
+          })}
         </Tabs>
       </MyAppBar>
       <MyDrawer menus={menus} open={drawerStatus} onClose={() => setDrawerStatus(false)} />
@@ -96,11 +97,9 @@ const Home = () => {
           onChangeIndex={handleChangeIndex}
         >
           <HomeMain />
-          {
-            Object.keys(MovieType).map( (item,index) => {
-              return <HomeCategory type={MovieType[item as MovieType]} key={index}/>
-            })
-          }
+          {TABS.map((item) => (
+            <HomeCategory type={item} key={item} />
+          ))}
         </SwipeableViews>
       </Box>
     </Box>

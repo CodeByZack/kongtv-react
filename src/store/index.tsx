@@ -7,7 +7,7 @@ import { IMovieItem, IPlayInfo, MovieType } from '../types';
 import storeUtils from '../utils/storeUtils';
 import { useHistory } from 'react-router-dom';
 
-const useStore = (themeHelper:any) => {
+const useStore = (themeHelper: any) => {
   const home = useHome();
   const dy = useCategory(MovieType.dy);
   const dsj = useCategory(MovieType.dsj);
@@ -26,7 +26,7 @@ const useStore = (themeHelper:any) => {
     detail,
     searchState,
     jumpUtil,
-    themeHelper
+    themeHelper,
   };
 };
 
