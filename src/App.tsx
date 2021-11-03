@@ -1,15 +1,16 @@
-import { Slide } from '@mui/material';
+import { CircularProgress, Slide } from '@mui/material';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Detail from './pages/Detail';
-import Home from './pages/Home';
-import Play from './pages/Play';
-import Search from './pages/Search';
-import WatchHistory from './pages/WatchHistory';
 import store from './store';
 import { checkBrowser } from './utils';
 import { ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import themeObj from './utils/theme';
+
+const Home = lazy(() => import('./pages/Home'));
+const Play = lazy(() => import('./pages/Play'));
+const Detail = lazy(() => import('./pages/Detail'));
+const Search = lazy(() => import('./pages/Search'));
+const WatchHistory = lazy(() => import('./pages/WatchHistory'));
 
 const routes = [
   { path: '/play', Component: Play },
@@ -67,9 +68,11 @@ const App = () => {
     <BrowserRouter>
       <store.Provider initialState={{ toggoleTheme, theme }}>
         <ThemeProvider theme={theme}>
-          <Switch>
-            {routes.map(({ path, Component }) => renderWithTransition(path, Component))}
-          </Switch>
+          <Suspense fallback={<CircularProgress />}>
+            <Switch>
+              {routes.map(({ path, Component }) => renderWithTransition(path, Component))}
+            </Switch>
+          </Suspense>
         </ThemeProvider>
       </store.Provider>
     </BrowserRouter>
