@@ -10,6 +10,7 @@ import { checkBrowser } from './utils';
 import { ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import themeObj from './utils/theme';
+
 const routes = [
   { path: '/play', Component: Play },
   { path: '/detail', Component: Detail },

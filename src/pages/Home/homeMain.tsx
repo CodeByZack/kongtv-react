@@ -98,7 +98,7 @@ const HomeMain = () => {
   const { jumpToDetail } = jumpUtil;
   const { homeItems, swipers } = useMemo(() => splitAdviceMovie(data), [data]);
 
-  const onSwiperItemClick = (movie: IMovieItem): void => {
+  const onSwiperItemClick = (movie: IMovieItem) => {
     detail.setNowMovie(movie);
     jumpToDetail(movie);
   };
