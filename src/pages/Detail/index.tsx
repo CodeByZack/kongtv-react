@@ -112,12 +112,12 @@ const MovieDetail = () => {
       </Paper>
 
       <Paper sx={{ mx: 2, p: 1 }}>
-        <Typography fontWeight="bold" gutterBottom component="h3">
+        <Typography fontWeight="bold" gutterBottom component="h3" sx={{ color: 'secondary.main' }}>
           剧集列表：
         </Typography>
-        <Tabs value={tabValue} onChange={(_, v) => setTabValue(v)}>
+        <Tabs value={tabValue} onChange={(_, v) => setTabValue(v)} >
           {playSources.map((t, i) => (
-            <Tab key={i} label={`源${i}`} />
+            <Tab key={i} label={`源${i}`}/>
           ))}
         </Tabs>
         {playSources.map((playSource, index) => {
