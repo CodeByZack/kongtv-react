@@ -11,7 +11,6 @@ import LightIcon from '@mui/icons-material/Brightness7';
 import DarkIcon from '@mui/icons-material/Brightness4';
 import themeObj from '../../utils/theme';
 import { TABS, TABS_NAME } from '../../types/constant';
-import './style.css';
 const swStyle = { height: '100%' };
 
 const useInitMenus = (
@@ -73,9 +72,9 @@ const Home = () => {
           value={tabIndex}
           onChange={handleChange}
         >
-          <Tab label="首页" key="home" />
+          <Tab label="首页" key="home" sx={{ minWidth:65 }}/>
           {TABS.map((item) => {
-            return <Tab label={TABS_NAME[item]} key={item} />;
+            return <Tab label={TABS_NAME[item]} key={item} sx={{ minWidth:65 }}/>;
           })}
         </Tabs>
       </MyAppBar>
