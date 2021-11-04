@@ -1,5 +1,5 @@
 import { CircularProgress, Backdrop, Stack } from '@mui/material';
-import { forwardRef, useImperativeHandle, useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 
 export enum ToastType {
   Loading,
@@ -14,7 +14,7 @@ interface IProps {
 interface IControlProps {}
 
 export interface IControlRef {
-  show: (toastProps: IProps, duration ?: number) => void;
+  show: (toastProps: IProps, duration?: number) => void;
   hide: () => void;
 }
 
@@ -33,6 +33,12 @@ const Toast = (props: IProps) => {
 export const ControlToast = forwardRef<IControlRef, IControlProps>((props, ref) => {
   const [toastProps, setToastProps] = useState<IProps>();
   const [visible, setVisible] = useState(false);
+  const timerId = useRef();
+
+  const hide = () => {
+    setToastProps(undefined);
+    setVisible(false);
+  };
 
   useImperativeHandle(
     ref,
@@ -41,11 +47,14 @@ export const ControlToast = forwardRef<IControlRef, IControlProps>((props, ref) 
         show: (toastProps: IProps, duration?: number) => {
           setToastProps(toastProps);
           setVisible(true);
+          if (timerId.current) {
+            clearTimeout(timerId.current);
+          }
+          if (duration && duration > 0) {
+            setTimeout(hide, duration);
+          }
         },
-        hide: () => {
-          setToastProps(undefined);
-          setVisible(false);
-        },
+        hide,
       };
     },
     []
