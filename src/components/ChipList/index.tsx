@@ -21,10 +21,10 @@ const area = [
   '其他',
 ];
 interface IChipListProp {
-  data: string[];
-  title: string;
-  onChange: (txt: string) => void;
-  now: string;
+  data?: string[];
+  title?: string;
+  onChange?: (txt: string) => void;
+  now?: string;
 }
 
 const ChipList = (props: IChipListProp) => {
