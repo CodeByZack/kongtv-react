@@ -6,6 +6,7 @@ import React from 'react';
 import { IMovieItem, IPlayInfo, MovieType } from '../types';
 import storeUtils from '../utils/storeUtils';
 import { useHistory } from 'react-router-dom';
+import Toast from '../components/Toast';
 
 const useStore = (themeHelper: any) => {
   const home = useHome();
@@ -140,15 +141,15 @@ const useSearch = () => {
   const [searchRes, setSearchRes] = useState<IMovieItem[]>([]);
 
   const search = async (text: string) => {
-    // Toast.loading('正在加载数据', 0);
+    Toast.loading('正在加载数据');
     // setSearchText(searchText);
     storeUtils.addSearchHistory(text);
     const data = await searchMovie(text);
     if (data.length === 0) {
-      //   Toast.hide();
-      //   Toast.info('没有搜索到相关影片');
+      Toast.destroy();
+      Toast.info('没有搜索到相关影片');
     } else {
-      //   Toast.hide();
+      Toast.destroy();
     }
     setSearchRes(data);
   };

@@ -8,6 +8,7 @@ import HomeMain from './homeMain';
 import HistoryIcon from '@mui/icons-material/History';
 import InfoIcon from '@mui/icons-material/Info';
 import LightIcon from '@mui/icons-material/Brightness7';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import DarkIcon from '@mui/icons-material/Brightness4';
 import themeObj from '../../utils/theme';
 import { TABS, TABS_NAME } from '../../types/constant';
@@ -25,6 +26,7 @@ const useInitMenus = (
       icon: themeHelper.theme.palette.mode === 'dark' ? <DarkIcon /> : <LightIcon />,
       onClick: toggoleTheme,
     },
+    { txt: '更新资源', onClick: ()=>{}, icon: <RefreshIcon /> },
     { txt: '关于', icon: <InfoIcon /> },
   ];
   return menus;
