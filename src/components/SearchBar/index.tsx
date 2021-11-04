@@ -29,7 +29,7 @@ const SearchBar = (props: IProps) => {
 
   return (
     <ClickAwayListener onClickAway={() => setShowHistory(false)}>
-      <AppBar>
+      <AppBar position="static">
         <Box
           sx={{
             display: 'flex',

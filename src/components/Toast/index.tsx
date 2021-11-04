@@ -5,27 +5,43 @@ import { ControlToast, IControlRef, ToastType } from './toast';
 const createNotice = () => {
   const div = document.createElement('div');
   document.body.appendChild(div);
+  let timerId: number;
 
-  const loading = (content: string) => {
+  const destroy = () => {
+    ReactDOM.unmountComponentAtNode(div);
+  };
+
+  const loading = (content: string, duration: number = 1000) => {
     const ref = createRef<IControlRef>();
     ReactDOM.render(<ControlToast ref={ref} />, div);
     ref.current?.show({
       type: ToastType.Loading,
       content,
     });
+
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+
+    if (duration > 0) {
+      setTimeout(destroy, duration);
+    }
   };
 
-  const info = (content: string) => {
+  const info = (content: string, duration: number = 1000) => {
     const ref = createRef<IControlRef>();
     ReactDOM.render(<ControlToast ref={ref} />, div);
     ref.current?.show({
       type: ToastType.Info,
       content,
     });
-  };
+    if (timerId) {
+      clearTimeout(timerId);
+    }
 
-  const destroy = () => {
-    ReactDOM.unmountComponentAtNode(div);
+    if (duration > 0) {
+      setTimeout(destroy, duration);
+    }
   };
 
   return {
@@ -45,7 +61,7 @@ const getInstance = () => {
 };
 
 export default {
-  info: (content: string) => getInstance().info(content),
-  loading: (content: string) => getInstance().loading(content),
+  info: (content: string, duration?: number) => getInstance().info(content, duration),
+  loading: (content: string, duration?: number) => getInstance().loading(content, duration),
   destroy: () => getInstance().destroy(),
 };

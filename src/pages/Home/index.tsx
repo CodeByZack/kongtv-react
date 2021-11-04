@@ -12,6 +12,8 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import DarkIcon from '@mui/icons-material/Brightness4';
 import themeObj from '../../utils/theme';
 import { TABS, TABS_NAME } from '../../types/constant';
+import Toast from '../../components/Toast';
+import { clearCacheAndRefresh } from '../../http';
 const swStyle = { height: '100%' };
 
 const useInitMenus = (
@@ -26,7 +28,14 @@ const useInitMenus = (
       icon: themeHelper.theme.palette.mode === 'dark' ? <DarkIcon /> : <LightIcon />,
       onClick: toggoleTheme,
     },
-    { txt: '更新资源', onClick: ()=>{}, icon: <RefreshIcon /> },
+    {
+      txt: '更新资源',
+      onClick: async () => {
+        window.open('http://fengxiaoci.cn/api.php/timming/index.html?enforce=1&name=bdzy');
+        window.open('https://api.fengxiaoci.cn/movie/updateindex');
+      },
+      icon: <RefreshIcon />,
+    },
     { txt: '关于', icon: <InfoIcon /> },
   ];
   return menus;

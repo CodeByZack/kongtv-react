@@ -41,5 +41,10 @@ const searchMovie = (searchText: string) => {
   return axios.get<IMovieItem[], IMovieItem[]>('/search', { params });
 };
 
-export { getIndex, getCategory, searchMovie };
+const clearCacheAndRefresh = async () => {
+  const res = await axios.get('http://fengxiaoci.cn/api.php/timming/index.html?enforce=1&name=bdzy');
+  const res2 = await axios.get('https://api.fengxiaoci.cn/movie/updateindex');
+};
+
+export { getIndex, getCategory, searchMovie, clearCacheAndRefresh };
 export default axios;

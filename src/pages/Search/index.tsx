@@ -17,14 +17,13 @@ const MovieSearch = () => {
   };
 
   return (
-    <div className="movie-search-page">
+    <Box>
       <CssBaseline />
       <SearchBar onBack={jumpBack} onSearch={onSearch} placeholder="输入你要搜索的名字" />
-      <Toolbar />
-      <Box sx={{ bgcolor: 'background.default', p: 1, minHeight: 'calc(100vh - 56px)' }}>
+      <Box sx={{ bgcolor: 'background.default', p: 1 }}>
         <MovieList movies={searchRes} />
       </Box>
-    </div>
+    </Box>
   );
 };
 export default MovieSearch;
