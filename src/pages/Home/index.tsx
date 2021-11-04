@@ -72,9 +72,9 @@ const Home = () => {
           value={tabIndex}
           onChange={handleChange}
         >
-          <Tab label="首页" key="home" sx={{ minWidth: 65 }} />
+          <Tab label="首页" key="home" sx={{ minWidth: 72, p: '6px 12px' }} />
           {TABS.map((item) => {
-            return <Tab label={TABS_NAME[item]} key={item} sx={{ minWidth: 65 }} />;
+            return <Tab label={TABS_NAME[item]} key={item} sx={{ minWidth: 72, p: '6px 12px' }} />;
           })}
         </Tabs>
       </MyAppBar>
