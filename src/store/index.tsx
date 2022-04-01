@@ -141,7 +141,7 @@ const useSearch = () => {
   const [searchRes, setSearchRes] = useState<IMovieItem[]>([]);
 
   const search = async (text: string) => {
-    Toast.loading('正在加载数据',0);
+    Toast.loading('正在加载数据', 0);
     // setSearchText(searchText);
     storeUtils.addSearchHistory(text);
     const data = await searchMovie(text);
