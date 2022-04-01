@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build-dev": "tsc && vite build",
     "serve": "vite preview",
     "pr": "prettier --write \"src/**/*{.tsx,.ts}\"",
     "lint": "eslint --ext .ts,.tsx src/",
