@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     sourcemap: true,
+    outDir: 'build',
     rollupOptions: {
       // external: ['react', 'react-dom'],
       // output: {
