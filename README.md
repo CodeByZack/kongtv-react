@@ -9,7 +9,7 @@
 
 ## 使用
 
-[线上地址](https://movie.zackdk.top/)
+[线上地址](https://movie.zackdk.com/)
 
 IOS手机，请添加到主屏幕使用，体验更好！！！
 
