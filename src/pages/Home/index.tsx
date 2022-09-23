@@ -31,8 +31,6 @@ const useInitMenus = (
     {
       txt: '更新资源',
       onClick: async () => {
-        window.open('http://fengxiaoci.cn/api.php/timming/index.html?enforce=1&name=bdzy');
-        window.open('https://api.fengxiaoci.cn/movie/updateindex');
       },
       icon: <RefreshIcon />,
     },
