@@ -75,8 +75,8 @@ const HomeMainSkeleton = () => {
 const splitAdviceMovie = (data: IMovieItem[]) => {
   const dy = data.filter((movie) => movie.type_id_1 === 1);
   const dsj = data.filter((movie) => movie.type_id_1 === 2);
-  const zy = data.filter((movie) => movie.type_id === 3);
-  const dm = data.filter((movie) => movie.type_id === 4);
+  const zy = data.filter((movie) => movie.type_id === 4);
+  const dm = data.filter((movie) => movie.type_id === 3);
 
   const swipers = [dy[0], dsj[0], zy[0], dm[0], dy[1]].filter((i) => i);
 
